@@ -10,12 +10,9 @@ import SwiftData
 
 @main
 struct SwiftUI_DaysApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
+    private var sharedModelContainer: ModelContainer = {
+        let schema = Schema([Item.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
@@ -25,7 +22,7 @@ struct SwiftUI_DaysApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainScreen()
         }
         .modelContainer(sharedModelContainer)
     }

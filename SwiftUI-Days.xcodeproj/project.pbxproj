@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		6720502E2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720502D2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift */; };
-		672050302BA9F8C6005B00E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720502F2BA9F8C6005B00E7 /* ContentView.swift */; };
+		672050302BA9F8C6005B00E7 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720502F2BA9F8C6005B00E7 /* MainScreen.swift */; };
 		672050322BA9F8C6005B00E7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672050312BA9F8C6005B00E7 /* Item.swift */; };
 		672050342BA9F8C7005B00E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 672050332BA9F8C7005B00E7 /* Assets.xcassets */; };
 		672050382BA9F8C7005B00E7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 672050372BA9F8C7005B00E7 /* Preview Assets.xcassets */; };
 		672050422BA9F8C7005B00E7 /* SwiftUI_DaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672050412BA9F8C7005B00E7 /* SwiftUI_DaysTests.swift */; };
 		6720504C2BA9F8C7005B00E7 /* SwiftUI_DaysUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720504B2BA9F8C7005B00E7 /* SwiftUI_DaysUITests.swift */; };
 		6720504E2BA9F8C7005B00E7 /* SwiftUI_DaysUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720504D2BA9F8C7005B00E7 /* SwiftUI_DaysUITestsLaunchTests.swift */; };
+		6720505B2BAA0BAE005B00E7 /* ItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720505A2BAA0BAE005B00E7 /* ItemScreen.swift */; };
+		6720505D2BAA0D31005B00E7 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720505C2BAA0D31005B00E7 /* ListItemView.swift */; };
+		6720505F2BAA0D46005B00E7 /* Item+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720505E2BAA0D46005B00E7 /* Item+.swift */; };
+		672050612BAA1DFF005B00E7 /* CreateItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672050602BAA1DFF005B00E7 /* CreateItemScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +41,7 @@
 /* Begin PBXFileReference section */
 		6720502A2BA9F8C6005B00E7 /* SwiftUI-Days.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Days.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6720502D2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_DaysApp.swift; sourceTree = "<group>"; };
-		6720502F2BA9F8C6005B00E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6720502F2BA9F8C6005B00E7 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		672050312BA9F8C6005B00E7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		672050332BA9F8C7005B00E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		672050352BA9F8C7005B00E7 /* SwiftUI_Days.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftUI_Days.entitlements; sourceTree = "<group>"; };
@@ -47,6 +51,10 @@
 		672050472BA9F8C7005B00E7 /* SwiftUI-DaysUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-DaysUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6720504B2BA9F8C7005B00E7 /* SwiftUI_DaysUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_DaysUITests.swift; sourceTree = "<group>"; };
 		6720504D2BA9F8C7005B00E7 /* SwiftUI_DaysUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_DaysUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6720505A2BAA0BAE005B00E7 /* ItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemScreen.swift; sourceTree = "<group>"; };
+		6720505C2BAA0D31005B00E7 /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
+		6720505E2BAA0D46005B00E7 /* Item+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+.swift"; sourceTree = "<group>"; };
+		672050602BAA1DFF005B00E7 /* CreateItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItemScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +105,8 @@
 		6720502C2BA9F8C6005B00E7 /* SwiftUI-Days */ = {
 			isa = PBXGroup;
 			children = (
+				672050622BAA204D005B00E7 /* Screens */,
 				6720502D2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift */,
-				6720502F2BA9F8C6005B00E7 /* ContentView.swift */,
 				672050312BA9F8C6005B00E7 /* Item.swift */,
 				672050332BA9F8C7005B00E7 /* Assets.xcassets */,
 				672050352BA9F8C7005B00E7 /* SwiftUI_Days.entitlements */,
@@ -111,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				672050372BA9F8C7005B00E7 /* Preview Assets.xcassets */,
+				6720505E2BAA0D46005B00E7 /* Item+.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -130,6 +139,33 @@
 				6720504D2BA9F8C7005B00E7 /* SwiftUI_DaysUITestsLaunchTests.swift */,
 			);
 			path = "SwiftUI-DaysUITests";
+			sourceTree = "<group>";
+		};
+		672050622BAA204D005B00E7 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				672050642BAA2070005B00E7 /* Detail */,
+				672050632BAA2065005B00E7 /* Main */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		672050632BAA2065005B00E7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				6720505C2BAA0D31005B00E7 /* ListItemView.swift */,
+				6720502F2BA9F8C6005B00E7 /* MainScreen.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		672050642BAA2070005B00E7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				6720505A2BAA0BAE005B00E7 /* ItemScreen.swift */,
+				672050602BAA1DFF005B00E7 /* CreateItemScreen.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +298,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				672050302BA9F8C6005B00E7 /* ContentView.swift in Sources */,
+				6720505D2BAA0D31005B00E7 /* ListItemView.swift in Sources */,
+				672050302BA9F8C6005B00E7 /* MainScreen.swift in Sources */,
 				672050322BA9F8C6005B00E7 /* Item.swift in Sources */,
+				6720505B2BAA0BAE005B00E7 /* ItemScreen.swift in Sources */,
+				6720505F2BAA0D46005B00E7 /* Item+.swift in Sources */,
 				6720502E2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift in Sources */,
+				672050612BAA1DFF005B00E7 /* CreateItemScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +393,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -408,6 +449,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -428,6 +470,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Days;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -436,9 +480,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -446,10 +489,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oleg991.SwiftUI-Days";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -466,6 +510,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Days;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -474,9 +520,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -484,10 +529,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oleg991.SwiftUI-Days";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -500,16 +546,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3PHS45582J;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oleg991.SwiftUI-DaysTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUI-Days.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUI-Days";
 			};
 			name = Debug;
@@ -523,16 +570,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3PHS45582J;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oleg991.SwiftUI-DaysTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUI-Days.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUI-Days";
 			};
 			name = Release;
@@ -545,16 +593,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3PHS45582J;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oleg991.SwiftUI-DaysUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = "SwiftUI-Days";
 			};
 			name = Debug;
@@ -567,16 +616,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3PHS45582J;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oleg991.SwiftUI-DaysUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = "SwiftUI-Days";
 			};
 			name = Release;
