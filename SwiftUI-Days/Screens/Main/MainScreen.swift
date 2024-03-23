@@ -9,33 +9,19 @@ import SwiftUI
 import SwiftData
 
 struct MainScreen: View {
-    @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     @State private var showAddItemSheet = false
-    @State private var editItem: Item?
+    @State private var sortOrder = SortOrder.forward
     @State private var searchQuery = ""
-    private var filteredItems: [Item] {
-        if searchQuery.isEmpty { return items }
-        return items.compactMap { item in
-            item.title.range(of: searchQuery, options: .caseInsensitive) != nil
-            ? item
-            : nil
-        }
-    }
+    @State private var editItem: Item?
 
     var body: some View {
         NavigationStack {
             ZStack {
                 if items.isEmpty {
-                    emptyView
-                        .transition(.scale)
+                    emptyView.transition(.scale)
                 } else {
-                    itemList
-                        .toolbar {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                addItemButton
-                            }
-                        }
+                    itemListView
                 }
             }
             .animation(.bouncy, value: items.isEmpty)
@@ -48,9 +34,43 @@ struct MainScreen: View {
         }
     }
     
+    private var sortButton: some View {
+        Menu {
+            Picker("Sort Order", selection: $sortOrder) {
+                ForEach([SortOrder.forward, .reverse], id: \.self) { order in
+                    Text(order.name)
+                }
+            }
+        } label: {
+            Label("Sort", systemImage: "arrow.up.arrow.down")
+        }
+        .pickerStyle(.inline)
+    }
+    
     private var addItemButton: some View {
         Button { showAddItemSheet.toggle() } label: {
             Label("Add Item", systemImage: "plus")
+        }
+    }
+    
+    private var itemListView: some View {
+        ItemListView(
+            searchText: searchQuery,
+            sortOrder: sortOrder,
+            editItem: $editItem
+        )
+        .navigationDestination(for: Item.self) { ItemScreen(item: $0) }
+        .navigationDestination(item: $editItem) {
+            EditItemScreen(oldItem: $0) { editItem = nil }
+        }
+        .searchable(text: $searchQuery, prompt: "Search for items")
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                sortButton
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                addItemButton
+            }
         }
     }
     
@@ -65,36 +85,15 @@ struct MainScreen: View {
             }
         )
     }
-    
-    private var itemList: some View {
-        List {
-            ForEach(filteredItems) { item in
-                NavigationLink(value: item) {
-                    ListItemView(item: item)
-                }
-                .swipeActions {
-                    DaysDeleteButton { modelContext.delete(item) }
-                    DaysEditButton { editItem = item }
-                }
-            }
+}
+
+extension SortOrder {
+    /// A name for the sort order in the user interface.
+    var name: String {
+        switch self {
+        case .forward: "Forward"
+        case .reverse: "Reverse"
         }
-        .navigationDestination(for: Item.self) { ItemScreen(item: $0) }
-        .navigationDestination(item: $editItem) {
-            EditItemScreen(oldItem: $0) { editItem = nil }
-        }
-        .listStyle(.plain)
-        .searchable(text: $searchQuery, prompt: "Search for items")
-        .overlay { emptySearchViewIfNeeded }
-    }
-    
-    private var emptySearchViewIfNeeded: some View {
-        ZStack {
-            if filteredItems.isEmpty {
-                ContentUnavailableView.search
-                    .transition(.scale.combined(with: .opacity))
-            }
-        }
-        .animation(.bouncy, value: filteredItems.isEmpty)
     }
 }
 

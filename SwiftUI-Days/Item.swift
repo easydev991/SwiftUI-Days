@@ -11,10 +11,10 @@ import SwiftData
 @Model
 final class Item {
     var title: String
-    var details: String?
+    var details: String
     var timestamp: Date
     
-    init(title: String, details: String? = nil, timestamp: Date) {
+    init(title: String, details: String = "", timestamp: Date = .now) {
         self.title = title
         self.details = details
         self.timestamp = timestamp
@@ -27,5 +27,15 @@ final class Item {
             from: timestamp,
             to: .now
         ).day ?? 0
+    }
+}
+
+extension Item {
+    static func predicate(searchText: String) -> Predicate<Item> {
+        #Predicate { item in
+            searchText.isEmpty
+            || item.title.contains(searchText)
+            || item.details.contains(searchText)
+        }
     }
 }

@@ -32,9 +32,9 @@ struct ItemScreen: View {
             } label: {
                 Text("Title")
             }
-            if let details = item.details {
+            if !item.details.isEmpty {
                 LabeledContent {
-                    Text(details)
+                    Text(item.details)
                 } label: {
                     Text("Details")
                 }

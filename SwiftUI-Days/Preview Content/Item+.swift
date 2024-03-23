@@ -10,7 +10,7 @@ import Foundation
 extension Item {
     static func single(
         title: String = "Single item",
-        details: String? = nil,
+        details: String = "",
         date: Date = .now
     ) -> Self {
         .init(
@@ -22,7 +22,7 @@ extension Item {
     
     static func makeList(count: Int = 10) -> [Item] {
         (0..<count).map {
-            .init(title: "Item # \($0)", timestamp: .now)
+            .init(title: "Item # \($0)")
         }
     }
 }
