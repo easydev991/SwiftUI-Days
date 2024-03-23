@@ -22,6 +22,11 @@ struct MainScreen: View {
                         .transition(.scale)
                 } else {
                     itemList
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                addItemButton
+                            }
+                        }
                 }
             }
             .animation(.bouncy, value: items.isEmpty)
@@ -59,14 +64,8 @@ struct MainScreen: View {
                     ListItemView(item: item)
                 }
                 .swipeActions {
-                    Button(role: .destructive) {
-                        modelContext.delete(item)
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                            .symbolVariant(.fill)
-                    }
+                    DaysDeleteButton { modelContext.delete(item) }
                     DaysEditButton { editItem = item }
-                        .tint(.orange)
                 }
             }
         }
@@ -75,17 +74,6 @@ struct MainScreen: View {
             EditItemScreen(oldItem: $0) { editItem = nil }
         }
         .listStyle(.plain)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                addItemButton
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        for index in offsets {
-            modelContext.delete(items[index])
-        }
     }
 }
 

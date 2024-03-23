@@ -18,5 +18,5 @@ struct DaysEditButton: View {
 }
 
 #Preview {
-    DaysEditButton(action: {})
+    DaysEditButton {}
 }
