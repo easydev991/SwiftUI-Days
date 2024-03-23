@@ -13,6 +13,15 @@ struct MainScreen: View {
     @Query private var items: [Item]
     @State private var showAddItemSheet = false
     @State private var editItem: Item?
+    @State private var searchQuery = ""
+    private var filteredItems: [Item] {
+        if searchQuery.isEmpty { return items }
+        return items.compactMap { item in
+            item.title.range(of: searchQuery, options: .caseInsensitive) != nil
+            ? item
+            : nil
+        }
+    }
 
     var body: some View {
         NavigationStack {
@@ -59,7 +68,7 @@ struct MainScreen: View {
     
     private var itemList: some View {
         List {
-            ForEach(items) { item in
+            ForEach(filteredItems) { item in
                 NavigationLink(value: item) {
                     ListItemView(item: item)
                 }
@@ -74,6 +83,18 @@ struct MainScreen: View {
             EditItemScreen(oldItem: $0) { editItem = nil }
         }
         .listStyle(.plain)
+        .searchable(text: $searchQuery, prompt: "Search for items")
+        .overlay { emptySearchViewIfNeeded }
+    }
+    
+    private var emptySearchViewIfNeeded: some View {
+        ZStack {
+            if filteredItems.isEmpty {
+                ContentUnavailableView.search
+                    .transition(.scale.combined(with: .opacity))
+            }
+        }
+        .animation(.bouncy, value: filteredItems.isEmpty)
     }
 }
 
