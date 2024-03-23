@@ -19,4 +19,13 @@ final class Item {
         self.details = details
         self.timestamp = timestamp
     }
+    
+    /// Количество дней с момента события
+    var daysCount: Int {
+        Calendar.current.dateComponents(
+            [.day],
+            from: timestamp,
+            to: .now
+        ).day ?? 0
+    }
 }

@@ -8,33 +8,65 @@
 import SwiftUI
 
 struct ItemScreen: View {
+    @State private var isEditing = false
     let item: Item
     
     var body: some View {
+        ZStack {
+            if isEditing {
+                EditItemScreen(oldItem: item) { isEditing = false }
+                    .transition(.move(edge: .trailing).combined(with: .scale))
+            } else {
+                regularView
+                    .transition(.move(edge: .leading).combined(with: .scale))
+            }
+        }
+        .animation(.default, value: isEditing)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private var regularView: some View {
         VStack {
             LabeledContent {
                 Text(item.title)
             } label: {
                 Text("Title")
             }
+            if let details = item.details {
+                LabeledContent {
+                    Text(details)
+                } label: {
+                    Text("Details")
+                }
+            }
             LabeledContent {
-                Text(
-                    item.timestamp,
-                    format: Date.FormatStyle(
-                        date: .numeric,
-                        time: .standard
-                    )
-                )
+                Text("\(item.daysCount) d")
             } label: {
                 Text("Date")
             }
             Spacer()
         }
         .padding()
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Info")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                DaysEditButton { isEditing.toggle() }
+                    .labelStyle(.titleOnly)
+            }
+        }
     }
 }
 
+#if DEBUG
 #Preview {
-    ItemScreen(item: .single)
+    NavigationStack {
+        ItemScreen(
+            item: .single(
+                title: "Какое-то давнее событие из прошлого",
+                details: "Детали события, которые очень хочется запомнить, и никак нельзя забывать",
+                date: Calendar.current.date(byAdding: .year, value: -10, to: .now)!
+            )
+        )
+    }
 }
+#endif

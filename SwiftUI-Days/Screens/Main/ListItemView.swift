@@ -14,14 +14,16 @@ struct ListItemView: View {
         HStack(spacing: 12) {
             Text(item.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(item.timestamp.description)
-                .containerRelativeFrame(.horizontal) { length, _ in
+            Text("\(item.daysCount)")
+                .containerRelativeFrame(.horizontal, alignment: .trailing) { length, _ in
                     length * 0.3
                 }
         }
     }
 }
 
+#if DEBUG
 #Preview {
-    ListItemView(item: .single)
+    ListItemView(item: .single(date: .distantPast))
 }
+#endif

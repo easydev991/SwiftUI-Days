@@ -8,8 +8,16 @@
 import Foundation
 
 extension Item {
-    static var single: Self {
-        .init(title: "Single item", timestamp: .now)
+    static func single(
+        title: String = "Single item",
+        details: String? = nil,
+        date: Date = .now
+    ) -> Self {
+        .init(
+            title: title,
+            details: details,
+            timestamp: date
+        )
     }
     
     static func makeList(count: Int = 10) -> [Item] {

@@ -12,6 +12,7 @@ struct MainScreen: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     @State private var showAddItemSheet = false
+    @State private var editItem: Item?
 
     var body: some View {
         NavigationStack {
@@ -27,7 +28,9 @@ struct MainScreen: View {
             .navigationTitle("Items")
         }
         .sheet(isPresented: $showAddItemSheet) {
-            CreateItemScreen()
+            NavigationStack {
+                EditItemScreen { showAddItemSheet.toggle() }
+            }
         }
     }
     
@@ -52,19 +55,27 @@ struct MainScreen: View {
     private var itemList: some View {
         List {
             ForEach(items) { item in
-                NavigationLink {
-                    ItemScreen(item: item)
-                } label: {
+                NavigationLink(value: item) {
                     ListItemView(item: item)
                 }
+                .swipeActions {
+                    Button(role: .destructive) {
+                        modelContext.delete(item)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                            .symbolVariant(.fill)
+                    }
+                    DaysEditButton { editItem = item }
+                        .tint(.orange)
+                }
             }
-            .onDelete(perform: deleteItems)
+        }
+        .navigationDestination(for: Item.self) { ItemScreen(item: $0) }
+        .navigationDestination(item: $editItem) {
+            EditItemScreen(oldItem: $0) { editItem = nil }
         }
         .listStyle(.plain)
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                EditButton()
-            }
             ToolbarItem(placement: .topBarTrailing) {
                 addItemButton
             }
@@ -78,7 +89,9 @@ struct MainScreen: View {
     }
 }
 
+#if DEBUG
 #Preview {
     MainScreen()
         .modelContainer(for: Item.self, inMemory: true)
 }
+#endif

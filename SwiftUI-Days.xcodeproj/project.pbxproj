@@ -18,7 +18,8 @@
 		6720505B2BAA0BAE005B00E7 /* ItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720505A2BAA0BAE005B00E7 /* ItemScreen.swift */; };
 		6720505D2BAA0D31005B00E7 /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720505C2BAA0D31005B00E7 /* ListItemView.swift */; };
 		6720505F2BAA0D46005B00E7 /* Item+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720505E2BAA0D46005B00E7 /* Item+.swift */; };
-		672050612BAA1DFF005B00E7 /* CreateItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672050602BAA1DFF005B00E7 /* CreateItemScreen.swift */; };
+		678FF1452BAEE44F00092ED4 /* EditItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF1442BAEE44F00092ED4 /* EditItemScreen.swift */; };
+		678FF1482BAF09BE00092ED4 /* DaysEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF1472BAF09BE00092ED4 /* DaysEditButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +55,8 @@
 		6720505A2BAA0BAE005B00E7 /* ItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemScreen.swift; sourceTree = "<group>"; };
 		6720505C2BAA0D31005B00E7 /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 		6720505E2BAA0D46005B00E7 /* Item+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+.swift"; sourceTree = "<group>"; };
-		672050602BAA1DFF005B00E7 /* CreateItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItemScreen.swift; sourceTree = "<group>"; };
+		678FF1442BAEE44F00092ED4 /* EditItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemScreen.swift; sourceTree = "<group>"; };
+		678FF1472BAF09BE00092ED4 /* DaysEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysEditButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		6720502C2BA9F8C6005B00E7 /* SwiftUI-Days */ = {
 			isa = PBXGroup;
 			children = (
+				678FF1462BAF09AF00092ED4 /* Views */,
 				672050622BAA204D005B00E7 /* Screens */,
 				6720502D2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift */,
 				672050312BA9F8C6005B00E7 /* Item.swift */,
@@ -163,9 +166,17 @@
 			isa = PBXGroup;
 			children = (
 				6720505A2BAA0BAE005B00E7 /* ItemScreen.swift */,
-				672050602BAA1DFF005B00E7 /* CreateItemScreen.swift */,
+				678FF1442BAEE44F00092ED4 /* EditItemScreen.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		678FF1462BAF09AF00092ED4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				678FF1472BAF09BE00092ED4 /* DaysEditButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,8 +314,9 @@
 				672050322BA9F8C6005B00E7 /* Item.swift in Sources */,
 				6720505B2BAA0BAE005B00E7 /* ItemScreen.swift in Sources */,
 				6720505F2BAA0D46005B00E7 /* Item+.swift in Sources */,
+				678FF1482BAF09BE00092ED4 /* DaysEditButton.swift in Sources */,
+				678FF1452BAEE44F00092ED4 /* EditItemScreen.swift in Sources */,
 				6720502E2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift in Sources */,
-				672050612BAA1DFF005B00E7 /* CreateItemScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
