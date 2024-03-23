@@ -88,11 +88,10 @@ struct MainScreen: View {
 }
 
 extension SortOrder {
-    /// A name for the sort order in the user interface.
     var name: String {
         switch self {
-        case .forward: "Forward"
-        case .reverse: "Reverse"
+        case .forward: "Old first"
+        case .reverse: "New first"
         }
     }
 }
