@@ -79,7 +79,6 @@ struct MainScreen: View {
             description: { Text("Create your first item") },
             actions: {
                 addItemButton
-                    .labelStyle(.titleOnly)
                     .buttonStyle(.borderedProminent)
                     .foregroundStyle(.buttonTint)
             }
