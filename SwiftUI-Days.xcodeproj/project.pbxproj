@@ -111,12 +111,11 @@
 		6720502C2BA9F8C6005B00E7 /* SwiftUI-Days */ = {
 			isa = PBXGroup;
 			children = (
+				678FF14D2BAF440100092ED4 /* SupportingFiles */,
 				678FF1462BAF09AF00092ED4 /* Views */,
 				672050622BAA204D005B00E7 /* Screens */,
 				6720502D2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift */,
 				672050312BA9F8C6005B00E7 /* Item.swift */,
-				672050332BA9F8C7005B00E7 /* Assets.xcassets */,
-				672050352BA9F8C7005B00E7 /* SwiftUI_Days.entitlements */,
 				672050362BA9F8C7005B00E7 /* Preview Content */,
 			);
 			path = "SwiftUI-Days";
@@ -183,6 +182,15 @@
 				678FF1492BAF0C0800092ED4 /* DaysDeleteButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		678FF14D2BAF440100092ED4 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				672050332BA9F8C7005B00E7 /* Assets.xcassets */,
+				672050352BA9F8C7005B00E7 /* SwiftUI_Days.entitlements */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,7 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "SwiftUI-Days/SwiftUI_Days.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "SwiftUI-Days/SupportingFiles/SwiftUI_Days.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI-Days/Preview Content\"";
@@ -522,7 +530,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "SwiftUI-Days/SwiftUI_Days.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "SwiftUI-Days/SupportingFiles/SwiftUI_Days.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI-Days/Preview Content\"";

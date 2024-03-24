@@ -19,7 +19,7 @@ struct MainScreen: View {
         NavigationStack {
             ZStack {
                 if items.isEmpty {
-                    emptyView.transition(.scale)
+                    emptyView.transition(.scale.combined(with: .opacity))
                 } else {
                     itemListView
                 }
@@ -44,7 +44,6 @@ struct MainScreen: View {
         } label: {
             Label("Sort", systemImage: "arrow.up.arrow.down")
         }
-        .pickerStyle(.inline)
     }
     
     private var addItemButton: some View {
