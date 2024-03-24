@@ -81,6 +81,7 @@ struct MainScreen: View {
                 addItemButton
                     .labelStyle(.titleOnly)
                     .buttonStyle(.borderedProminent)
+                    .foregroundStyle(.buttonTint)
             }
         )
     }
