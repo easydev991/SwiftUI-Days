@@ -24,6 +24,6 @@ struct ListItemView: View {
 
 #if DEBUG
 #Preview {
-    ListItemView(item: .single(date: .distantPast))
+    ListItemView(item: .singleLong)
 }
 #endif

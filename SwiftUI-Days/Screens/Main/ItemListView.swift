@@ -56,6 +56,9 @@ struct ItemListView: View {
 
 #if DEBUG
 #Preview {
-    ItemListView(editItem: .constant(nil))
+    NavigationStack {
+        ItemListView(editItem: .constant(nil))
+            .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
+    }
 }
 #endif

@@ -91,7 +91,7 @@ struct EditItemScreen: View {
 #if DEBUG
 #Preview {
     NavigationStack {
-        EditItemScreen(oldItem: .single(), closeAction: {})
+        EditItemScreen(oldItem: .singleLong, closeAction: {})
     }
 }
 #endif

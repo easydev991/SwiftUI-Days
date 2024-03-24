@@ -20,6 +20,7 @@
 		678FF14A2BAF0C0800092ED4 /* DaysDeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF1492BAF0C0800092ED4 /* DaysDeleteButton.swift */; };
 		678FF14C2BAF24B100092ED4 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF14B2BAF24B100092ED4 /* ItemListView.swift */; };
 		678FF14F2BB0209700092ED4 /* ReadSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF14E2BB0209700092ED4 /* ReadSectionView.swift */; };
+		67FF41DC2BB03120007D4B34 /* PreviewModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FF41DB2BB03120007D4B34 /* PreviewModelContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		678FF1492BAF0C0800092ED4 /* DaysDeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysDeleteButton.swift; sourceTree = "<group>"; };
 		678FF14B2BAF24B100092ED4 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
 		678FF14E2BB0209700092ED4 /* ReadSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadSectionView.swift; sourceTree = "<group>"; };
+		67FF41DB2BB03120007D4B34 /* PreviewModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModelContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				672050372BA9F8C7005B00E7 /* Preview Assets.xcassets */,
 				6720505E2BAA0D46005B00E7 /* Item+.swift */,
+				67FF41DB2BB03120007D4B34 /* PreviewModelContainer.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				678FF14C2BAF24B100092ED4 /* ItemListView.swift in Sources */,
 				678FF1482BAF09BE00092ED4 /* DaysEditButton.swift in Sources */,
 				678FF1452BAEE44F00092ED4 /* EditItemScreen.swift in Sources */,
+				67FF41DC2BB03120007D4B34 /* PreviewModelContainer.swift in Sources */,
 				6720502E2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift in Sources */,
 				678FF14F2BB0209700092ED4 /* ReadSectionView.swift in Sources */,
 				678FF14A2BAF0C0800092ED4 /* DaysDeleteButton.swift in Sources */,

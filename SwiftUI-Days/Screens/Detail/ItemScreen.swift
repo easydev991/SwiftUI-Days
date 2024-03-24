@@ -53,13 +53,7 @@ struct ItemScreen: View {
 #if DEBUG
 #Preview("Много текста") {
     NavigationStack {
-        ItemScreen(
-            item: .single(
-                title: "Какое-то давнее событие из прошлого, которое хотим запомнить",
-                details: "Детали события, которые очень хочется запомнить, и никак нельзя забывать, например, первая поездка на велосипеде",
-                date: Calendar.current.date(byAdding: .year, value: -10, to: .now)!
-            )
-        )
+        ItemScreen(item: .singleLong)
     }
 }
 #endif

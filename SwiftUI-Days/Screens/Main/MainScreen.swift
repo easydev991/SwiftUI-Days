@@ -96,8 +96,13 @@ extension SortOrder {
 }
 
 #if DEBUG
-#Preview {
+#Preview("Пусто") {
     MainScreen()
         .modelContainer(for: Item.self, inMemory: true)
+}
+
+#Preview("Список") {
+    MainScreen()
+        .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
 }
 #endif
