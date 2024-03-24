@@ -39,6 +39,7 @@ struct ItemListView: View {
             }
         }
         .listStyle(.plain)
+        .animation(.default, value: items)
         .overlay { emptySearchViewIfNeeded }
     }
     
@@ -53,6 +54,8 @@ struct ItemListView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     ItemListView(editItem: .constant(nil))
 }
+#endif

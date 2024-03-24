@@ -17,6 +17,8 @@ struct DaysEditButton: View {
     }
 }
 
+#if DEBUG
 #Preview {
     DaysEditButton {}
 }
+#endif
