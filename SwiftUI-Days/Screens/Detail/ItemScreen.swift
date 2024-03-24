@@ -26,28 +26,21 @@ struct ItemScreen: View {
     }
     
     private var regularView: some View {
-        VStack {
-            LabeledContent {
-                Text(item.title)
-            } label: {
-                Text("Title")
-            }
+        VStack(spacing: 16) {
+            ReadSectionView(
+                headerText: "Title",
+                bodyText: item.title
+            )
             if !item.details.isEmpty {
-                LabeledContent {
-                    Text(item.details)
-                } label: {
-                    Text("Details")
-                }
-            }
-            LabeledContent {
-                Text("\(item.daysCount) d")
-            } label: {
-                Text("Date")
+                ReadSectionView(
+                    headerText: "Details",
+                    bodyText: item.details
+                )
             }
             Spacer()
         }
         .padding()
-        .navigationTitle("Info")
+        .navigationTitle("\(item.daysCount) d")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 DaysEditButton { isEditing.toggle() }
@@ -58,12 +51,12 @@ struct ItemScreen: View {
 }
 
 #if DEBUG
-#Preview {
+#Preview("Много текста") {
     NavigationStack {
         ItemScreen(
             item: .single(
-                title: "Какое-то давнее событие из прошлого",
-                details: "Детали события, которые очень хочется запомнить, и никак нельзя забывать",
+                title: "Какое-то давнее событие из прошлого, которое хотим запомнить",
+                details: "Детали события, которые очень хочется запомнить, и никак нельзя забывать, например, первая поездка на велосипеде",
                 date: Calendar.current.date(byAdding: .year, value: -10, to: .now)!
             )
         )
