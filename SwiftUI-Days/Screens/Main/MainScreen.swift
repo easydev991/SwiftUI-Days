@@ -53,7 +53,7 @@ struct MainScreen: View {
     }
     
     private var itemListView: some View {
-        ItemListView(
+        ListView(
             searchText: searchQuery,
             sortOrder: sortOrder,
             editItem: $editItem
