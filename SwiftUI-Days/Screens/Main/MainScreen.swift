@@ -25,7 +25,7 @@ struct MainScreen: View {
                 }
             }
             .animation(.bouncy, value: items.isEmpty)
-            .navigationTitle("Items")
+            .navigationTitle("Days")
         }
         .sheet(isPresented: $showAddItemSheet) {
             NavigationStack {
@@ -62,7 +62,7 @@ struct MainScreen: View {
         .navigationDestination(item: $editItem) {
             EditItemScreen(oldItem: $0) { editItem = nil }
         }
-        .searchable(text: $searchQuery, prompt: "Search for items")
+        .searchable(text: $searchQuery)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 sortButton
@@ -75,7 +75,7 @@ struct MainScreen: View {
     
     private var emptyView: some View {
         ContentUnavailableView(
-            label: { Label("No Items", systemImage: "tray.fill") },
+            label: { Label("The list is empty", systemImage: "tray.fill") },
             description: { Text("Create your first item") },
             actions: {
                 addItemButton
@@ -87,7 +87,7 @@ struct MainScreen: View {
 }
 
 extension SortOrder {
-    var name: String {
+    var name: LocalizedStringKey {
         switch self {
         case .forward: "Old first"
         case .reverse: "New first"

@@ -67,11 +67,11 @@ struct EditItemScreen: View {
         }
     }
     
-    private var navigationTitle: String {
+    private var navigationTitle: LocalizedStringKey {
         oldItem == nil ? "New Item" : "Edit Item"
     }
     
-    private var backButtonTitle: String {
+    private var backButtonTitle: LocalizedStringKey {
         oldItem == nil ? "Close" : "Cancel"
     }
     

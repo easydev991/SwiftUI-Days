@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct EditSectionView: View {
-    let headerText: String
-    let placeholder: String
+    let headerText: LocalizedStringKey
+    let placeholder: LocalizedStringKey
     @Binding var text: String
     
     var body: some View {
@@ -23,10 +23,12 @@ struct EditSectionView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     EditSectionView(
-        headerText: "Заголовок",
-        placeholder: "Введите название",
+        headerText: "Title",
+        placeholder: "Title for the Item",
         text: .constant("Событие, которое очень хочется запомнить, и никак нельзя забывать, например, первая поездка на велосипеде")
     )
 }
+#endif

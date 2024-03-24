@@ -40,7 +40,7 @@ struct ItemScreen: View {
             Spacer()
         }
         .padding()
-        .navigationTitle("\(item.daysCount) d")
+        .navigationTitle("\(item.daysCount) days")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 DaysEditButton { isEditing.toggle() }

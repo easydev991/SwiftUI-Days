@@ -14,6 +14,7 @@
 		672050382BA9F8C7005B00E7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 672050372BA9F8C7005B00E7 /* Preview Assets.xcassets */; };
 		6720505B2BAA0BAE005B00E7 /* ItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720505A2BAA0BAE005B00E7 /* ItemScreen.swift */; };
 		6720505F2BAA0D46005B00E7 /* Item+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720505E2BAA0D46005B00E7 /* Item+.swift */; };
+		674B7B182BB0A8A300C276AA /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 674B7B172BB0A8A300C276AA /* Localizable.xcstrings */; };
 		678FF1452BAEE44F00092ED4 /* EditItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF1442BAEE44F00092ED4 /* EditItemScreen.swift */; };
 		678FF1482BAF09BE00092ED4 /* DaysEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF1472BAF09BE00092ED4 /* DaysEditButton.swift */; };
 		678FF14A2BAF0C0800092ED4 /* DaysDeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF1492BAF0C0800092ED4 /* DaysDeleteButton.swift */; };
@@ -34,6 +35,7 @@
 		672050372BA9F8C7005B00E7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6720505A2BAA0BAE005B00E7 /* ItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemScreen.swift; sourceTree = "<group>"; };
 		6720505E2BAA0D46005B00E7 /* Item+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+.swift"; sourceTree = "<group>"; };
+		674B7B172BB0A8A300C276AA /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		678FF1442BAEE44F00092ED4 /* EditItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemScreen.swift; sourceTree = "<group>"; };
 		678FF1472BAF09BE00092ED4 /* DaysEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysEditButton.swift; sourceTree = "<group>"; };
 		678FF1492BAF0C0800092ED4 /* DaysDeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysDeleteButton.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				672050332BA9F8C7005B00E7 /* Assets.xcassets */,
 				672050352BA9F8C7005B00E7 /* SwiftUI_Days.entitlements */,
 				67FF41FC2BB08A42007D4B34 /* LaunchScreen.storyboard */,
+				674B7B172BB0A8A300C276AA /* Localizable.xcstrings */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 				Base,
 			);
 			mainGroup = 672050212BA9F8C6005B00E7;
@@ -202,6 +206,7 @@
 			files = (
 				67FF41FD2BB08A42007D4B34 /* LaunchScreen.storyboard in Resources */,
 				672050382BA9F8C7005B00E7 /* Preview Assets.xcassets in Resources */,
+				674B7B182BB0A8A300C276AA /* Localizable.xcstrings in Resources */,
 				672050342BA9F8C7005B00E7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

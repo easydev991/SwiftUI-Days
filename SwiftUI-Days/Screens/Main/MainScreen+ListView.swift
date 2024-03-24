@@ -49,7 +49,7 @@ extension MainScreen {
                 Text(item.title)
                     .lineLimit(2)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("\(item.daysCount)")
+                Text("\(item.daysCount) days")
                     .containerRelativeFrame(.horizontal, alignment: .trailing) { length, _ in
                         length * 0.3
                     }
