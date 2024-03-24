@@ -27,12 +27,23 @@ struct EditItemScreen: View {
     }
     
     var body: some View {
-        VStack {
-            TextField("Title", text: $title)
-                .textFieldStyle(.roundedBorder)
-            TextField("Details", text: $details)
-                .textFieldStyle(.roundedBorder)
-            DatePicker("Date", selection: $timestamp, displayedComponents: .date)
+        VStack(spacing: 12) {
+            EditSectionView(
+                headerText: "Title",
+                placeholder: "Title for the Item",
+                text: $title
+            )
+            EditSectionView(
+                headerText: "Details",
+                placeholder: "Details for the Item",
+                text: $details
+            )
+            DatePicker(
+                "Date",
+                selection: $timestamp,
+                displayedComponents: .date
+            )
+            .font(.title3.bold())
             Spacer()
         }
         .padding()
