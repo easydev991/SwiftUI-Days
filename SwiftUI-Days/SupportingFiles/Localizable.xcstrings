@@ -194,6 +194,16 @@
         }
       }
     },
+    "More" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ещё"
+          }
+        }
+      }
+    },
     "New first" : {
       "localizations" : {
         "ru" : {
@@ -233,6 +243,9 @@
           }
         }
       }
+    },
+    "Send feedback" : {
+
     },
     "Sort" : {
       "localizations" : {

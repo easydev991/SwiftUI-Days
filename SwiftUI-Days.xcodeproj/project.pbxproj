@@ -15,6 +15,9 @@
 		6720505B2BAA0BAE005B00E7 /* ItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720505A2BAA0BAE005B00E7 /* ItemScreen.swift */; };
 		6720505F2BAA0D46005B00E7 /* Item+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720505E2BAA0D46005B00E7 /* Item+.swift */; };
 		674B7B182BB0A8A300C276AA /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 674B7B172BB0A8A300C276AA /* Localizable.xcstrings */; };
+		674B7B1A2BB0B3CD00C276AA /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674B7B192BB0B3CD00C276AA /* RootScreen.swift */; };
+		674B7B1C2BB0B60600C276AA /* MoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674B7B1B2BB0B60600C276AA /* MoreScreen.swift */; };
+		674B7B1E2BB0B78F00C276AA /* FeedbackSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674B7B1D2BB0B78F00C276AA /* FeedbackSender.swift */; };
 		678FF1452BAEE44F00092ED4 /* EditItemScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF1442BAEE44F00092ED4 /* EditItemScreen.swift */; };
 		678FF1482BAF09BE00092ED4 /* DaysEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF1472BAF09BE00092ED4 /* DaysEditButton.swift */; };
 		678FF14A2BAF0C0800092ED4 /* DaysDeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF1492BAF0C0800092ED4 /* DaysDeleteButton.swift */; };
@@ -36,11 +39,15 @@
 		6720505A2BAA0BAE005B00E7 /* ItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemScreen.swift; sourceTree = "<group>"; };
 		6720505E2BAA0D46005B00E7 /* Item+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+.swift"; sourceTree = "<group>"; };
 		674B7B172BB0A8A300C276AA /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		674B7B192BB0B3CD00C276AA /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
+		674B7B1B2BB0B60600C276AA /* MoreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreScreen.swift; sourceTree = "<group>"; };
+		674B7B1D2BB0B78F00C276AA /* FeedbackSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSender.swift; sourceTree = "<group>"; };
 		678FF1442BAEE44F00092ED4 /* EditItemScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemScreen.swift; sourceTree = "<group>"; };
 		678FF1472BAF09BE00092ED4 /* DaysEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysEditButton.swift; sourceTree = "<group>"; };
 		678FF1492BAF0C0800092ED4 /* DaysDeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysDeleteButton.swift; sourceTree = "<group>"; };
 		678FF14B2BAF24B100092ED4 /* MainScreen+ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainScreen+ListView.swift"; sourceTree = "<group>"; };
 		678FF14E2BB0209700092ED4 /* ReadSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadSectionView.swift; sourceTree = "<group>"; };
+		67C124F92BB1DE0A007091F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		67FF41DB2BB03120007D4B34 /* PreviewModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModelContainer.swift; sourceTree = "<group>"; };
 		67FF41DD2BB036C3007D4B34 /* EditSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSectionView.swift; sourceTree = "<group>"; };
 		67FF41FC2BB08A42007D4B34 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -76,12 +83,14 @@
 		6720502C2BA9F8C6005B00E7 /* SwiftUI-Days */ = {
 			isa = PBXGroup;
 			children = (
+				67C124F92BB1DE0A007091F1 /* Info.plist */,
 				678FF14D2BAF440100092ED4 /* SupportingFiles */,
 				678FF1462BAF09AF00092ED4 /* Views */,
 				672050622BAA204D005B00E7 /* Screens */,
 				6720502D2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift */,
 				672050312BA9F8C6005B00E7 /* Item.swift */,
 				672050362BA9F8C7005B00E7 /* Preview Content */,
+				674B7B1D2BB0B78F00C276AA /* FeedbackSender.swift */,
 			);
 			path = "SwiftUI-Days";
 			sourceTree = "<group>";
@@ -101,6 +110,8 @@
 			children = (
 				672050642BAA2070005B00E7 /* Detail */,
 				672050632BAA2065005B00E7 /* Main */,
+				674B7B192BB0B3CD00C276AA /* RootScreen.swift */,
+				674B7B1B2BB0B60600C276AA /* MoreScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -221,6 +232,7 @@
 				672050302BA9F8C6005B00E7 /* MainScreen.swift in Sources */,
 				672050322BA9F8C6005B00E7 /* Item.swift in Sources */,
 				6720505B2BAA0BAE005B00E7 /* ItemScreen.swift in Sources */,
+				674B7B1A2BB0B3CD00C276AA /* RootScreen.swift in Sources */,
 				6720505F2BAA0D46005B00E7 /* Item+.swift in Sources */,
 				67FF41DE2BB036C3007D4B34 /* EditSectionView.swift in Sources */,
 				678FF14C2BAF24B100092ED4 /* MainScreen+ListView.swift in Sources */,
@@ -228,7 +240,9 @@
 				678FF1452BAEE44F00092ED4 /* EditItemScreen.swift in Sources */,
 				67FF41DC2BB03120007D4B34 /* PreviewModelContainer.swift in Sources */,
 				6720502E2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift in Sources */,
+				674B7B1C2BB0B60600C276AA /* MoreScreen.swift in Sources */,
 				678FF14F2BB0209700092ED4 /* ReadSectionView.swift in Sources */,
+				674B7B1E2BB0B78F00C276AA /* FeedbackSender.swift in Sources */,
 				678FF14A2BAF0C0800092ED4 /* DaysDeleteButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,6 +379,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SwiftUI-Days/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Days;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -407,6 +422,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SwiftUI-Days/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Days;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

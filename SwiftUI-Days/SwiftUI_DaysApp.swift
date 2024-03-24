@@ -22,7 +22,7 @@ struct SwiftUI_DaysApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainScreen()
+            RootScreen()
         }
         .modelContainer(sharedModelContainer)
     }
