@@ -25,7 +25,7 @@ struct MainScreen: View {
                 }
             }
             .animation(.bouncy, value: items.isEmpty)
-            .navigationTitle("Days")
+            .navigationTitle("List")
         }
         .sheet(isPresented: $showAddItemSheet) {
             NavigationStack {

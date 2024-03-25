@@ -144,16 +144,6 @@
         }
       }
     },
-    "Days" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дни"
-          }
-        }
-      }
-    },
     "Delete" : {
       "localizations" : {
         "ru" : {
@@ -220,6 +210,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Изменить запись"
+          }
+        }
+      }
+    },
+    "List" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список"
           }
         }
       }
