@@ -27,6 +27,7 @@ struct MoreScreen: View {
         .animation(.default, value: items.isEmpty)
     }
     
+    @MainActor
     private var feedbackButton: some View {
         Button("Send feedback", action: FeedbackSender.sendFeedback)
     }

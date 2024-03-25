@@ -23,6 +23,7 @@
 		678FF14A2BAF0C0800092ED4 /* DaysDeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF1492BAF0C0800092ED4 /* DaysDeleteButton.swift */; };
 		678FF14C2BAF24B100092ED4 /* MainScreen+ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF14B2BAF24B100092ED4 /* MainScreen+ListView.swift */; };
 		678FF14F2BB0209700092ED4 /* ReadSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678FF14E2BB0209700092ED4 /* ReadSectionView.swift */; };
+		67C124FB2BB1E511007091F1 /* UncheckedSendable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C124FA2BB1E511007091F1 /* UncheckedSendable+.swift */; };
 		67FF41DC2BB03120007D4B34 /* PreviewModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FF41DB2BB03120007D4B34 /* PreviewModelContainer.swift */; };
 		67FF41DE2BB036C3007D4B34 /* EditSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FF41DD2BB036C3007D4B34 /* EditSectionView.swift */; };
 		67FF41FD2BB08A42007D4B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67FF41FC2BB08A42007D4B34 /* LaunchScreen.storyboard */; };
@@ -48,6 +49,7 @@
 		678FF14B2BAF24B100092ED4 /* MainScreen+ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainScreen+ListView.swift"; sourceTree = "<group>"; };
 		678FF14E2BB0209700092ED4 /* ReadSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadSectionView.swift; sourceTree = "<group>"; };
 		67C124F92BB1DE0A007091F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		67C124FA2BB1E511007091F1 /* UncheckedSendable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UncheckedSendable+.swift"; sourceTree = "<group>"; };
 		67FF41DB2BB03120007D4B34 /* PreviewModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModelContainer.swift; sourceTree = "<group>"; };
 		67FF41DD2BB036C3007D4B34 /* EditSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSectionView.swift; sourceTree = "<group>"; };
 		67FF41FC2BB08A42007D4B34 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				672050352BA9F8C7005B00E7 /* SwiftUI_Days.entitlements */,
 				67FF41FC2BB08A42007D4B34 /* LaunchScreen.storyboard */,
 				674B7B172BB0A8A300C276AA /* Localizable.xcstrings */,
+				67C124FA2BB1E511007091F1 /* UncheckedSendable+.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				674B7B1A2BB0B3CD00C276AA /* RootScreen.swift in Sources */,
 				6720505F2BAA0D46005B00E7 /* Item+.swift in Sources */,
 				67FF41DE2BB036C3007D4B34 /* EditSectionView.swift in Sources */,
+				67C124FB2BB1E511007091F1 /* UncheckedSendable+.swift in Sources */,
 				678FF14C2BAF24B100092ED4 /* MainScreen+ListView.swift in Sources */,
 				678FF1482BAF09BE00092ED4 /* DaysEditButton.swift in Sources */,
 				678FF1452BAEE44F00092ED4 /* EditItemScreen.swift in Sources */,
@@ -404,6 +408,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -447,6 +452,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -13,6 +13,7 @@ enum FeedbackSender {
     ///   - subject: Тема письма
     ///   - messageBody: Тело письма
     ///   - recipients: Получатели
+    @MainActor
     static func sendFeedback() {
         let encodedSubject = Feedback.subject.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? "Feedback"
         let encodedBody = Feedback.body.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
