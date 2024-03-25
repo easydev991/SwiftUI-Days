@@ -87,7 +87,6 @@
 			children = (
 				67C124F92BB1DE0A007091F1 /* Info.plist */,
 				678FF14D2BAF440100092ED4 /* SupportingFiles */,
-				678FF1462BAF09AF00092ED4 /* Views */,
 				672050622BAA204D005B00E7 /* Screens */,
 				6720502D2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift */,
 				672050312BA9F8C6005B00E7 /* Item.swift */,
@@ -110,6 +109,7 @@
 		672050622BAA204D005B00E7 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				678FF1462BAF09AF00092ED4 /* Views */,
 				672050642BAA2070005B00E7 /* Detail */,
 				672050632BAA2065005B00E7 /* Main */,
 				674B7B192BB0B3CD00C276AA /* RootScreen.swift */,

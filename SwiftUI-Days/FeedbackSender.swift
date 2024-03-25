@@ -9,10 +9,6 @@ import UIKit
 
 enum FeedbackSender {
     /// Открывает диплинк `mailto` для создания письма
-    /// - Parameters:
-    ///   - subject: Тема письма
-    ///   - messageBody: Тело письма
-    ///   - recipients: Получатели
     @MainActor
     static func sendFeedback() {
         let encodedSubject = Feedback.subject.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? "Feedback"
