@@ -94,6 +94,16 @@
         }
       }
     },
+    "App Developer" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разработчик приложения"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "ru" : {
@@ -154,6 +164,16 @@
         }
       }
     },
+    "Delete all data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить все данные"
+          }
+        }
+      }
+    },
     "Details" : {
       "localizations" : {
         "ru" : {
@@ -170,6 +190,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Подробное описание"
+          }
+        }
+      }
+    },
+    "Do you want to delete all data permanently?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы хотите навсегда удалить все данные?"
           }
         }
       }
@@ -245,7 +275,14 @@
       }
     },
     "Send feedback" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправить обратную связь"
+          }
+        }
+      }
     },
     "Sort" : {
       "localizations" : {
