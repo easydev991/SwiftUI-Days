@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6717F8D12BBEA5F700A32083 /* SwiftUI_DaysUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6717F8D02BBEA5F700A32083 /* SwiftUI_DaysUITests.swift */; };
 		6720502E2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720502D2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift */; };
 		672050302BA9F8C6005B00E7 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720502F2BA9F8C6005B00E7 /* MainScreen.swift */; };
 		672050322BA9F8C6005B00E7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672050312BA9F8C6005B00E7 /* Item.swift */; };
@@ -29,7 +30,20 @@
 		67FF41FD2BB08A42007D4B34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67FF41FC2BB08A42007D4B34 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6717F8D42BBEA5F700A32083 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 672050222BA9F8C6005B00E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 672050292BA9F8C6005B00E7;
+			remoteInfo = "SwiftUI-Days";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		6717F8CE2BBEA5F700A32083 /* SwiftUI-DaysUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-DaysUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6717F8D02BBEA5F700A32083 /* SwiftUI_DaysUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_DaysUITests.swift; sourceTree = "<group>"; };
+		6717F8D92BBEA87200A32083 /* SwiftUI-Days.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "SwiftUI-Days.xctestplan"; sourceTree = "<group>"; };
 		6720502A2BA9F8C6005B00E7 /* SwiftUI-Days.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Days.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6720502D2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_DaysApp.swift; sourceTree = "<group>"; };
 		6720502F2BA9F8C6005B00E7 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -56,6 +70,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6717F8CB2BBEA5F700A32083 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		672050272BA9F8C6005B00E7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -66,10 +87,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6717F8CF2BBEA5F700A32083 /* SwiftUI-DaysUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6717F8D92BBEA87200A32083 /* SwiftUI-Days.xctestplan */,
+				6717F8D02BBEA5F700A32083 /* SwiftUI_DaysUITests.swift */,
+			);
+			path = "SwiftUI-DaysUITests";
+			sourceTree = "<group>";
+		};
 		672050212BA9F8C6005B00E7 = {
 			isa = PBXGroup;
 			children = (
 				6720502C2BA9F8C6005B00E7 /* SwiftUI-Days */,
+				6717F8CF2BBEA5F700A32083 /* SwiftUI-DaysUITests */,
 				6720502B2BA9F8C6005B00E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				6720502A2BA9F8C6005B00E7 /* SwiftUI-Days.app */,
+				6717F8CE2BBEA5F700A32083 /* SwiftUI-DaysUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,6 +194,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6717F8CD2BBEA5F700A32083 /* SwiftUI-DaysUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6717F8D82BBEA5F700A32083 /* Build configuration list for PBXNativeTarget "SwiftUI-DaysUITests" */;
+			buildPhases = (
+				6717F8CA2BBEA5F700A32083 /* Sources */,
+				6717F8CB2BBEA5F700A32083 /* Frameworks */,
+				6717F8CC2BBEA5F700A32083 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6717F8D52BBEA5F700A32083 /* PBXTargetDependency */,
+			);
+			name = "SwiftUI-DaysUITests";
+			productName = "SwiftUI-DaysUITests";
+			productReference = 6717F8CE2BBEA5F700A32083 /* SwiftUI-DaysUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		672050292BA9F8C6005B00E7 /* SwiftUI-Days */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 672050512BA9F8C7005B00E7 /* Build configuration list for PBXNativeTarget "SwiftUI-Days" */;
@@ -189,6 +239,10 @@
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
+					6717F8CD2BBEA5F700A32083 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 672050292BA9F8C6005B00E7;
+					};
 					672050292BA9F8C6005B00E7 = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -209,11 +263,19 @@
 			projectRoot = "";
 			targets = (
 				672050292BA9F8C6005B00E7 /* SwiftUI-Days */,
+				6717F8CD2BBEA5F700A32083 /* SwiftUI-DaysUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6717F8CC2BBEA5F700A32083 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		672050282BA9F8C6005B00E7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,6 +290,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6717F8CA2BBEA5F700A32083 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6717F8D12BBEA5F700A32083 /* SwiftUI_DaysUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		672050262BA9F8C6005B00E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,7 +323,54 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6717F8D52BBEA5F700A32083 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 672050292BA9F8C6005B00E7 /* SwiftUI-Days */;
+			targetProxy = 6717F8D42BBEA5F700A32083 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		6717F8D62BBEA5F700A32083 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3PHS45582J;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oleg991.SwiftUI-DaysUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "SwiftUI-Days";
+			};
+			name = Debug;
+		};
+		6717F8D72BBEA5F700A32083 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3PHS45582J;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oleg991.SwiftUI-DaysUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "SwiftUI-Days";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		6720504F2BA9F8C7005B00E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -461,6 +578,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6717F8D82BBEA5F700A32083 /* Build configuration list for PBXNativeTarget "SwiftUI-DaysUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6717F8D62BBEA5F700A32083 /* Debug */,
+				6717F8D72BBEA5F700A32083 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		672050252BA9F8C6005B00E7 /* Build configuration list for PBXProject "SwiftUI-Days" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
