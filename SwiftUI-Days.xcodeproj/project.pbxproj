@@ -48,7 +48,7 @@
 		678FF1492BAF0C0800092ED4 /* DaysDeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysDeleteButton.swift; sourceTree = "<group>"; };
 		678FF14B2BAF24B100092ED4 /* MainScreen+ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainScreen+ListView.swift"; sourceTree = "<group>"; };
 		678FF14E2BB0209700092ED4 /* ReadSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadSectionView.swift; sourceTree = "<group>"; };
-		67C124F92BB1DE0A007091F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		67C124F92BB1DE0A007091F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67C124FA2BB1E511007091F1 /* UncheckedSendable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UncheckedSendable+.swift"; sourceTree = "<group>"; };
 		67FF41DB2BB03120007D4B34 /* PreviewModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModelContainer.swift; sourceTree = "<group>"; };
 		67FF41DD2BB036C3007D4B34 /* EditSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSectionView.swift; sourceTree = "<group>"; };
@@ -85,7 +85,6 @@
 		6720502C2BA9F8C6005B00E7 /* SwiftUI-Days */ = {
 			isa = PBXGroup;
 			children = (
-				67C124F92BB1DE0A007091F1 /* Info.plist */,
 				678FF14D2BAF440100092ED4 /* SupportingFiles */,
 				672050622BAA204D005B00E7 /* Screens */,
 				6720502D2BA9F8C6005B00E7 /* SwiftUI_DaysApp.swift */,
@@ -150,6 +149,7 @@
 		678FF14D2BAF440100092ED4 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				67C124F92BB1DE0A007091F1 /* Info.plist */,
 				672050332BA9F8C7005B00E7 /* Assets.xcassets */,
 				672050352BA9F8C7005B00E7 /* SwiftUI_Days.entitlements */,
 				67FF41FC2BB08A42007D4B34 /* LaunchScreen.storyboard */,
@@ -383,7 +383,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SwiftUI-Days/Info.plist";
+				INFOPLIST_FILE = "SwiftUI-Days/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Days;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -427,7 +427,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "SwiftUI-Days/Info.plist";
+				INFOPLIST_FILE = "SwiftUI-Days/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Days;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
