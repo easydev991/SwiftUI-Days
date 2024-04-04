@@ -10,20 +10,29 @@ import SwiftData
 
 @main
 struct SwiftUI_DaysApp: App {
-    private var sharedModelContainer: ModelContainer = {
+    private let sharedModelContainer: ModelContainer
+    
+    init() {
         let schema = Schema([Item.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            sharedModelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
-    }()
+        prepareForUITestIfNeeded()
+    }
 
     var body: some Scene {
         WindowGroup {
             RootScreen()
         }
         .modelContainer(sharedModelContainer)
+    }
+    
+    @MainActor private func prepareForUITestIfNeeded() {
+        if ProcessInfo.processInfo.arguments.contains("UITest") {
+            UIView.setAnimationsEnabled(false)
+        }
     }
 }
