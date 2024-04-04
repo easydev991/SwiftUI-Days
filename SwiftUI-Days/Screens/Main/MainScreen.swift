@@ -44,12 +44,14 @@ struct MainScreen: View {
         } label: {
             Label("Sort", systemImage: "arrow.up.arrow.down")
         }
+        .accessibilityIdentifier("sortNavButton")
     }
     
     private var addItemButton: some View {
         Button { showAddItemSheet.toggle() } label: {
             Label("Add Item", systemImage: "plus")
         }
+        .accessibilityIdentifier("addItemButton")
     }
     
     private var itemListView: some View {
@@ -83,6 +85,8 @@ struct MainScreen: View {
                     .foregroundStyle(.buttonTint)
             }
         )
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("emptyView")
     }
 }
 

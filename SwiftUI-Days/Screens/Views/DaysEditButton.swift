@@ -14,6 +14,7 @@ struct DaysEditButton: View {
         Button(action: action) {
             Label("Edit", systemImage: "pencil")
         }
+        .accessibilityIdentifier("editButton")
     }
 }
 

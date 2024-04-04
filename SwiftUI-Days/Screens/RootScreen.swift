@@ -36,11 +36,19 @@ extension RootScreen {
             : "gear"
         }
         
+        private var accessibilityId: String {
+            switch self {
+            case .list: "listTabButton"
+            case .more: "moreTabButton"
+            }
+        }
+        
         var tabItemLabel: some View {
             Label(
                 localizedTitle,
                 systemImage: systemImageName
             )
+            .accessibilityIdentifier(accessibilityId)
         }
         
         @MainActor @ViewBuilder

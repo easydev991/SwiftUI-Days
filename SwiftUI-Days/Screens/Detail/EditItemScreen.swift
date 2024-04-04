@@ -53,6 +53,7 @@ struct EditItemScreen: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(backButtonTitle, action: closeAction)
+                    .accessibilityIdentifier(backButtonAccessibilityIdentifier)
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Save") {
@@ -60,6 +61,7 @@ struct EditItemScreen: View {
                     closeAction()
                 }
                 .disabled(!canSave)
+                .accessibilityIdentifier("saveItemNavButton")
             }
         }
         .onAppear {
@@ -73,6 +75,10 @@ struct EditItemScreen: View {
     
     private var backButtonTitle: LocalizedStringKey {
         oldItem == nil ? "Close" : "Cancel"
+    }
+    
+    private var backButtonAccessibilityIdentifier: String {
+        oldItem == nil ? "closeButton" : "cancelButton"
     }
     
     private var canSave: Bool {

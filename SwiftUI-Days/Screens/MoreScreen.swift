@@ -30,6 +30,7 @@ struct MoreScreen: View {
     @MainActor
     private var feedbackButton: some View {
         Button("Send feedback", action: FeedbackSender.sendFeedback)
+            .accessibilityIdentifier("sendFeedbackButton")
     }
     
     @ViewBuilder
@@ -38,6 +39,7 @@ struct MoreScreen: View {
             Link(destination: easyDevLink) {
                 Text("App Developer")
             }
+            .accessibilityIdentifier("linkToDeveloperBlog")
         }
     }
     
@@ -45,6 +47,7 @@ struct MoreScreen: View {
         Button("Delete all data") {
             showDeleteDataConfirmation.toggle()
         }
+        .accessibilityIdentifier("removeAllDataButton")
         .transition(.slide.combined(with: .scale))
         .confirmationDialog(
             "Do you want to delete all data permanently?",
@@ -54,6 +57,7 @@ struct MoreScreen: View {
             Button("Delete", role: .destructive) {
                 try? modelContext.delete(model: Item.self)
             }
+            .accessibilityIdentifier("confirmRemoveAllDataButton")
         }
     }
 }

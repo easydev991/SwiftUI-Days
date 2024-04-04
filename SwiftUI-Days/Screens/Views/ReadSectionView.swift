@@ -14,9 +14,12 @@ struct ReadSectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(headerText).font(.title3.bold())
+                .accessibilityIdentifier("sectionHeader")
             Text(bodyText)
+                .accessibilityIdentifier("sectionBody")
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityIdentifier("readSectionView")
     }
 }
 

@@ -17,6 +17,7 @@ struct DaysDeleteButton: View {
             role: .destructive,
             action: action
         )
+        .accessibilityIdentifier("deleteButton")
     }
 }
 
