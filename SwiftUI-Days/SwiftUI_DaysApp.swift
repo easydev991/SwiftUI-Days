@@ -18,7 +18,7 @@ struct SwiftUI_DaysApp: App {
         do {
             sharedModelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            fatalError("Не смогли создать ModelContainer: \(error)")
         }
         prepareForUITestIfNeeded()
     }
