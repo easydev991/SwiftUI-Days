@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "74668508-9376-46D4-B4B5-D64A55A81BA5",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SwiftUI-Days.xcodeproj",
+        "identifier" : "671922492CE0B7B20098E610",
+        "name" : "SwiftUI-DaysTests"
+      }
+    }
+  ],
+  "version" : 1
+}

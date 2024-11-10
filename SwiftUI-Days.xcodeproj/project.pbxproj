@@ -14,10 +14,18 @@
 			remoteGlobalIDString = 672050292BA9F8C6005B00E7;
 			remoteInfo = "SwiftUI-Days";
 		};
+		6719224E2CE0B7B20098E610 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 672050222BA9F8C6005B00E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 672050292BA9F8C6005B00E7;
+			remoteInfo = "SwiftUI-Days";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6717F8CE2BBEA5F700A32083 /* SwiftUI-DaysUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-DaysUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6719224A2CE0B7B20098E610 /* SwiftUI-DaysTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-DaysTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6720502A2BA9F8C6005B00E7 /* SwiftUI-Days.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Days.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -55,10 +63,22 @@
 			path = "SwiftUI-Days";
 			sourceTree = "<group>";
 		};
+		6719224B2CE0B7B20098E610 /* SwiftUI-DaysTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "SwiftUI-DaysTests";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6717F8CB2BBEA5F700A32083 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		671922472CE0B7B20098E610 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,6 +100,7 @@
 			children = (
 				671922202CE0B34F0098E610 /* SwiftUI-Days */,
 				671922012CE0B3490098E610 /* SwiftUI-DaysUITests */,
+				6719224B2CE0B7B20098E610 /* SwiftUI-DaysTests */,
 				6720502B2BA9F8C6005B00E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +110,7 @@
 			children = (
 				6720502A2BA9F8C6005B00E7 /* SwiftUI-Days.app */,
 				6717F8CE2BBEA5F700A32083 /* SwiftUI-DaysUITests.xctest */,
+				6719224A2CE0B7B20098E610 /* SwiftUI-DaysTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +135,29 @@
 			productName = "SwiftUI-DaysUITests";
 			productReference = 6717F8CE2BBEA5F700A32083 /* SwiftUI-DaysUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		671922492CE0B7B20098E610 /* SwiftUI-DaysTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 671922502CE0B7B20098E610 /* Build configuration list for PBXNativeTarget "SwiftUI-DaysTests" */;
+			buildPhases = (
+				671922462CE0B7B20098E610 /* Sources */,
+				671922472CE0B7B20098E610 /* Frameworks */,
+				671922482CE0B7B20098E610 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6719224F2CE0B7B20098E610 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				6719224B2CE0B7B20098E610 /* SwiftUI-DaysTests */,
+			);
+			name = "SwiftUI-DaysTests";
+			packageProductDependencies = (
+			);
+			productName = "SwiftUI-DaysTests";
+			productReference = 6719224A2CE0B7B20098E610 /* SwiftUI-DaysTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		672050292BA9F8C6005B00E7 /* SwiftUI-Days */ = {
 			isa = PBXNativeTarget;
@@ -148,6 +193,10 @@
 						CreatedOnToolsVersion = 15.3;
 						TestTargetID = 672050292BA9F8C6005B00E7;
 					};
+					671922492CE0B7B20098E610 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 672050292BA9F8C6005B00E7;
+					};
 					672050292BA9F8C6005B00E7 = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -169,12 +218,20 @@
 			targets = (
 				672050292BA9F8C6005B00E7 /* SwiftUI-Days */,
 				6717F8CD2BBEA5F700A32083 /* SwiftUI-DaysUITests */,
+				671922492CE0B7B20098E610 /* SwiftUI-DaysTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6717F8CC2BBEA5F700A32083 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		671922482CE0B7B20098E610 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -198,6 +255,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		671922462CE0B7B20098E610 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		672050262BA9F8C6005B00E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,6 +276,11 @@
 			isa = PBXTargetDependency;
 			target = 672050292BA9F8C6005B00E7 /* SwiftUI-Days */;
 			targetProxy = 6717F8D42BBEA5F700A32083 /* PBXContainerItemProxy */;
+		};
+		6719224F2CE0B7B20098E610 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 672050292BA9F8C6005B00E7 /* SwiftUI-Days */;
+			targetProxy = 6719224E2CE0B7B20098E610 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -257,6 +326,53 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "SwiftUI-Days";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		671922512CE0B7B20098E610 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3PHS45582J;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oleg991.SwiftUI-DaysTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUI-Days.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUI-Days";
+			};
+			name = Debug;
+		};
+		671922522CE0B7B20098E610 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3PHS45582J;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oleg991.SwiftUI-DaysTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftUI-Days.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftUI-Days";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -481,6 +597,15 @@
 			buildConfigurations = (
 				6717F8D62BBEA5F700A32083 /* Debug */,
 				6717F8D72BBEA5F700A32083 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		671922502CE0B7B20098E610 /* Build configuration list for PBXNativeTarget "SwiftUI-DaysTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				671922512CE0B7B20098E610 /* Debug */,
+				671922522CE0B7B20098E610 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
