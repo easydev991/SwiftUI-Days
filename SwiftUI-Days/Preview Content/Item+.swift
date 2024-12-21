@@ -5,6 +5,7 @@
 //  Created by Oleg991 on 19.03.2024.
 //
 
+#if DEBUG
 import Foundation
 
 extension Item {
@@ -29,3 +30,4 @@ extension Item {
         }
     }
 }
+#endif
