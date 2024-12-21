@@ -104,6 +104,16 @@
         }
       }
     },
+    "App version: %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия приложения: %@"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "ru" : {
@@ -214,12 +224,12 @@
         }
       }
     },
-    "List" : {
+    "Events" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Список"
+            "value" : "События"
           }
         }
       }
@@ -304,16 +314,6 @@
         }
       }
     },
-    "The list is empty" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Список пуст"
-          }
-        }
-      }
-    },
     "Title" : {
       "localizations" : {
         "ru" : {
@@ -330,6 +330,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Название для записи"
+          }
+        }
+      }
+    },
+    "What should we remember?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что нужно запомнить?"
           }
         }
       }

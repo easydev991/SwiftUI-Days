@@ -26,6 +26,7 @@ struct SwiftUI_DaysApp: App {
     var body: some Scene {
         WindowGroup {
             RootScreen()
+                .dynamicTypeSize(...DynamicTypeSize.accessibility2)
         }
         .modelContainer(sharedModelContainer)
     }

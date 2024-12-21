@@ -27,7 +27,7 @@ extension RootScreen {
         case more
         
         private var localizedTitle: LocalizedStringKey {
-            self == .list ? "List" : "More"
+            self == .list ? "Events" : "More"
         }
         
         private var systemImageName: String {

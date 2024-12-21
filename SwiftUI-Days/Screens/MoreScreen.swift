@@ -15,16 +15,28 @@ struct MoreScreen: View {
     @State private var showDeleteDataConfirmation = false
     
     var body: some View {
-        VStack(spacing: 20) {
-            feedbackButton
-            developerProfileButton
-            if !items.isEmpty {
-                removeAllDataButton
+        NavigationStack {
+            ScrollView {
+                ZStack {
+                    Spacer().containerRelativeFrame([ .vertical])
+                    VStack(spacing: 16) {
+                        Group {
+                            feedbackButton
+                            developerProfileButton
+                            if !items.isEmpty {
+                                removeAllDataButton
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .foregroundStyle(.buttonTint)
+                        appVersionText
+                    }
+                    .animation(.default, value: items.isEmpty)
+                }
             }
+            .scrollBounceBehavior(.basedOnSize)
+            .navigationTitle("More")
         }
-        .buttonStyle(.borderedProminent)
-        .foregroundStyle(.buttonTint)
-        .animation(.default, value: items.isEmpty)
     }
     
     @MainActor
@@ -44,7 +56,7 @@ struct MoreScreen: View {
     }
     
     private var removeAllDataButton: some View {
-        Button("Delete all data") {
+        Button("Delete all data", role: .destructive) {
             showDeleteDataConfirmation.toggle()
         }
         .accessibilityIdentifier("removeAllDataButton")
@@ -59,6 +71,12 @@ struct MoreScreen: View {
             }
             .accessibilityIdentifier("confirmRemoveAllDataButton")
         }
+    }
+    
+    private var appVersionText: some View {
+        Text("App version: \((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "1")")
+            .foregroundStyle(.secondary)
+            .multilineTextAlignment(.center)
     }
 }
 

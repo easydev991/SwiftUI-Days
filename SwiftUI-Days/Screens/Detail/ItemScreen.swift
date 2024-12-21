@@ -12,17 +12,20 @@ struct ItemScreen: View {
     let item: Item
     
     var body: some View {
-        ZStack {
-            if isEditing {
-                EditItemScreen(oldItem: item) { isEditing = false }
-                    .transition(.move(edge: .trailing).combined(with: .scale))
-            } else {
-                regularView
-                    .transition(.move(edge: .leading).combined(with: .scale))
+        ScrollView {
+            ZStack {
+                if isEditing {
+                    EditItemScreen(oldItem: item) { isEditing = false }
+                        .transition(.move(edge: .trailing).combined(with: .scale))
+                } else {
+                    regularView
+                        .transition(.move(edge: .leading).combined(with: .scale))
+                }
             }
+            .animation(.default, value: isEditing)
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .animation(.default, value: isEditing)
-        .navigationBarTitleDisplayMode(.inline)
+        .scrollBounceBehavior(.basedOnSize)
     }
     
     private var regularView: some View {
@@ -37,6 +40,16 @@ struct ItemScreen: View {
                     bodyText: item.details
                 )
             }
+            DatePicker(
+                "Date",
+                selection: .init(
+                    get: { item.timestamp },
+                    set: { _ in }
+                ),
+                displayedComponents: .date
+            )
+            .font(.title3.bold())
+            .disabled(true)
             Spacer()
         }
         .padding()

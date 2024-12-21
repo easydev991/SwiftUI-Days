@@ -25,7 +25,7 @@ struct MainScreen: View {
                 }
             }
             .animation(.bouncy, value: items.isEmpty)
-            .navigationTitle("List")
+            .navigationTitle("Events")
         }
         .sheet(isPresented: $showAddItemSheet) {
             NavigationStack {
@@ -66,8 +66,10 @@ struct MainScreen: View {
         }
         .searchable(text: $searchQuery)
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                sortButton
+            if items.count > 1 {
+                ToolbarItem(placement: .topBarLeading) {
+                    sortButton
+                }
             }
             ToolbarItem(placement: .topBarTrailing) {
                 addItemButton
@@ -77,7 +79,7 @@ struct MainScreen: View {
     
     private var emptyView: some View {
         ContentUnavailableView(
-            label: { Label("The list is empty", systemImage: "tray.fill") },
+            label: { Label("What should we remember?", systemImage: "tray.fill") },
             description: { Text("Create your first item") },
             actions: {
                 addItemButton
