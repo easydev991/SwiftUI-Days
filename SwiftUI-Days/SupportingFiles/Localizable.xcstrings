@@ -36,6 +36,12 @@
                   "state" : "translated",
                   "value" : "%lld days"
                 }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Today"
+                }
               }
             }
           }
