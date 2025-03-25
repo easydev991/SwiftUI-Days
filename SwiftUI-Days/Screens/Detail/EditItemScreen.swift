@@ -102,6 +102,11 @@ struct EditItemScreen: View {
             let item = Item(title: title, details: details, timestamp: timestamp)
             modelContext.insert(item)
         }
+        do {
+            try modelContext.save()
+        } catch {
+            assertionFailure(error.localizedDescription)
+        }
     }
 }
 

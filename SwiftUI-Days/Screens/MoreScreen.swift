@@ -67,7 +67,11 @@ struct MoreScreen: View {
             titleVisibility: .visible
         ) {
             Button("Delete", role: .destructive) {
-                try? modelContext.delete(model: Item.self)
+                do {
+                    try modelContext.delete(model: Item.self)
+                } catch {
+                    assertionFailure(error.localizedDescription)
+                }
             }
             .accessibilityIdentifier("confirmRemoveAllDataButton")
         }
