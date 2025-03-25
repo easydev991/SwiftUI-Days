@@ -64,7 +64,7 @@ struct MainScreen: View {
         .navigationDestination(item: $editItem) {
             EditItemScreen(oldItem: $0) { editItem = nil }
         }
-        .searchable(text: $searchQuery)
+        .searchable(text: $searchQuery, placement: .navigationBarDrawer(displayMode: .automatic))
         .toolbar {
             if items.count > 1 {
                 ToolbarItem(placement: .topBarLeading) {
