@@ -9,8 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct MoreScreen: View {
-    private let easyDevLink = URL(string: "https://t.me/easy_dev991")
     @Environment(\.modelContext) private var modelContext
+    @Environment(AppSettings.self) private var appSettings
     @Query private var items: [Item]
     @State private var showDeleteDataConfirmation = false
     
@@ -21,6 +21,7 @@ struct MoreScreen: View {
                     Spacer().containerRelativeFrame([ .vertical])
                     VStack(spacing: 16) {
                         Group {
+                            appThemePicker
                             feedbackButton
                             developerProfileButton
                             if !items.isEmpty {
@@ -39,7 +40,25 @@ struct MoreScreen: View {
         }
     }
     
-    @MainActor
+    private var appThemePicker: some View {
+        Menu {
+            Picker(
+                "App theme",
+                selection: .init(
+                    get: { appSettings.appTheme },
+                    set: { appSettings.appTheme = $0 }
+                )
+            ) {
+                ForEach(AppTheme.allCases) {
+                    Text($0.title).tag($0)
+                }
+            }
+        } label: {
+            Text("App theme")
+        }
+        .accessibilityIdentifier("sendFeedbackButton")
+    }
+    
     private var feedbackButton: some View {
         Button("Send feedback", action: FeedbackSender.sendFeedback)
             .accessibilityIdentifier("sendFeedbackButton")
@@ -47,7 +66,7 @@ struct MoreScreen: View {
     
     @ViewBuilder
     private var developerProfileButton: some View {
-        if let easyDevLink {
+        if let easyDevLink = URL(string: "https://t.me/easy_dev991") {
             Link(destination: easyDevLink) {
                 Text("App Developer")
             }
@@ -60,7 +79,7 @@ struct MoreScreen: View {
             showDeleteDataConfirmation.toggle()
         }
         .accessibilityIdentifier("removeAllDataButton")
-        .transition(.slide.combined(with: .scale))
+        .transition(.slide.combined(with: .scale).combined(with: .opacity))
         .confirmationDialog(
             "Do you want to delete all data permanently?",
             isPresented: $showDeleteDataConfirmation,
@@ -78,7 +97,7 @@ struct MoreScreen: View {
     }
     
     private var appVersionText: some View {
-        Text("App version: \((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "1")")
+        Text("App version: \(appSettings.appVersion)")
             .foregroundStyle(.secondary)
             .multilineTextAlignment(.center)
     }
@@ -87,6 +106,7 @@ struct MoreScreen: View {
 #if DEBUG
 #Preview {
     MoreScreen()
+        .environment(AppSettings())
         .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
 }
 #endif

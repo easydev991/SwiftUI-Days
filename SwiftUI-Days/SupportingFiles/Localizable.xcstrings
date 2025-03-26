@@ -110,6 +110,16 @@
         }
       }
     },
+    "App theme" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема приложения"
+          }
+        }
+      }
+    },
     "App version: %@" : {
       "localizations" : {
         "ru" : {
@@ -146,6 +156,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сделайте вашу первую запись"
+          }
+        }
+      }
+    },
+    "Dark" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тёмная"
           }
         }
       }
@@ -240,6 +260,16 @@
         }
       }
     },
+    "Light" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Светлая"
+          }
+        }
+      }
+    },
     "More" : {
       "localizations" : {
         "ru" : {
@@ -316,6 +346,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Порядок сортировки"
+          }
+        }
+      }
+    },
+    "System" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Системная"
           }
         }
       }

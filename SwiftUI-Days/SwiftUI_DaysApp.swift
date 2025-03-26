@@ -10,6 +10,7 @@ import SwiftData
 
 @main
 struct SwiftUI_DaysApp: App {
+    @State private var appSettings = AppSettings()
     private let sharedModelContainer: ModelContainer
     
     init() {
@@ -27,11 +28,13 @@ struct SwiftUI_DaysApp: App {
         WindowGroup {
             RootScreen()
                 .dynamicTypeSize(...DynamicTypeSize.accessibility2)
+                .environment(appSettings)
+                .preferredColorScheme(appSettings.appTheme.colorScheme)
         }
         .modelContainer(sharedModelContainer)
     }
     
-    @MainActor private func prepareForUITestIfNeeded() {
+    private func prepareForUITestIfNeeded() {
         if ProcessInfo.processInfo.arguments.contains("UITest") {
             UIView.setAnimationsEnabled(false)
         }
