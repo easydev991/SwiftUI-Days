@@ -100,16 +100,6 @@
         }
       }
     },
-    "App Developer" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разработчик приложения"
-          }
-        }
-      }
-    },
     "App theme" : {
       "localizations" : {
         "ru" : {
@@ -256,6 +246,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "События"
+          }
+        }
+      }
+    },
+    "GitHub page" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ссылка на GitHub"
           }
         }
       }

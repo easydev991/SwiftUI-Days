@@ -33,6 +33,7 @@
 		671922032CE0B3490098E610 /* Exceptions for "SwiftUI-DaysUITests" folder in "SwiftUI-DaysUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				SnapshotHelper.swift,
 				SwiftUI_DaysUITests.swift,
 			);
 			target = 6717F8CD2BBEA5F700A32083 /* SwiftUI-DaysUITests */;

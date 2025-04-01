@@ -14,14 +14,20 @@ struct SwiftUI_DaysApp: App {
     private let sharedModelContainer: ModelContainer
     
     init() {
-        let schema = Schema([Item.self])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-        do {
-            sharedModelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Не смогли создать ModelContainer: \(error)")
+        if ProcessInfo.processInfo.arguments.contains("UITest") {
+            UIView.setAnimationsEnabled(false)
+            sharedModelContainer = PreviewModelContainer.make(
+                with: Item.makeDemoList(isEnglish: Locale.current.identifier == "en-US")
+            )
+        } else {
+            let schema = Schema([Item.self])
+            let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+            do {
+                sharedModelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            } catch {
+                fatalError("Не смогли создать ModelContainer: \(error)")
+            }
         }
-        prepareForUITestIfNeeded()
     }
 
     var body: some Scene {
@@ -32,11 +38,5 @@ struct SwiftUI_DaysApp: App {
                 .preferredColorScheme(appSettings.appTheme.colorScheme)
         }
         .modelContainer(sharedModelContainer)
-    }
-    
-    private func prepareForUITestIfNeeded() {
-        if ProcessInfo.processInfo.arguments.contains("UITest") {
-            UIView.setAnimationsEnabled(false)
-        }
     }
 }
