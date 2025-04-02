@@ -23,7 +23,7 @@ struct MoreScreen: View {
                         Group {
                             appThemePicker
                             feedbackButton
-                            developerProfileButton
+                            githubButton
                             if !items.isEmpty {
                                 removeAllDataButton
                             }
@@ -56,7 +56,7 @@ struct MoreScreen: View {
         } label: {
             Text("App theme")
         }
-        .accessibilityIdentifier("sendFeedbackButton")
+        .accessibilityIdentifier("appThemeButton")
     }
     
     private var feedbackButton: some View {
@@ -65,12 +65,12 @@ struct MoreScreen: View {
     }
     
     @ViewBuilder
-    private var developerProfileButton: some View {
-        if let easyDevLink = URL(string: "https://t.me/easy_dev991") {
+    private var githubButton: some View {
+        if let easyDevLink = URL(string: "https://github.com/easydev991/SwiftUI-Days") {
             Link(destination: easyDevLink) {
-                Text("App Developer")
+                Text("GitHub page")
             }
-            .accessibilityIdentifier("linkToDeveloperBlog")
+            .accessibilityIdentifier("linkToGitHubPage")
         }
     }
     
