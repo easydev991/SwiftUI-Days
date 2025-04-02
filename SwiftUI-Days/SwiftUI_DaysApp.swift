@@ -13,6 +13,7 @@ struct SwiftUI_DaysApp: App {
     @State private var appSettings = AppSettings()
     private let sharedModelContainer: ModelContainer
     
+    #if DEBUG
     init() {
         if ProcessInfo.processInfo.arguments.contains("UITest") {
             UIView.setAnimationsEnabled(false)
@@ -29,6 +30,17 @@ struct SwiftUI_DaysApp: App {
             }
         }
     }
+    #else
+    init() {
+        let schema = Schema([Item.self])
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        do {
+            sharedModelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+        } catch {
+            fatalError("Не смогли создать ModelContainer: \(error)")
+        }
+    }
+    #endif
 
     var body: some Scene {
         WindowGroup {
