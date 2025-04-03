@@ -12,6 +12,7 @@ struct EditItemScreen: View {
     @State private var title: String
     @State private var details: String
     @State private var timestamp: Date
+    @FocusState private var isFirstFieldFocused
     private let oldItem: Item?
     private let closeAction: () -> Void
     
@@ -33,6 +34,8 @@ struct EditItemScreen: View {
                 placeholder: "Title for the Item",
                 text: $title
             )
+            .focused($isFirstFieldFocused)
+            .onAppear { isFirstFieldFocused = true }
             EditSectionView(
                 headerText: "Details",
                 placeholder: "Details for the Item",
@@ -63,9 +66,6 @@ struct EditItemScreen: View {
                 .disabled(!canSave)
                 .accessibilityIdentifier("saveItemNavButton")
             }
-        }
-        .onAppear {
-            UITextField.appearance().clearButtonMode = .whileEditing
         }
     }
     
