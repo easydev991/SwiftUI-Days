@@ -55,8 +55,11 @@ struct EditItemScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button(backButtonTitle, action: closeAction)
-                    .accessibilityIdentifier(backButtonAccessibilityIdentifier)
+                Button(backButtonTitle) {
+                    isFirstFieldFocused = false
+                    closeAction()
+                }
+                .accessibilityIdentifier(backButtonAccessibilityIdentifier)
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Save") {
