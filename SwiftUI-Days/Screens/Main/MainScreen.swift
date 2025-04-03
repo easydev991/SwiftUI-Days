@@ -11,7 +11,7 @@ import SwiftData
 struct MainScreen: View {
     @Query private var items: [Item]
     @State private var showAddItemSheet = false
-    @State private var sortOrder = SortOrder.forward
+    @AppStorage("listSortOrder") private var sortOrder = SortOrder.forward.rawValue
     @State private var searchQuery = ""
     @State private var editItem: Item?
 
@@ -39,6 +39,7 @@ struct MainScreen: View {
             Picker("Sort Order", selection: $sortOrder) {
                 ForEach([SortOrder.forward, .reverse], id: \.self) { order in
                     Text(order.name)
+                        .tag(order.rawValue)
                 }
             }
         } label: {
@@ -57,7 +58,7 @@ struct MainScreen: View {
     private var itemListView: some View {
         ListView(
             searchText: searchQuery,
-            sortOrder: sortOrder,
+            sortOrder: .init(rawValue: sortOrder) ?? .forward,
             editItem: $editItem
         )
         .navigationDestination(for: Item.self) { ItemScreen(item: $0) }
@@ -89,15 +90,6 @@ struct MainScreen: View {
         )
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("emptyView")
-    }
-}
-
-extension SortOrder {
-    var name: LocalizedStringKey {
-        switch self {
-        case .forward: "Old first"
-        case .reverse: "New first"
-        }
     }
 }
 
