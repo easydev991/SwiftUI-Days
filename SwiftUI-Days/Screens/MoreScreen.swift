@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct MoreScreen: View {
+    @Environment(\.locale) private var locale
     @Environment(\.modelContext) private var modelContext
     @Environment(AppSettings.self) private var appSettings
     @Query private var items: [Item]
@@ -23,6 +24,7 @@ struct MoreScreen: View {
                         Group {
                             appThemePicker
                             feedbackButton
+                            shareAppButton
                             githubButton
                             if !items.isEmpty {
                                 removeAllDataButton
@@ -65,9 +67,20 @@ struct MoreScreen: View {
     }
     
     @ViewBuilder
+    private var shareAppButton: some View {
+        let languageCode = locale.identifier.split(separator: "_").first == "ru" ? "ru" : "us"
+        if let appStoreLink = URL(string: "https://apps.apple.com/\(languageCode)/app/id6744068216") {
+            ShareLink(item: appStoreLink) {
+                Text("Share the app")
+            }
+            .accessibilityIdentifier("shareAppButton")
+        }
+    }
+    
+    @ViewBuilder
     private var githubButton: some View {
-        if let easyDevLink = URL(string: "https://github.com/easydev991/SwiftUI-Days") {
-            Link(destination: easyDevLink) {
+        if let githubLink = URL(string: "https://github.com/easydev991/SwiftUI-Days") {
+            Link(destination: githubLink) {
                 Text("GitHub page")
             }
             .accessibilityIdentifier("linkToGitHubPage")
