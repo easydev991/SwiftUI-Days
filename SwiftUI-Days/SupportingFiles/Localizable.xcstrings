@@ -330,6 +330,16 @@
         }
       }
     },
+    "Share the app" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться приложением"
+          }
+        }
+      }
+    },
     "Sort" : {
       "localizations" : {
         "ru" : {
