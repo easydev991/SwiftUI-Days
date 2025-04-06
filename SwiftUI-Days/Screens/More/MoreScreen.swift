@@ -6,14 +6,10 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct MoreScreen: View {
     @Environment(\.locale) private var locale
-    @Environment(\.modelContext) private var modelContext
     @Environment(AppSettings.self) private var appSettings
-    @Query private var items: [Item]
-    @State private var showDeleteDataConfirmation = false
     
     var body: some View {
         NavigationStack {
@@ -23,18 +19,15 @@ struct MoreScreen: View {
                     VStack(spacing: 16) {
                         Group {
                             appThemePicker
+                            appDataButton
                             feedbackButton
                             shareAppButton
                             githubButton
-                            if !items.isEmpty {
-                                removeAllDataButton
-                            }
                         }
                         .buttonStyle(.borderedProminent)
                         .foregroundStyle(.buttonTint)
                         appVersionText
                     }
-                    .animation(.default, value: items.isEmpty)
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
@@ -59,6 +52,12 @@ struct MoreScreen: View {
             Text("App theme")
         }
         .accessibilityIdentifier("appThemeButton")
+    }
+    
+    private var appDataButton: some View {
+        NavigationLink(destination: AppDataScreen()) {
+            Text("App data")
+        }
     }
     
     private var feedbackButton: some View {
@@ -87,28 +86,6 @@ struct MoreScreen: View {
         }
     }
     
-    private var removeAllDataButton: some View {
-        Button("Delete all data", role: .destructive) {
-            showDeleteDataConfirmation.toggle()
-        }
-        .accessibilityIdentifier("removeAllDataButton")
-        .transition(.slide.combined(with: .scale).combined(with: .opacity))
-        .confirmationDialog(
-            "Do you want to delete all data permanently?",
-            isPresented: $showDeleteDataConfirmation,
-            titleVisibility: .visible
-        ) {
-            Button("Delete", role: .destructive) {
-                do {
-                    try modelContext.delete(model: Item.self)
-                } catch {
-                    assertionFailure(error.localizedDescription)
-                }
-            }
-            .accessibilityIdentifier("confirmRemoveAllDataButton")
-        }
-    }
-    
     private var appVersionText: some View {
         Text("App version: \(appSettings.appVersion)")
             .foregroundStyle(.secondary)
@@ -120,6 +97,5 @@ struct MoreScreen: View {
 #Preview {
     MoreScreen()
         .environment(AppSettings())
-        .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
 }
 #endif

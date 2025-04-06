@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%lld days" : {
       "comment" : "days ago",
       "localizations" : {
@@ -100,6 +103,16 @@
         }
       }
     },
+    "App data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Данные приложения"
+          }
+        }
+      }
+    },
     "App theme" : {
       "localizations" : {
         "ru" : {
@@ -116,6 +129,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Версия приложения: %@"
+          }
+        }
+      }
+    },
+    "Backup data saved" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Резервная копия данных сохранена"
           }
         }
       }
@@ -140,6 +163,16 @@
         }
       }
     },
+    "Create a backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать резервную копию"
+          }
+        }
+      }
+    },
     "Create your first item" : {
       "localizations" : {
         "ru" : {
@@ -156,6 +189,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тёмная"
+          }
+        }
+      }
+    },
+    "Data restored from backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Данные восстановлены из резервной копии"
           }
         }
       }
@@ -220,6 +263,16 @@
         }
       }
     },
+    "Done" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
+          }
+        }
+      }
+    },
     "Edit" : {
       "localizations" : {
         "ru" : {
@@ -236,6 +289,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Изменить запись"
+          }
+        }
+      }
+    },
+    "Error" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка"
           }
         }
       }
@@ -300,12 +363,32 @@
         }
       }
     },
+    "Ok" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ок"
+          }
+        }
+      }
+    },
     "Old first" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сначала старые"
+          }
+        }
+      }
+    },
+    "Restore from backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восстановить из резервной копии"
           }
         }
       }
@@ -386,6 +469,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Название для записи"
+          }
+        }
+      }
+    },
+    "Unable to recover data from the selected file" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось восстановить данные из выбранного файла"
           }
         }
       }
