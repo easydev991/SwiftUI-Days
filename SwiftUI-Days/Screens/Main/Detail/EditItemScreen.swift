@@ -97,19 +97,14 @@ struct EditItemScreen: View {
     }
     
     private func save() {
-        if let oldItem {
-            oldItem.title = title
-            oldItem.details = details
-            oldItem.timestamp = timestamp
-        } else {
-            let item = Item(title: title, details: details, timestamp: timestamp)
-            modelContext.insert(item)
+        guard let oldItem else {
+            let newItem = Item(title: title, details: details, timestamp: timestamp)
+            modelContext.insert(newItem)
+            return
         }
-        do {
-            try modelContext.save()
-        } catch {
-            assertionFailure(error.localizedDescription)
-        }
+        oldItem.title = title
+        oldItem.details = details
+        oldItem.timestamp = timestamp
     }
 }
 

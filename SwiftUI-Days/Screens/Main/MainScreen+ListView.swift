@@ -36,11 +36,6 @@ extension MainScreen {
                     .swipeActions {
                         DaysDeleteButton {
                             modelContext.delete(item)
-                            do {
-                                try modelContext.save()
-                            } catch {
-                                assertionFailure(error.localizedDescription)
-                            }
                         }
                         DaysEditButton { editItem = item }
                     }
