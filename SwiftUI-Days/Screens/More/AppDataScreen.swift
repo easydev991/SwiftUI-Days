@@ -14,13 +14,14 @@ struct AppDataScreen: View {
     @State private var showDeleteDataConfirmation = false
     @State private var isCreatingBackup = false
     @State private var isRestoringFromBackup = false
-    @State private var showResult = false
     @State private var operationResult: OperationResult?
     
     var body: some View {
         VStack(spacing: 16) {
             Group {
-                backupDataButton
+                if !items.isEmpty {
+                    backupDataButton
+                }
                 restoreDataButton
                 if !items.isEmpty {
                     removeAllDataButton
@@ -32,7 +33,7 @@ struct AppDataScreen: View {
         .animation(.default, value: items.isEmpty)
         .alert(
             operationResult?.title ?? "",
-            isPresented: $showResult,
+            isPresented: $operationResult.mappedToBool(),
             presenting: operationResult,
             actions: { _ in
                 Button("Ok") {}
@@ -51,7 +52,7 @@ struct AppDataScreen: View {
         .accessibilityIdentifier("backupDataButton")
         .fileExporter(
             isPresented: $isCreatingBackup,
-            document: BackupFileDocument(items: items.map(BackupFileDocument.makeBackupItem)),
+            document: BackupFileDocument(items: items.map(BackupFileDocument.toBackupItem)),
             contentType: .json,
             defaultFilename: "Days backup"
         ) { result in
@@ -61,7 +62,6 @@ struct AppDataScreen: View {
             case let .failure(error):
                 operationResult = .error(error.localizedDescription)
             }
-            showResult = true
         }
     }
     
@@ -77,21 +77,25 @@ struct AppDataScreen: View {
         ) { result in
             switch result {
             case let .success(urls):
-                if let url = urls.first,
-                   url.startAccessingSecurityScopedResource(),
-                   let data = try? Data(contentsOf: url),
-                   let importedItems = try? JSONDecoder().decode([BackupFileDocument.BackupItem].self, from: data) {
+                guard let url = urls.first, url.startAccessingSecurityScopedResource() else {
+                    operationResult = .failedToRestore
+                    return
+                }
+                do {
                     defer { url.stopAccessingSecurityScopedResource() }
-                    let mappedRealItems = importedItems.map(\.realItem)
-                    mappedRealItems.forEach { modelContext.insert($0) }
+                    let data = try Data(contentsOf: url)
+                    let importedItems = try JSONDecoder().decode([BackupFileDocument.BackupItem].self, from: data)
+                    let currentItems = items.map(\.backupItem)
+                    let newItemsFromBackup = importedItems.filter { !currentItems.contains($0) }
+                    newItemsFromBackup.forEach { modelContext.insert($0.realItem) }
+                    try modelContext.save()
                     operationResult = .restoreSuccess
-                } else {
+                } catch {
                     operationResult = .failedToRestore
                 }
             case let .failure(error):
                 operationResult = .error(error.localizedDescription)
             }
-            showResult = true
         }
     }
     
@@ -109,10 +113,11 @@ struct AppDataScreen: View {
             Button("Delete", role: .destructive) {
                 do {
                     try modelContext.delete(model: Item.self)
+                    try modelContext.save()
+                    operationResult = .deletionSuccess
                 } catch {
                     assertionFailure(error.localizedDescription)
                     operationResult = .error(error.localizedDescription)
-                    showResult = true
                 }
             }
             .accessibilityIdentifier("confirmRemoveAllDataButton")
@@ -124,12 +129,13 @@ extension AppDataScreen {
     private enum OperationResult: Equatable {
         case backupSuccess
         case restoreSuccess
+        case deletionSuccess
         case failedToRestore
         case error(String)
         
         var title: LocalizedStringKey {
             switch self {
-            case .backupSuccess, .restoreSuccess: "Done"
+            case .backupSuccess, .restoreSuccess, .deletionSuccess: "Done"
             case .failedToRestore, .error: "Error"
             }
         }
@@ -138,6 +144,7 @@ extension AppDataScreen {
             switch self {
             case .backupSuccess: "Backup data saved"
             case .restoreSuccess: "Data restored from backup"
+            case .deletionSuccess: "All data deleted"
             case .failedToRestore: "Unable to recover data from the selected file"
             case let .error(message): .init(message)
             }

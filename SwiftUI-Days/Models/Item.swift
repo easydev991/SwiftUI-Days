@@ -28,6 +28,10 @@ final class Item {
             to: .now
         ).day ?? 0
     }
+    
+    var backupItem: BackupFileDocument.BackupItem {
+        .init(title: title, details: details, timestamp: timestamp)
+    }
 }
 
 extension Item {

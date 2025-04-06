@@ -103,6 +103,16 @@
         }
       }
     },
+    "All data deleted" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все данные удалены"
+          }
+        }
+      }
+    },
     "App data" : {
       "localizations" : {
         "ru" : {
