@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 struct BackupFileDocument: FileDocument {
     static var readableContentTypes: [UTType] { [.json] }
     static var writableContentTypes: [UTType] { [.json] }
-    static func makeBackupItem(with item: Item) -> BackupItem {
+    static func toBackupItem(item: Item) -> BackupItem {
         .init(title: item.title, details: item.details, timestamp: item.timestamp)
     }
     
@@ -35,7 +35,7 @@ struct BackupFileDocument: FileDocument {
 }
 
 extension BackupFileDocument {
-    struct BackupItem: Codable {
+    struct BackupItem: Codable, Hashable {
         let title: String
         let details: String
         let timestamp: Date

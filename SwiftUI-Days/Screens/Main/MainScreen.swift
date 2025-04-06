@@ -14,9 +14,10 @@ struct MainScreen: View {
     @AppStorage("listSortOrder") private var sortOrder = SortOrder.forward.rawValue
     @State private var searchQuery = ""
     @State private var editItem: Item?
+    @State private var path = NavigationPath()
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ZStack {
                 if items.isEmpty {
                     emptyView.transition(.scale.combined(with: .opacity))
@@ -25,6 +26,7 @@ struct MainScreen: View {
                 }
             }
             .animation(.bouncy, value: items.isEmpty)
+            .toolbar(path.isEmpty ? .automatic : .hidden, for: .tabBar)
             .navigationTitle("Events")
         }
         .sheet(isPresented: $showAddItemSheet) {
