@@ -14,7 +14,7 @@ final class Item {
     var details: String
     var timestamp: Date
     
-    init(title: String, details: String = "", timestamp: Date = .now) {
+    init(title: String = "", details: String = "", timestamp: Date = .now) {
         self.title = title
         self.details = details
         self.timestamp = timestamp
