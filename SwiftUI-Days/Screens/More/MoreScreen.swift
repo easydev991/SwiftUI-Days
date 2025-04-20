@@ -10,7 +10,8 @@ import SwiftUI
 struct MoreScreen: View {
     @Environment(\.locale) private var locale
     @Environment(AppSettings.self) private var appSettings
-    
+    private let appId = "id6744068216"
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -21,6 +22,7 @@ struct MoreScreen: View {
                             appThemePicker
                             appDataButton
                             feedbackButton
+                            rateAppButton
                             shareAppButton
                             githubButton
                         }
@@ -55,20 +57,27 @@ struct MoreScreen: View {
     }
     
     private var appDataButton: some View {
-        NavigationLink(destination: AppDataScreen()) {
-            Text("App data")
-        }
+        NavigationLink("App data", destination: AppDataScreen())
+            .accessibilityIdentifier("appDataButton")
     }
     
     private var feedbackButton: some View {
         Button("Send feedback", action: FeedbackSender.sendFeedback)
             .accessibilityIdentifier("sendFeedbackButton")
     }
-    
+
+    @ViewBuilder
+    private var rateAppButton: some View {
+        if let appReviewLink = URL(string: "https://apps.apple.com/app/\(appId)?action=write-review") {
+            Link("Rate the app", destination: appReviewLink)
+                .accessibilityIdentifier("rateAppButton")
+        }
+    }
+
     @ViewBuilder
     private var shareAppButton: some View {
         let languageCode = locale.identifier.split(separator: "_").first == "ru" ? "ru" : "us"
-        if let appStoreLink = URL(string: "https://apps.apple.com/\(languageCode)/app/id6744068216") {
+        if let appStoreLink = URL(string: "https://apps.apple.com/\(languageCode)/app/\(appId)") {
             ShareLink(item: appStoreLink) {
                 Text("Share the app")
             }
@@ -79,10 +88,8 @@ struct MoreScreen: View {
     @ViewBuilder
     private var githubButton: some View {
         if let githubLink = URL(string: "https://github.com/easydev991/SwiftUI-Days") {
-            Link(destination: githubLink) {
-                Text("GitHub page")
-            }
-            .accessibilityIdentifier("linkToGitHubPage")
+            Link("GitHub page", destination: githubLink)
+                .accessibilityIdentifier("linkToGitHubPage")
         }
     }
     
