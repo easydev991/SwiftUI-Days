@@ -393,6 +393,16 @@
         }
       }
     },
+    "Rate the app" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оценить приложение"
+          }
+        }
+      }
+    },
     "Restore from backup" : {
       "localizations" : {
         "ru" : {

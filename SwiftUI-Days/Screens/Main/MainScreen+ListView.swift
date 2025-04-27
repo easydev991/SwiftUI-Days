@@ -10,6 +10,7 @@ import SwiftData
 
 extension MainScreen {
     struct ListView: View {
+        @Environment(\.currentDate) private var currentDate
         @Environment(\.modelContext) private var modelContext
         @Binding private var editItem: Item?
         @Query private var items: [Item]
@@ -51,7 +52,8 @@ extension MainScreen {
                 Text(item.title)
                     .lineLimit(2)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("\(item.daysCount) days")
+                Text("\(item.makeDaysCount(to: currentDate)) days")
+                    .contentTransition(.numericText())
                     .containerRelativeFrame(.horizontal, alignment: .trailing) { length, _ in
                         length * 0.3
                     }

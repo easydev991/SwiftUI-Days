@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct RootScreen: View {
+    @Environment(\.scenePhase) private var scenePhase
     @State private var tab = Tab.list
-    
+    @State private var currentDate = Date.now
+
     var body: some View {
         TabView(selection: $tab) {
             ForEach(Tab.allCases, id: \.self) { tab in
                 tab.screen
                     .tabItem { tab.tabItemLabel }
                     .tag(tab)
+            }
+        }
+        .environment(\.currentDate, currentDate)
+        .animation(.default, value: currentDate)
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                currentDate = .now
             }
         }
     }

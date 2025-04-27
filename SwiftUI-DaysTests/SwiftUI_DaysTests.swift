@@ -25,7 +25,8 @@ struct SwiftUI_DaysTests {
     /// Тестируем `daysCount`, когда событие произошло только что
     @Test func daysCountWithNoDaysPassed() {
         let item = Item(title: "Recent Event", timestamp: .now)
-        #expect(item.daysCount == 0)
+        let result = item.makeDaysCount(to: .now)
+        #expect(result == 0)
     }
 
     /// Тестируем `daysCount` для события, произошедшего 1 день назад
@@ -34,7 +35,8 @@ struct SwiftUI_DaysTests {
             title: "One Day Ago",
             timestamp: Date(timeIntervalSinceNow: -86400)
         )
-        #expect(oneDayOldItem.daysCount == 1)
+        let result = oneDayOldItem.makeDaysCount(to: .now)
+        #expect(result == 1)
     }
 
     /// Тестируем `daysCount` для события, произошедшего 5 дней назад
@@ -43,6 +45,7 @@ struct SwiftUI_DaysTests {
             title: "Five Days Ago",
             timestamp: Date(timeIntervalSinceNow: -432000)
         )
-        #expect(fiveDaysOldItem.daysCount == 5)
+        let result = fiveDaysOldItem.makeDaysCount(to: .now)
+        #expect(result == 5)
     }
 }
