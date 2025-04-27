@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ItemScreen: View {
+    @Environment(\.currentDate) private var currentDate
     @State private var isEditing = false
     let item: Item
     
@@ -53,7 +54,7 @@ struct ItemScreen: View {
             Spacer()
         }
         .padding()
-        .navigationTitle("\(item.daysCount) days")
+        .navigationTitle("\(item.makeDaysCount(to: currentDate)) days")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 DaysEditButton { isEditing.toggle() }

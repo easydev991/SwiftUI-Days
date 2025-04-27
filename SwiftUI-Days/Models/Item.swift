@@ -10,22 +10,22 @@ import SwiftData
 
 @Model
 final class Item {
-    var title: String
-    var details: String
-    var timestamp: Date
-    
-    init(title: String = "", details: String = "", timestamp: Date = .now) {
+    var title = ""
+    var details = ""
+    var timestamp = Date.now
+
+    init(title: String, details: String = "", timestamp: Date) {
         self.title = title
         self.details = details
         self.timestamp = timestamp
     }
-    
+
     /// Количество дней с момента события
-    var daysCount: Int {
+    func makeDaysCount(to date: Date) -> Int {
         Calendar.current.dateComponents(
             [.day],
             from: timestamp,
-            to: .now
+            to: date
         ).day ?? 0
     }
     
