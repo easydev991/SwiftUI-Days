@@ -42,7 +42,6 @@ extension MainScreen {
                     }
                 }
             }
-            .listStyle(.plain)
             .animation(.default, value: items)
             .overlay { emptySearchViewIfNeeded }
         }

@@ -323,6 +323,16 @@
         }
       }
     },
+    "Extra" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дополнительно"
+          }
+        }
+      }
+    },
     "GitHub page" : {
       "localizations" : {
         "ru" : {
@@ -429,6 +439,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отправить обратную связь"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
           }
         }
       }

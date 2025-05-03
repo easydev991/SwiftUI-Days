@@ -17,18 +17,14 @@ struct AppDataScreen: View {
     @State private var operationResult: OperationResult?
     
     var body: some View {
-        VStack(spacing: 16) {
-            Group {
-                if !items.isEmpty {
-                    backupDataButton
-                }
-                restoreDataButton
-                if !items.isEmpty {
-                    removeAllDataButton
-                }
+        List {
+            if !items.isEmpty {
+                backupDataButton
             }
-            .buttonStyle(.borderedProminent)
-            .foregroundStyle(.buttonTint)
+            restoreDataButton
+            if !items.isEmpty {
+                removeAllDataButton
+            }
         }
         .animation(.default, value: items.isEmpty)
         .alert(
@@ -101,7 +97,7 @@ struct AppDataScreen: View {
     
     private var removeAllDataButton: some View {
         Button("Delete all data", role: .destructive) {
-            showDeleteDataConfirmation.toggle()
+            showDeleteDataConfirmation = true
         }
         .accessibilityIdentifier("removeAllDataButton")
         .transition(.slide.combined(with: .scale).combined(with: .opacity))
@@ -156,7 +152,6 @@ extension AppDataScreen {
 #Preview {
     NavigationStack {
         AppDataScreen()
-            .environment(AppSettings())
             .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
     }
 }

@@ -14,44 +14,38 @@ struct MoreScreen: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                ZStack {
-                    Spacer().containerRelativeFrame([ .vertical])
-                    VStack(spacing: 16) {
-                        Group {
-                            appThemePicker
-                            appDataButton
-                            feedbackButton
-                            rateAppButton
-                            shareAppButton
-                            githubButton
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .foregroundStyle(.buttonTint)
-                        appVersionText
-                    }
+            List {
+                Section {
+                    appThemePicker
+                    appDataButton
+                } header: {
+                    Text("Settings")
+                }
+                Section {
+                    feedbackButton
+                    rateAppButton
+                    shareAppButton
+                    githubButton
+                    appVersionText
+                } header: {
+                    Text("Extra")
                 }
             }
-            .scrollBounceBehavior(.basedOnSize)
             .navigationTitle("More")
         }
     }
     
     private var appThemePicker: some View {
-        Menu {
-            Picker(
-                "App theme",
-                selection: .init(
-                    get: { appSettings.appTheme },
-                    set: { appSettings.appTheme = $0 }
-                )
-            ) {
-                ForEach(AppTheme.allCases) {
-                    Text($0.title).tag($0)
-                }
+        Picker(
+            "App theme",
+            selection: .init(
+                get: { appSettings.appTheme },
+                set: { appSettings.appTheme = $0 }
+            )
+        ) {
+            ForEach(AppTheme.allCases) {
+                Text($0.title).tag($0)
             }
-        } label: {
-            Text("App theme")
         }
         .accessibilityIdentifier("appThemeButton")
     }
