@@ -100,7 +100,9 @@ struct MainScreen: View {
         .modelContainer(for: Item.self, inMemory: true)
 }
 
+#if DEBUG
 #Preview("Список") {
     MainScreen()
         .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
 }
+#endif
