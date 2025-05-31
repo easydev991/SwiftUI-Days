@@ -24,7 +24,7 @@ final class SwiftUI_DaysUITests: XCTestCase {
         app.launchArguments.removeAll()
         app = nil
     }
-    
+
     func testDemoFlow() throws {
         snapshot("1-demoList")
         app.buttons["addItemButton"].tap()

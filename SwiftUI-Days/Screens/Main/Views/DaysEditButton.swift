@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DaysEditButton: View {
     let action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             Label("Edit", systemImage: "pencil")
@@ -18,8 +18,6 @@ struct DaysEditButton: View {
     }
 }
 
-#if DEBUG
 #Preview {
     DaysEditButton {}
 }
-#endif

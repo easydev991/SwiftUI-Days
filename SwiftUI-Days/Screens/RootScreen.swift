@@ -34,24 +34,24 @@ extension RootScreen {
     private enum Tab: CaseIterable {
         case list
         case more
-        
+
         private var localizedTitle: LocalizedStringKey {
             self == .list ? "Events" : "More"
         }
-        
+
         private var systemImageName: String {
             self == .list
-            ? "list.bullet"
-            : "gear"
+                ? "list.bullet"
+                : "gear"
         }
-        
+
         private var accessibilityId: String {
             switch self {
             case .list: "listTabButton"
             case .more: "moreTabButton"
             }
         }
-        
+
         var tabItemLabel: some View {
             Label(
                 localizedTitle,
@@ -59,7 +59,7 @@ extension RootScreen {
             )
             .accessibilityIdentifier(accessibilityId)
         }
-        
+
         @MainActor @ViewBuilder
         var screen: some View {
             switch self {
@@ -70,8 +70,6 @@ extension RootScreen {
     }
 }
 
-#if DEBUG
 #Preview {
     RootScreen()
 }
-#endif

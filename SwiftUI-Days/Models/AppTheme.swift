@@ -12,7 +12,7 @@ enum AppTheme: Int, CaseIterable, Identifiable {
     case system = 0
     case light = 1
     case dark = 2
-    
+
     var title: LocalizedStringResource {
         switch self {
         case .system: "System"
@@ -20,7 +20,7 @@ enum AppTheme: Int, CaseIterable, Identifiable {
         case .dark: "Dark"
         }
     }
-    
+
     var colorScheme: ColorScheme? {
         switch self {
         case .light: .light

@@ -25,7 +25,7 @@ extension SortOrder: @retroactive RawRepresentable {
         default: return nil
         }
     }
-    
+
     public var rawValue: Int {
         switch self {
         case .forward: 0

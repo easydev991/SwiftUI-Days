@@ -15,18 +15,18 @@ struct EditItemScreen: View {
     @FocusState private var isFirstFieldFocused
     private let oldItem: Item?
     private let closeAction: () -> Void
-    
+
     init(
         oldItem: Item? = nil,
         closeAction: @escaping () -> Void
     ) {
-        self._title = .init(initialValue: oldItem?.title ?? "")
-        self._details = .init(initialValue: oldItem?.details ?? "")
-        self._timestamp = .init(initialValue: oldItem?.timestamp ?? .now)
+        _title = .init(initialValue: oldItem?.title ?? "")
+        _details = .init(initialValue: oldItem?.details ?? "")
+        _timestamp = .init(initialValue: oldItem?.timestamp ?? .now)
         self.oldItem = oldItem
         self.closeAction = closeAction
     }
-    
+
     var body: some View {
         VStack(spacing: 12) {
             EditSectionView(
@@ -71,31 +71,31 @@ struct EditItemScreen: View {
             }
         }
     }
-    
+
     private var navigationTitle: LocalizedStringKey {
         oldItem == nil ? "New Item" : "Edit Item"
     }
-    
+
     private var backButtonTitle: LocalizedStringKey {
         oldItem == nil ? "Close" : "Cancel"
     }
-    
+
     private var backButtonAccessibilityIdentifier: String {
         oldItem == nil ? "closeButton" : "cancelButton"
     }
-    
+
     private var canSave: Bool {
         let isTitleEmpty = title.isEmpty
         return if let oldItem {
             !isTitleEmpty
-            && title != oldItem.title
-            || details != oldItem.details
-            || timestamp != oldItem.timestamp
+                && title != oldItem.title
+                || details != oldItem.details
+                || timestamp != oldItem.timestamp
         } else {
             !isTitleEmpty
         }
     }
-    
+
     private func save() {
         guard let oldItem else {
             let newItem = Item(title: title, details: details, timestamp: timestamp)
@@ -108,10 +108,8 @@ struct EditItemScreen: View {
     }
 }
 
-#if DEBUG
 #Preview {
     NavigationStack {
         EditItemScreen(oldItem: .singleLong, closeAction: {})
     }
 }
-#endif

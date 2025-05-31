@@ -5,8 +5,8 @@
 //  Created by Oleg991 on 26.03.2025.
 //
 
-import SwiftUI
 import Observation
+import SwiftUI
 
 @Observable final class AppSettings {
     var appTheme: AppTheme {
@@ -21,7 +21,7 @@ import Observation
             }
         }
     }
-    
+
     let appVersion = (
         Bundle.main.object(
             forInfoDictionaryKey: "CFBundleShortVersionString"

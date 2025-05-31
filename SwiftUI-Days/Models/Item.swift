@@ -28,7 +28,7 @@ final class Item {
         let daysCount = Self.calendar.dateComponents([.day], from: startDate, to: endDate).day
         return daysCount ?? 0
     }
-    
+
     var backupItem: BackupFileDocument.BackupItem {
         .init(title: title, details: details, timestamp: timestamp)
     }
@@ -38,8 +38,8 @@ extension Item {
     static func predicate(searchText: String) -> Predicate<Item> {
         #Predicate { item in
             searchText.isEmpty
-            || item.title.contains(searchText)
-            || item.details.contains(searchText)
+                || item.title.contains(searchText)
+                || item.details.contains(searchText)
         }
     }
 }

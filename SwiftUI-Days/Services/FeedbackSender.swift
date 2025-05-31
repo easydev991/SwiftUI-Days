@@ -14,11 +14,12 @@ enum FeedbackSender {
         let encodedSubject = Feedback.subject.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? "Feedback"
         let encodedBody = Feedback.body.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         if let url = URL(string: "mailto:\(Feedback.recipient)?subject=\(encodedSubject)&body=\(encodedBody)"),
-           UIApplication.shared.canOpenURL(url) {
+           UIApplication.shared.canOpenURL(url)
+        {
             UIApplication.shared.open(url)
         }
     }
-    
+
     private enum Feedback {
         static let subject = "\(ProcessInfo.processInfo.processName): Обратная связь"
         static let body = """

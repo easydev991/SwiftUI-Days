@@ -1,12 +1,12 @@
 //
-//  ItemListView.swift
+//  MainScreen+ListView.swift
 //  SwiftUI-Days
 //
 //  Created by Oleg991 on 23.03.2024.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 extension MainScreen {
     struct ListView: View {
@@ -14,7 +14,7 @@ extension MainScreen {
         @Environment(\.modelContext) private var modelContext
         @Binding private var editItem: Item?
         @Query private var items: [Item]
-        
+
         init(
             searchText: String = "",
             sortOrder: SortOrder = .forward,
@@ -27,7 +27,7 @@ extension MainScreen {
             )
             _editItem = editItem
         }
-        
+
         var body: some View {
             List {
                 ForEach(items) { item in
@@ -46,7 +46,7 @@ extension MainScreen {
             .animation(.default, value: items)
             .overlay { emptySearchViewIfNeeded }
         }
-        
+
         private func makeItemView(_ item: Item) -> some View {
             HStack(spacing: 12) {
                 Text(item.title)
@@ -59,7 +59,7 @@ extension MainScreen {
                     }
             }
         }
-        
+
         private var emptySearchViewIfNeeded: some View {
             ZStack {
                 if items.isEmpty {
@@ -72,11 +72,9 @@ extension MainScreen {
     }
 }
 
-#if DEBUG
 #Preview {
     NavigationStack {
         MainScreen.ListView(editItem: .constant(nil))
             .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
     }
 }
-#endif
