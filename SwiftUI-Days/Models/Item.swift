@@ -10,6 +10,7 @@ import SwiftData
 
 @Model
 final class Item {
+    private static let calendar = Calendar.current
     var title = ""
     var details = ""
     var timestamp = Date.now
@@ -22,11 +23,10 @@ final class Item {
 
     /// Количество дней с момента события
     func makeDaysCount(to date: Date) -> Int {
-        Calendar.current.dateComponents(
-            [.day],
-            from: timestamp,
-            to: date
-        ).day ?? 0
+        let startDate = Self.calendar.startOfDay(for: timestamp)
+        let endDate = Self.calendar.startOfDay(for: date)
+        let daysCount = Self.calendar.dateComponents([.day], from: startDate, to: endDate).day
+        return daysCount ?? 0
     }
     
     var backupItem: BackupFileDocument.BackupItem {
