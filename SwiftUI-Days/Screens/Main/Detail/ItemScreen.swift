@@ -11,7 +11,7 @@ struct ItemScreen: View {
     @Environment(\.currentDate) private var currentDate
     @State private var isEditing = false
     let item: Item
-    
+
     var body: some View {
         ScrollView {
             ZStack {
@@ -28,7 +28,7 @@ struct ItemScreen: View {
         }
         .scrollBounceBehavior(.basedOnSize)
     }
-    
+
     private var regularView: some View {
         VStack(spacing: 16) {
             ReadSectionView(
@@ -64,10 +64,8 @@ struct ItemScreen: View {
     }
 }
 
-#if DEBUG
 #Preview("Много текста") {
     NavigationStack {
         ItemScreen(item: .singleLong)
     }
 }
-#endif

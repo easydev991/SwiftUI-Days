@@ -5,7 +5,6 @@
 //  Created by Oleg991 on 24.03.2024.
 //
 
-#if DEBUG
 import SwiftData
 
 enum PreviewModelContainer {
@@ -19,4 +18,3 @@ enum PreviewModelContainer {
         return container
     }
 }
-#endif

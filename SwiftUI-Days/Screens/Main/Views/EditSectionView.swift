@@ -11,14 +11,14 @@ struct EditSectionView: View {
     let headerText: LocalizedStringKey
     let placeholder: LocalizedStringKey
     @Binding var text: String
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(headerText).font(.title3.bold())
                 .accessibilityIdentifier("sectionHeader")
             TextField(placeholder, text: $text, axis: .vertical)
                 .textFieldStyle(.roundedBorder)
-                .lineLimit(1...3)
+                .lineLimit(1 ... 3)
                 .accessibilityIdentifier("sectionTextField")
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -27,7 +27,6 @@ struct EditSectionView: View {
     }
 }
 
-#if DEBUG
 #Preview {
     EditSectionView(
         headerText: "Title",
@@ -35,4 +34,3 @@ struct EditSectionView: View {
         text: .constant("Событие, которое очень хочется запомнить, и никак нельзя забывать, например, первая поездка на велосипеде")
     )
 }
-#endif

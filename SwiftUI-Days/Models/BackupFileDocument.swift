@@ -14,21 +14,21 @@ struct BackupFileDocument: FileDocument {
     static func toBackupItem(item: Item) -> BackupItem {
         .init(title: item.title, details: item.details, timestamp: item.timestamp)
     }
-    
+
     let items: [BackupItem]
-    
+
     init(items: [BackupItem]) {
         self.items = items
     }
-    
+
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
         items = try JSONDecoder().decode([BackupItem].self, from: data)
     }
-    
-    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+
+    func fileWrapper(configuration _: WriteConfiguration) throws -> FileWrapper {
         let data = try JSONEncoder().encode(items)
         return FileWrapper(regularFileWithContents: data)
     }
@@ -39,7 +39,7 @@ extension BackupFileDocument {
         let title: String
         let details: String
         let timestamp: Date
-        
+
         var realItem: Item {
             .init(title: title, details: details, timestamp: timestamp)
         }

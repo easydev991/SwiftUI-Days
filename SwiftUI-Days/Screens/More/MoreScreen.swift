@@ -16,7 +16,7 @@ struct MoreScreen: View {
         NavigationStack {
             ScrollView {
                 ZStack {
-                    Spacer().containerRelativeFrame([ .vertical])
+                    Spacer().containerRelativeFrame([.vertical])
                     VStack(spacing: 16) {
                         Group {
                             appThemePicker
@@ -36,7 +36,7 @@ struct MoreScreen: View {
             .navigationTitle("More")
         }
     }
-    
+
     private var appThemePicker: some View {
         Menu {
             Picker(
@@ -55,12 +55,12 @@ struct MoreScreen: View {
         }
         .accessibilityIdentifier("appThemeButton")
     }
-    
+
     private var appDataButton: some View {
         NavigationLink("App data", destination: AppDataScreen())
             .accessibilityIdentifier("appDataButton")
     }
-    
+
     private var feedbackButton: some View {
         Button("Send feedback", action: FeedbackSender.sendFeedback)
             .accessibilityIdentifier("sendFeedbackButton")
@@ -84,7 +84,7 @@ struct MoreScreen: View {
             .accessibilityIdentifier("shareAppButton")
         }
     }
-    
+
     @ViewBuilder
     private var githubButton: some View {
         if let githubLink = URL(string: "https://github.com/easydev991/SwiftUI-Days") {
@@ -92,7 +92,7 @@ struct MoreScreen: View {
                 .accessibilityIdentifier("linkToGitHubPage")
         }
     }
-    
+
     private var appVersionText: some View {
         Text("App version: \(appSettings.appVersion)")
             .foregroundStyle(.secondary)
@@ -100,9 +100,7 @@ struct MoreScreen: View {
     }
 }
 
-#if DEBUG
 #Preview {
     MoreScreen()
         .environment(AppSettings())
 }
-#endif

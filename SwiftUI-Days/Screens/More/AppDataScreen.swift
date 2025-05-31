@@ -5,8 +5,8 @@
 //  Created by Oleg991 on 06.04.2025.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct AppDataScreen: View {
     @Environment(\.modelContext) private var modelContext
@@ -15,7 +15,7 @@ struct AppDataScreen: View {
     @State private var isCreatingBackup = false
     @State private var isRestoringFromBackup = false
     @State private var operationResult: OperationResult?
-    
+
     var body: some View {
         VStack(spacing: 16) {
             Group {
@@ -44,7 +44,7 @@ struct AppDataScreen: View {
         )
         .navigationTitle("App data")
     }
-    
+
     private var backupDataButton: some View {
         Button("Create a backup") {
             isCreatingBackup.toggle()
@@ -64,7 +64,7 @@ struct AppDataScreen: View {
             }
         }
     }
-    
+
     private var restoreDataButton: some View {
         Button("Restore from backup") {
             isRestoringFromBackup.toggle()
@@ -98,7 +98,7 @@ struct AppDataScreen: View {
             }
         }
     }
-    
+
     private var removeAllDataButton: some View {
         Button("Delete all data", role: .destructive) {
             showDeleteDataConfirmation.toggle()
@@ -132,14 +132,14 @@ extension AppDataScreen {
         case deletionSuccess
         case failedToRestore
         case error(String)
-        
+
         var title: LocalizedStringKey {
             switch self {
             case .backupSuccess, .restoreSuccess, .deletionSuccess: "Done"
             case .failedToRestore, .error: "Error"
             }
         }
-        
+
         var message: LocalizedStringKey {
             switch self {
             case .backupSuccess: "Backup data saved"
@@ -152,7 +152,6 @@ extension AppDataScreen {
     }
 }
 
-#if DEBUG
 #Preview {
     NavigationStack {
         AppDataScreen()
@@ -160,4 +159,3 @@ extension AppDataScreen {
             .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
     }
 }
-#endif

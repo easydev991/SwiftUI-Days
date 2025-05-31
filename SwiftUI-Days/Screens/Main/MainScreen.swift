@@ -5,8 +5,8 @@
 //  Created by Oleg991 on 19.03.2024.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct MainScreen: View {
     @Query private var items: [Item]
@@ -35,7 +35,7 @@ struct MainScreen: View {
             }
         }
     }
-    
+
     private var sortButton: some View {
         Menu {
             Picker("Sort Order", selection: $sortOrder) {
@@ -49,14 +49,14 @@ struct MainScreen: View {
         }
         .accessibilityIdentifier("sortNavButton")
     }
-    
+
     private var addItemButton: some View {
         Button { showAddItemSheet.toggle() } label: {
             Label("Add Item", systemImage: "plus")
         }
         .accessibilityIdentifier("addItemButton")
     }
-    
+
     private var itemListView: some View {
         ListView(
             searchText: searchQuery,
@@ -79,7 +79,7 @@ struct MainScreen: View {
             }
         }
     }
-    
+
     private var emptyView: some View {
         ContentUnavailableView(
             label: { Label("What should we remember?", systemImage: "tray.fill") },
@@ -95,7 +95,6 @@ struct MainScreen: View {
     }
 }
 
-#if DEBUG
 #Preview("Пусто") {
     MainScreen()
         .modelContainer(for: Item.self, inMemory: true)
@@ -105,4 +104,3 @@ struct MainScreen: View {
     MainScreen()
         .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
 }
-#endif

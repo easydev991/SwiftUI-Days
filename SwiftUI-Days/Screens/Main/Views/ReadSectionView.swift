@@ -10,7 +10,7 @@ import SwiftUI
 struct ReadSectionView: View {
     let headerText: LocalizedStringKey
     let bodyText: String
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(headerText).font(.title3.bold())
@@ -23,7 +23,6 @@ struct ReadSectionView: View {
     }
 }
 
-#if DEBUG
 #Preview("Много текста (название)") {
     ReadSectionView(
         headerText: "Title",
@@ -37,4 +36,3 @@ struct ReadSectionView: View {
         bodyText: "Детали события, которые очень хочется запомнить, и никак нельзя забывать, например, первая поездка на велосипеде"
     )
 }
-#endif
