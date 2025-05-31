@@ -64,8 +64,10 @@ struct ItemScreen: View {
     }
 }
 
+#if DEBUG
 #Preview("Много текста") {
     NavigationStack {
         ItemScreen(item: .singleLong)
     }
 }
+#endif

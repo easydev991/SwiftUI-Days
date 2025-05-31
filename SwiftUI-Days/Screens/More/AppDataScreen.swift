@@ -152,6 +152,7 @@ extension AppDataScreen {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         AppDataScreen()
@@ -159,3 +160,4 @@ extension AppDataScreen {
             .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
     }
 }
+#endif

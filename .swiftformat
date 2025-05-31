@@ -1,1 +1,3 @@
+--ifdef no-indent
+
 --exclude SwiftUI-DaysUITests/SnapshotHelper.swift

@@ -72,9 +72,11 @@ extension MainScreen {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         MainScreen.ListView(editItem: .constant(nil))
             .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
     }
 }
+#endif

@@ -108,8 +108,10 @@ struct EditItemScreen: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         EditItemScreen(oldItem: .singleLong, closeAction: {})
     }
 }
+#endif
