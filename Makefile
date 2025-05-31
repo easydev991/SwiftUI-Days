@@ -1,4 +1,4 @@
-.PHONY: help install format update fastlane
+.PHONY: help install format update update_bundle update_swiftformat fastlane
 
 # Цвета ANSI
 YELLOW=\033[1;33m
@@ -12,15 +12,18 @@ help:
 	@echo ""
 	@echo "Доступные команды Makefile:"
 	@echo ""
-	@echo "  make help      - Показать это справочное сообщение."
-	@echo "  make install   - Проверить и установить все необходимые инструменты и зависимости для проекта:"
-	@echo "                   Homebrew, rbenv, Ruby, Bundler, Ruby-гемы (включая fastlane), SwiftFormat."
-	@echo "  make format    - Запустить автоматическое форматирование Swift-кода с помощью SwiftFormat."
-	@echo "  make update    - Обновить Ruby-зависимости (например, fastlane) до последних версий и обновить Gemfile.lock."
-	@echo "  make fastlane  - Запустить fastlane snapshot для генерации скриншотов приложения (использует bundle exec fastlane snapshot)."
+	@echo "  make help                - Показать это справочное сообщение."
+	@echo "  make install             - Проверить и установить все необходимые инструменты и зависимости для проекта:"
+	@echo "                   	     Homebrew, rbenv, Ruby, Bundler, Ruby-гемы, fastlane snapshot, SwiftFormat."
+	@echo "  make format              - Запустить автоматическое форматирование Swift-кода с помощью SwiftFormat."
+	@echo "  make update              - Обновить Ruby-зависимости fastlane и SwiftFormat (вызывает update_bundle и update_swiftformat)."
+	@echo "  make update_bundle       - Обновить только Ruby-гемы fastlane и его зависимости."
+	@echo "  make update_swiftformat  - Обновить только SwiftFormat через Homebrew."
+	@echo "  make fastlane            - Запустить fastlane snapshot для генерации скриншотов приложения."
 	@echo ""
-	@echo "Рекомендуется сначала выполнить 'make install' для установки всех зависимостей."
+	@echo "Рекомендуется сначала выполнить 'make install' для подготовки окружения."
 	@echo ""
+
 
 install:
 	@printf "$(YELLOW)Проверка наличия Homebrew...$(RESET)\n"
@@ -141,6 +144,14 @@ install:
 	else \
 		printf "$(GREEN)SwiftFormat уже установлен.$(RESET)\n"; \
 	fi
+	
+	@printf "$(YELLOW)Проверка установки fastlane snapshot...$(RESET)\n"
+	@if [ ! -f fastlane/Snapfile ]; then \
+		printf "$(YELLOW)Snapfile не найден, выполняется инициализация fastlane snapshot...$(RESET)\n"; \
+		bundle exec fastlane snapshot init; \
+	else \
+		printf "$(GREEN)fastlane snapshot уже готов к использованию.$(RESET)\n"; \
+	fi
 
 format:
 	@if ! command -v brew >/dev/null 2>&1 || ! command -v swiftformat >/dev/null 2>&1; then \
@@ -165,7 +176,26 @@ fastlane:
 	@printf "$(YELLOW)Запуск fastlane snapshot...$(RESET)\n"
 	@bundle exec fastlane snapshot
 
-update:
-	@printf "$(YELLOW)Обновление fastlane и других Ruby-зависимостей...$(RESET)\n"
-	@bundle update
-	@printf "$(GREEN)Гемы обновлены. Не забудьте закоммитить новый Gemfile.lock!$(RESET)\n"
+update: update_bundle update_swiftformat
+
+update_bundle:
+	@printf "$(YELLOW)Проверка наличия обновлений fastlane и его зависимостей...$(RESET)\n"
+	@if bundle outdated fastlane --parseable | grep .; then \
+		printf "$(YELLOW)Есть обновления для fastlane или его зависимостей, выполняется обновление...$(RESET)\n"; \
+		bundle update fastlane; \
+		printf "$(GREEN)fastlane и его зависимости обновлены. Не забудьте закоммитить новый Gemfile.lock!$(RESET)\n"; \
+	else \
+		printf "$(GREEN)fastlane и его зависимости уже самые свежие.$(RESET)\n"; \
+	fi
+
+update_swiftformat:
+	@printf "$(YELLOW)Проверка наличия обновлений SwiftFormat...$(RESET)\n"
+	@INSTALLED_VER=$$(brew list --versions swiftformat | awk '{print $$2}'); \
+	LATEST_VER=$$(brew info swiftformat --json=v1 | grep -m 1 '"versions"' -A 4 | grep '"stable"' | awk -F'"' '{print $$4}'); \
+	if [ "$$INSTALLED_VER" != "$$LATEST_VER" ]; then \
+		printf "$(YELLOW)Доступна новая версия SwiftFormat ($$INSTALLED_VER -> $$LATEST_VER), обновление...$(RESET)\n"; \
+		brew upgrade swiftformat; \
+		printf "$(GREEN)SwiftFormat обновлён до версии $$LATEST_VER.$(RESET)\n"; \
+	else \
+		printf "$(GREEN)SwiftFormat уже самой свежей версии ($$INSTALLED_VER).$(RESET)\n"; \
+	fi
