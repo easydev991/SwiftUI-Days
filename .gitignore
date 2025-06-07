@@ -4,3 +4,7 @@ fastlane/screenshots/screenshots.html
 fastlane/report.xml
 SwiftUI-Days.xcodeproj/project.xcworkspace/xcuserdata/oleg991.xcuserdatad/UserInterfaceState.xcuserstate
 .DS_Store
+fastlane/.env
+*.ipa
+*.dSYM.zip
+*.dSYM
