@@ -1,6 +1,5 @@
 # SwiftUI-Days
-<img alt="Static Badge" src="https://img.shields.io/badge/Swift_Version-6.0-orange">
-<img alt="Static Badge" src="https://img.shields.io/badge/iOS_Version-17-blue">
+<img alt="Static Badge" src="https://img.shields.io/badge/Swift_Version-6.0-orange"> <img alt="Static Badge" src="https://img.shields.io/badge/iOS_Version-17-blue">
 
 - Идея приложения в том, чтобы было удобно запоминать события в указанные даты, а потом легко проверить, сколько прошло дней с момента события.
 - Это вторая версия моего пет-проекта. Первая версия находится [тут](https://github.com/easydev991/Days), и я не публиковал ее в `AppStore`.
