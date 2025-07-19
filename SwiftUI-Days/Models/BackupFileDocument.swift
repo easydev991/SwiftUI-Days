@@ -12,7 +12,12 @@ struct BackupFileDocument: FileDocument {
     static var readableContentTypes: [UTType] { [.json] }
     static var writableContentTypes: [UTType] { [.json] }
     static func toBackupItem(item: Item) -> BackupItem {
-        .init(title: item.title, details: item.details, timestamp: item.timestamp, colorTag: item.colorTag)
+        .init(
+            title: item.title,
+            details: item.details,
+            timestamp: item.timestamp,
+            colorTag: item.colorTag
+        )
     }
 
     let items: [BackupItem]
@@ -42,7 +47,12 @@ extension BackupFileDocument {
         let colorTag: Color?
 
         var realItem: Item {
-            .init(title: title, details: details, timestamp: timestamp, colorTag: colorTag)
+            .init(
+                title: title,
+                details: details,
+                timestamp: timestamp,
+                colorTag: colorTag
+            )
         }
 
         private enum CodingKeys: String, CodingKey {
@@ -61,11 +71,12 @@ extension BackupFileDocument {
             title = try container.decode(String.self, forKey: .title)
             details = try container.decode(String.self, forKey: .details)
             timestamp = try container.decode(Date.self, forKey: .timestamp)
-
-            // Для обратной совместимости с старыми резервными копиями
-            if container.contains(.colorTag) {
-                let colorData = try container.decode(Data.self, forKey: .colorTag)
-                colorTag = try NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData).map { Color(uiColor: $0) }
+            // Для обратной совместимости со старыми резервными копиями
+            if let colorData = try container.decodeIfPresent(Data.self, forKey: .colorTag) {
+                colorTag = try NSKeyedUnarchiver.unarchivedObject(
+                    ofClass: UIColor.self,
+                    from: colorData
+                ).map(Color.init)
             } else {
                 colorTag = nil
             }
@@ -76,10 +87,12 @@ extension BackupFileDocument {
             try container.encode(title, forKey: .title)
             try container.encode(details, forKey: .details)
             try container.encode(timestamp, forKey: .timestamp)
-
             if let colorTag {
                 let uiColor = UIColor(colorTag)
-                let colorData = try NSKeyedArchiver.archivedData(withRootObject: uiColor, requiringSecureCoding: false)
+                let colorData = try NSKeyedArchiver.archivedData(
+                    withRootObject: uiColor,
+                    requiringSecureCoding: false
+                )
                 try container.encode(colorData, forKey: .colorTag)
             }
         }
