@@ -145,7 +145,12 @@ struct EditItemScreen: View {
 
     private func save() {
         guard let oldItem else {
-            let newItem = Item(title: title, details: details, timestamp: timestamp, colorTag: colorTag)
+            let newItem = Item(
+                title: title,
+                details: details,
+                timestamp: timestamp,
+                colorTag: colorTag
+            )
             modelContext.insert(newItem)
             return
         }
