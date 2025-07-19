@@ -8,3 +8,4 @@ fastlane/.env
 *.ipa
 *.dSYM.zip
 *.dSYM
+buildServer.json
