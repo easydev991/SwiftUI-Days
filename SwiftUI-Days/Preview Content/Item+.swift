@@ -27,14 +27,18 @@ extension Item {
     }
 
     static func makeList(count: Int = 10) -> [Item] {
-        (0 ..< count).map {
+        let colors: [Color?] = [.blue, .green, .orange, .red, .purple, .yellow, .pink, .indigo, .teal, .mint, nil, nil, nil]
+        
+        return (0 ..< count).map { index in
             .init(
-                title: "Item # \($0)",
+                title: "Item # \(index)",
+                details: "Details for item # \(index)",
                 timestamp: Calendar.current.date(
                     byAdding: .day,
-                    value: -(1 + $0),
+                    value: -(1 + index),
                     to: .now
-                )!
+                )!,
+                colorTag: colors.randomElement() ?? nil
             )
         }
     }
