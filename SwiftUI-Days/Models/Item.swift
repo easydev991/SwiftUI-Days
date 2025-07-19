@@ -41,8 +41,8 @@ final class Item {
         get {
             guard let colorTagData,
                   let uiColor = try? NSKeyedUnarchiver.unarchivedObject(
-                    ofClass: UIColor.self,
-                    from: colorTagData
+                      ofClass: UIColor.self,
+                      from: colorTagData
                   )
             else { return nil }
             return Color(uiColor: uiColor)

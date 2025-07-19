@@ -28,7 +28,7 @@ extension Item {
 
     static func makeList(count: Int = 10) -> [Item] {
         let colors: [Color?] = [.blue, .green, .orange, .red, .purple, .yellow, .pink, .indigo, .teal, .mint, nil, nil, nil]
-        
+
         return (0 ..< count).map { index in
             .init(
                 title: "Item # \(index)",
