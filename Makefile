@@ -1,4 +1,4 @@
-.PHONY: help setup setup_hook setup_snapshot setup_fastlane update update_fastlane update_swiftformat format screenshots build test
+.PHONY: help setup setup_hook setup_snapshot setup_fastlane update update_fastlane update_swiftformat format screenshots build test testflight upload_screenshots
 
 # Цвета и шрифт
 YELLOW=\033[1;33m
@@ -245,6 +245,14 @@ format:
 	@printf "$(YELLOW)Запуск swiftformat...$(RESET)\n"
 	@swiftformat .
 
+## build: Сборка проекта в терминале
+build:
+	xcodebuild -project SwiftUI-Days.xcodeproj -scheme SwiftUI-Days -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build
+
+## test: Запускает unit-тесты в терминале
+test:
+	xcodebuild -project SwiftUI-Days.xcodeproj -scheme SwiftUI-Days -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16 Pro' test -testPlan SwiftUI-DaysTests
+
 ## screenshots: Запустить fastlane snapshot для генерации скриншотов приложения
 screenshots:
 	@bash -c '\
@@ -262,14 +270,41 @@ screenshots:
 	rbenv shell $(RUBY_VERSION); \
 	bundle exec fastlane snapshot; \
 	'
+## upload_screenshots: Загрузить существующие скриншоты в App Store Connect
+upload_screenshots:
+	@bash -c '\
+	set -e; \
+	if [ ! -d fastlane ] || [ ! -f fastlane/Fastfile ]; then \
+		printf "$(YELLOW)fastlane не инициализирован в проекте$(RESET)\n"; \
+		$(MAKE) setup_fastlane; \
+		if [ ! -d fastlane ] || [ ! -f fastlane/Fastfile ]; then \
+			printf "$(RED)Нужно инициализировать fastlane перед использованием$(RESET)\n"; \
+			exit 1; \
+		fi; \
+	fi; \
+	printf "$(YELLOW)Загрузка существующих скриншотов в App Store Connect...$(RESET)\n"; \
+	eval "$$(rbenv init -)"; \
+	rbenv shell $(RUBY_VERSION); \
+	bundle exec fastlane ios upload_screenshots_only; \
+	'
 
-## build: Сборка проекта в терминале
-build:
-	xcodebuild -project SwiftUI-Days.xcodeproj -scheme SwiftUI-Days -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build
-
-## test: Запускает unit-тесты в терминале
-test:
-	xcodebuild -project SwiftUI-Days.xcodeproj -scheme SwiftUI-Days -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16 Pro' test -testPlan SwiftUI-DaysTests
+## testflight: Собрать и отправить сборку в TestFlight через fastlane
+testflight:
+	@bash -c '\
+	set -e; \
+	if [ ! -d fastlane ] || [ ! -f fastlane/Fastfile ]; then \
+		printf "$(YELLOW)fastlane не инициализирован в проекте$(RESET)\n"; \
+		$(MAKE) setup_fastlane; \
+		if [ ! -d fastlane ] || [ ! -f fastlane/Fastfile ]; then \
+			printf "$(RED)Нужно инициализировать fastlane перед использованием$(RESET)\n"; \
+			exit 1; \
+		fi; \
+	fi; \
+	printf "$(YELLOW)Запуск fastlane release для отправки в TestFlight...$(RESET)\n"; \
+	eval "$$(rbenv init -)"; \
+	rbenv shell $(RUBY_VERSION); \
+	bundle exec fastlane ios release; \
+	'
 
 .DEFAULT:
 	@printf "$(RED)Неизвестная команда: 'make $@'\n$(RESET)"
