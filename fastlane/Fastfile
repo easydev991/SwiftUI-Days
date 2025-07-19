@@ -22,28 +22,23 @@ platform :ios do
   end
 
   desc "Загрузить существующие скриншоты в App Store Connect"
-  lane :upload_screenshots_only do
+  lane :upload_screenshots do
     upload_to_app_store(
       skip_metadata: true,
       skip_screenshots: false,
       force: true,
       submit_for_review: false,
       reject_if_possible: false,
-      screenshots_path: "./fastlane/screenshots"
+      overwrite_screenshots: true,
+      run_precheck_before_submit: false,
+      skip_binary_upload: true
     )
   end
 
-  desc "Сгенерировать скриншоты и загрузить в App Store Connect"
-  lane :screenshots_and_upload do
+  desc "Выполнить первые 2 команды вместе"
+  lane :make_and_upload_screenshots do
     screenshots
-    upload_to_app_store(
-      skip_metadata: true,
-      skip_screenshots: false,
-      force: true,
-      submit_for_review: false,
-      reject_if_possible: false,
-      screenshots_path: "./fastlane/screenshots"
-    )
+    upload_screenshots
   end
 
   desc "Собрать и отправить сборку в TestFlight"
