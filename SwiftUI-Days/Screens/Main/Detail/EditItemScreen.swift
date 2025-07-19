@@ -32,11 +32,8 @@ struct EditItemScreen: View {
         VStack(alignment: .leading, spacing: 20) {
             titleSection
             detailsSection
-            Group {
-                colorPicker
-                datePicker
-            }
-            .font(.title3.bold())
+            colorPicker
+            datePicker
             Spacer()
         }
         .padding()
@@ -82,17 +79,32 @@ struct EditItemScreen: View {
 
     @ViewBuilder
     private var colorPicker: some View {
-        if let colorTag {
-            ColorPicker(
-                "Color tag",
-                selection: .init(
-                    get: { colorTag },
-                    set: { self.colorTag = $0 }
-                )
+        VStack(spacing: 20) {
+            Toggle(
+                isOn: .init(
+                    get: { colorTag != nil },
+                    set: { isOn in
+                        withAnimation {
+                            colorTag = isOn ? .yellow : nil
+                        }
+                    }
+                ),
+                label: {
+                    Text("Add color tag")
+                        .font(.title3.bold())
+                }
             )
-            .padding(.bottom, 4)
-        } else {
-            Button("Pick a color tag") {}
+            if let colorTag {
+                ColorPicker(
+                    "Color tag",
+                    selection: .init(
+                        get: { colorTag },
+                        set: { self.colorTag = $0 }
+                    )
+                )
+                .transition(.move(edge: .top).combined(with: .opacity))
+                .padding(.bottom, 4)
+            }
         }
     }
 
@@ -102,6 +114,7 @@ struct EditItemScreen: View {
             selection: $timestamp,
             displayedComponents: .date
         )
+        .font(.title3.bold())
     }
 
     private var navigationTitle: LocalizedStringKey {
