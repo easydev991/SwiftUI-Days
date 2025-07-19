@@ -173,6 +173,16 @@
         }
       }
     },
+    "Color tag" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цветовой тег"
+          }
+        }
+      }
+    },
     "Create a backup" : {
       "localizations" : {
         "ru" : {

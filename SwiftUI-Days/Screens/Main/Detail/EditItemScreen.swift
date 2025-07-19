@@ -12,6 +12,7 @@ struct EditItemScreen: View {
     @State private var title: String
     @State private var details: String
     @State private var timestamp: Date
+    @State private var colorTag: Color?
     @FocusState private var isFirstFieldFocused
     private let oldItem: Item?
     private let closeAction: () -> Void
@@ -28,24 +29,13 @@ struct EditItemScreen: View {
     }
 
     var body: some View {
-        VStack(spacing: 12) {
-            EditSectionView(
-                headerText: "Title",
-                placeholder: "Title for the Item",
-                text: $title
-            )
-            .focused($isFirstFieldFocused)
-            .onAppear { isFirstFieldFocused = true }
-            EditSectionView(
-                headerText: "Details",
-                placeholder: "Details for the Item",
-                text: $details
-            )
-            DatePicker(
-                "Date",
-                selection: $timestamp,
-                displayedComponents: .date
-            )
+        VStack(alignment: .leading, spacing: 20) {
+            titleSection
+            detailsSection
+            Group {
+                colorPicker
+                datePicker
+            }
             .font(.title3.bold())
             Spacer()
         }
@@ -70,6 +60,48 @@ struct EditItemScreen: View {
                 .accessibilityIdentifier("saveItemNavButton")
             }
         }
+    }
+
+    private var titleSection: some View {
+        EditSectionView(
+            headerText: "Title",
+            placeholder: "Title for the Item",
+            text: $title
+        )
+        .focused($isFirstFieldFocused)
+        .onAppear { isFirstFieldFocused = true }
+    }
+
+    private var detailsSection: some View {
+        EditSectionView(
+            headerText: "Details",
+            placeholder: "Details for the Item",
+            text: $details
+        )
+    }
+
+    @ViewBuilder
+    private var colorPicker: some View {
+        if let colorTag {
+            ColorPicker(
+                "Color tag",
+                selection: .init(
+                    get: { colorTag },
+                    set: { self.colorTag = $0 }
+                )
+            )
+            .padding(.bottom, 4)
+        } else {
+            Button("Pick a color tag") {}
+        }
+    }
+
+    private var datePicker: some View {
+        DatePicker(
+            "Date",
+            selection: $timestamp,
+            displayedComponents: .date
+        )
     }
 
     private var navigationTitle: LocalizedStringKey {
