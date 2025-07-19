@@ -51,13 +51,13 @@ extension Item {
                 title: ("Новые кроссовки", "New Sneakers"),
                 details: ("Купили спортивную обувь для утренних пробежек", "Purchased sports shoes for morning runs"),
                 timestamp: 1_672_531_200, // 2023-01-01
-                colorTag: Color.blue
+                colorTag: nil
             ),
             (
                 title: ("Ремонт окна", "Window Repair"),
                 details: ("Замена старой рамы на энергосберегающую конструкцию", "Replacing old frame with energy-saving structure"),
                 timestamp: 1_641_081_600, // 2022-01-02
-                colorTag: Color.green
+                colorTag: nil
             ),
             (
                 title: ("Торжественное мероприятие", "Celebratory Event"),
@@ -93,7 +93,7 @@ extension Item {
                 title: ("Появление котенка", "Kitten Adoption"),
                 details: ("Взяли домой пушистого питомца из приюта", "Took home a fluffy shelter pet"),
                 timestamp: 1_617_235_200, // 2021-04-01
-                colorTag: Color.pink
+                colorTag: nil
             ),
             (
                 title: ("Смена адреса", "Address Change"),
@@ -111,7 +111,7 @@ extension Item {
                 title: ("Техническая экскурсия", "Technical Tour"),
                 details: ("Ознакомительный визит на производственное предприятие", "Familiarization visit to manufacturing plant"),
                 timestamp: 1_577_836_800, // 2020-01-01
-                colorTag: Color.teal
+                colorTag: nil
             ),
             (
                 title: ("Водительский экзамен", "Driving Exam"),
@@ -123,7 +123,7 @@ extension Item {
                 title: ("Медицинская операция", "Medical Surgery"),
                 details: ("Плановое хирургическое вмешательство в клинике", "Scheduled surgical procedure at clinic"),
                 timestamp: 1_538_352_000, // 2018-10-01
-                colorTag: Color.red
+                colorTag: nil
             ),
         ]
 
