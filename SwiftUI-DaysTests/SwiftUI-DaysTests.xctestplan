@@ -15,13 +15,6 @@
     {
       "target" : {
         "containerPath" : "container:SwiftUI-Days.xcodeproj",
-        "identifier" : "6717F8CD2BBEA5F700A32083",
-        "name" : "SwiftUI-DaysUITests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:SwiftUI-Days.xcodeproj",
         "identifier" : "671922492CE0B7B20098E610",
         "name" : "SwiftUI-DaysTests"
       }

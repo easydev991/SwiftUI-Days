@@ -24,6 +24,7 @@ struct EditItemScreen: View {
         _title = .init(initialValue: oldItem?.title ?? "")
         _details = .init(initialValue: oldItem?.details ?? "")
         _timestamp = .init(initialValue: oldItem?.timestamp ?? .now)
+        _colorTag = .init(initialValue: oldItem?.colorTag)
         self.oldItem = oldItem
         self.closeAction = closeAction
     }
@@ -133,9 +134,10 @@ struct EditItemScreen: View {
         let isTitleEmpty = title.isEmpty
         return if let oldItem {
             !isTitleEmpty
-                && title != oldItem.title
-                || details != oldItem.details
-                || timestamp != oldItem.timestamp
+                && (title != oldItem.title
+                    || details != oldItem.details
+                    || timestamp != oldItem.timestamp
+                    || colorTag != oldItem.colorTag)
         } else {
             !isTitleEmpty
         }
@@ -143,13 +145,14 @@ struct EditItemScreen: View {
 
     private func save() {
         guard let oldItem else {
-            let newItem = Item(title: title, details: details, timestamp: timestamp)
+            let newItem = Item(title: title, details: details, timestamp: timestamp, colorTag: colorTag)
             modelContext.insert(newItem)
             return
         }
         oldItem.title = title
         oldItem.details = details
         oldItem.timestamp = timestamp
+        oldItem.colorTag = colorTag
     }
 }
 
