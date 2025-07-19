@@ -22,7 +22,10 @@ final class Item {
         self.details = details
         self.timestamp = timestamp
         colorTagData = colorTag.flatMap { color in
-            try? NSKeyedArchiver.archivedData(withRootObject: UIColor(color), requiringSecureCoding: false)
+            try? NSKeyedArchiver.archivedData(
+                withRootObject: UIColor(color),
+                requiringSecureCoding: false
+            )
         }
     }
 
@@ -36,19 +39,31 @@ final class Item {
 
     var colorTag: Color? {
         get {
-            guard let colorData = colorTagData else { return nil }
-            guard let uiColor = try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData) else { return nil }
+            guard let colorTagData,
+                  let uiColor = try? NSKeyedUnarchiver.unarchivedObject(
+                    ofClass: UIColor.self,
+                    from: colorTagData
+                  )
+            else { return nil }
             return Color(uiColor: uiColor)
         }
         set {
             colorTagData = newValue.flatMap { color in
-                try? NSKeyedArchiver.archivedData(withRootObject: UIColor(color), requiringSecureCoding: false)
+                try? NSKeyedArchiver.archivedData(
+                    withRootObject: UIColor(color),
+                    requiringSecureCoding: false
+                )
             }
         }
     }
 
     var backupItem: BackupFileDocument.BackupItem {
-        .init(title: title, details: details, timestamp: timestamp, colorTag: colorTag)
+        .init(
+            title: title,
+            details: details,
+            timestamp: timestamp,
+            colorTag: colorTag
+        )
     }
 }
 
