@@ -17,6 +17,15 @@ extension Item {
         )
     }
 
+    static var singleWithColorTag: Self {
+        .init(
+            title: "Событие с цветовым тегом",
+            details: "Это событие имеет синий цветовой тег для демонстрации",
+            timestamp: Calendar.current.date(byAdding: .year, value: -5, to: .now)!,
+            colorTag: .blue
+        )
+    }
+
     static func makeList(count: Int = 10) -> [Item] {
         (0 ..< count).map {
             .init(
