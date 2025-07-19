@@ -48,6 +48,7 @@ struct SwiftUI_DaysApp: App {
                 .dynamicTypeSize(...DynamicTypeSize.accessibility2)
                 .environment(appSettings)
                 .preferredColorScheme(appSettings.appTheme.colorScheme)
+//                .tint(.accent) // раскомментировать для UI-тестов, иначе accentColor сбрасывается
         }
         .modelContainer(sharedModelContainer)
     }
