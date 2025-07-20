@@ -49,6 +49,10 @@ extension MainScreen {
 
         private func makeItemView(_ item: Item) -> some View {
             HStack(spacing: 12) {
+                if let colorTag = item.colorTag {
+                    colorTag.frame(width: 16, height: 16)
+                        .clipShape(.circle)
+                }
                 Text(item.title)
                     .lineLimit(2)
                     .frame(maxWidth: .infinity, alignment: .leading)

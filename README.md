@@ -27,16 +27,27 @@ make setup
 5. Удалить все записи разом, если нужно
 
 ## Скриншоты  
+Для автоматической загрузки скриншотов в App Store Connect через fastlane используются устройства, которые соответствуют требованиям App Store Connect по размерам скриншотов:
+- **iPhone 15 Pro Max** (1290x2796) - стандартный размер для iPhone
+- **iPad Pro (12.9-inch) (6th generation)** (2048x2732) - стандартный размер для iPad
+
+При ручной загрузке в App Store Connect можно использовать скриншоты с любых устройств, но для автоматической загрузки через fastlane нужны именно эти модели.
+
 Для генерации скриншотов используется команда:
 ```shell
-make fastlane
+make screenshots
+```
+
+Для загрузки скриншотов в App Store Connect используется команда:
+```shell
+make upload_screenshots
 ```
 ### iPhone
 | Список записей | Создание новой записи | Сортировка на главном экране |
 | --- | --- | --- |
-| <img src="./fastlane/screenshots/ru/iPhone 16 Pro Max-1-demoList.png"> | <img src="./fastlane/screenshots/ru/iPhone 16 Pro Max-2-chooseDate.png"> | <img src="./fastlane/screenshots/ru/iPhone 16 Pro Max-3-sortByDate.png"> |
+| <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-1-demoList.png"> | <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-2-chooseDate.png"> | <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-3-sortByDate.png"> |
 
 ### iPad
 | Список записей | Создание новой записи | Сортировка на главном экране |
 | --- | --- | --- |
-| <img src="./fastlane/screenshots/ru/iPad Pro 13-inch (M4)-1-demoList.png"> | <img src="./fastlane/screenshots/ru/iPad Pro 13-inch (M4)-2-chooseDate.png"> | <img src="./fastlane/screenshots/ru/iPad Pro 13-inch (M4)-3-sortByDate.png"> |
+| <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-1-demoList.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-2-chooseDate.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-3-sortByDate.png"> |

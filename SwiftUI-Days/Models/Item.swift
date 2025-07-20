@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 @Model
 final class Item {
@@ -14,11 +15,18 @@ final class Item {
     var title = ""
     var details = ""
     var timestamp = Date.now
+    var colorTagData: Data?
 
-    init(title: String, details: String = "", timestamp: Date) {
+    init(title: String, details: String = "", timestamp: Date, colorTag: Color? = nil) {
         self.title = title
         self.details = details
         self.timestamp = timestamp
+        colorTagData = colorTag.flatMap { color in
+            try? NSKeyedArchiver.archivedData(
+                withRootObject: UIColor(color),
+                requiringSecureCoding: false
+            )
+        }
     }
 
     /// Количество дней с момента события
@@ -29,8 +37,33 @@ final class Item {
         return daysCount ?? 0
     }
 
+    var colorTag: Color? {
+        get {
+            guard let colorTagData,
+                  let uiColor = try? NSKeyedUnarchiver.unarchivedObject(
+                      ofClass: UIColor.self,
+                      from: colorTagData
+                  )
+            else { return nil }
+            return Color(uiColor: uiColor)
+        }
+        set {
+            colorTagData = newValue.flatMap { color in
+                try? NSKeyedArchiver.archivedData(
+                    withRootObject: UIColor(color),
+                    requiringSecureCoding: false
+                )
+            }
+        }
+    }
+
     var backupItem: BackupFileDocument.BackupItem {
-        .init(title: title, details: details, timestamp: timestamp)
+        .init(
+            title: title,
+            details: details,
+            timestamp: timestamp,
+            colorTag: colorTag
+        )
     }
 }
 

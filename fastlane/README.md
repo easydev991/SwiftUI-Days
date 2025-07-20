@@ -21,7 +21,23 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios screenshots
 ```
 
-Generate new localized screenshots
+Сгенерировать новые локализованные скриншоты
+
+### ios upload_screenshots
+
+```sh
+[bundle exec] fastlane ios upload_screenshots
+```
+
+Загрузить существующие скриншоты в App Store Connect
+
+### ios make_and_upload_screenshots
+
+```sh
+[bundle exec] fastlane ios make_and_upload_screenshots
+```
+
+Выполнить первые 2 команды вместе
 
 ### ios release
 

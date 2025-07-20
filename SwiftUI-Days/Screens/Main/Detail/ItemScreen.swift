@@ -17,10 +17,18 @@ struct ItemScreen: View {
             ZStack {
                 if isEditing {
                     EditItemScreen(oldItem: item) { isEditing = false }
-                        .transition(.move(edge: .trailing).combined(with: .scale))
+                        .transition(
+                            .move(edge: .trailing)
+                                .combined(with: .scale)
+                                .combined(with: .opacity)
+                        )
                 } else {
                     regularView
-                        .transition(.move(edge: .leading).combined(with: .scale))
+                        .transition(
+                            .move(edge: .leading)
+                                .combined(with: .scale)
+                                .combined(with: .opacity)
+                        )
                 }
             }
             .animation(.default, value: isEditing)
@@ -30,27 +38,11 @@ struct ItemScreen: View {
     }
 
     private var regularView: some View {
-        VStack(spacing: 16) {
-            ReadSectionView(
-                headerText: "Title",
-                bodyText: item.title
-            )
-            if !item.details.isEmpty {
-                ReadSectionView(
-                    headerText: "Details",
-                    bodyText: item.details
-                )
-            }
-            DatePicker(
-                "Date",
-                selection: .init(
-                    get: { item.timestamp },
-                    set: { _ in }
-                ),
-                displayedComponents: .date
-            )
-            .font(.title3.bold())
-            .disabled(true)
+        VStack(alignment: .leading, spacing: 20) {
+            titleSection
+            detailsSection
+            colorTagSection
+            datePicker
             Spacer()
         }
         .padding()
@@ -62,12 +54,62 @@ struct ItemScreen: View {
             }
         }
     }
+
+    @ViewBuilder
+    private var titleSection: some View {
+        ReadSectionView(
+            headerText: "Title",
+            bodyText: item.title
+        )
+    }
+
+    @ViewBuilder
+    private var detailsSection: some View {
+        if !item.details.isEmpty {
+            ReadSectionView(
+                headerText: "Details",
+                bodyText: item.details
+            )
+        }
+    }
+
+    @ViewBuilder
+    private var colorTagSection: some View {
+        if let colorTag = item.colorTag {
+            ColorPicker(
+                "Color tag",
+                selection: .constant(colorTag)
+            )
+            .font(.title3.bold())
+            .disabled(true)
+            .padding(.bottom, 4)
+        }
+    }
+
+    private var datePicker: some View {
+        DatePicker(
+            "Date",
+            selection: .init(
+                get: { item.timestamp },
+                set: { _ in }
+            ),
+            displayedComponents: .date
+        )
+        .font(.title3.bold())
+        .disabled(true)
+    }
 }
 
 #if DEBUG
-#Preview("Много текста") {
+#Preview("Много текста, без цветового тега") {
     NavigationStack {
         ItemScreen(item: .singleLong)
+    }
+}
+
+#Preview("Есть цветовой тег") {
+    NavigationStack {
+        ItemScreen(item: .singleWithColorTag)
     }
 }
 #endif

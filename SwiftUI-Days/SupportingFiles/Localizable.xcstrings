@@ -93,6 +93,16 @@
         }
       }
     },
+    "Add color tag" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить цветовой тег"
+          }
+        }
+      }
+    },
     "Add Item" : {
       "localizations" : {
         "ru" : {
@@ -169,6 +179,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закрыть"
+          }
+        }
+      }
+    },
+    "Color tag" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цветовой тег"
           }
         }
       }
