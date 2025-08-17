@@ -54,6 +54,7 @@ struct MoreScreen: View {
             Text("App theme")
         }
         .accessibilityIdentifier("appThemeButton")
+        .accessibilityValue(Text(appSettings.appTheme.title))
     }
 
     private var appDataButton: some View {
