@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ItemDisplayOptionPicker: View {
     @Binding var displayOption: DisplayOption
-    
+
     var body: some View {
         HStack(spacing: 12) {
             Text("Display format")

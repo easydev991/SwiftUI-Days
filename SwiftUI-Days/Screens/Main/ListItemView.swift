@@ -1,10 +1,3 @@
-//
-//  ListItemView.swift
-//  SwiftUI-Days
-//
-//  Created by Еременко Олег Николаевич on 17.08.2025.
-//
-
 import SwiftUI
 
 struct ListItemView: View {

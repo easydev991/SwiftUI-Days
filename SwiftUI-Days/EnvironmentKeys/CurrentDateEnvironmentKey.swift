@@ -1,10 +1,3 @@
-//
-//  CurrentDateEnvironmentKey.swift
-//  SwiftUI-Days
-//
-//  Created by Олег Еременко on 27.04.2025.
-//
-
 import SwiftUI
 
 private struct CurrentDateKey: EnvironmentKey {

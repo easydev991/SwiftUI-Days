@@ -1,10 +1,3 @@
-//
-//  AppDataScreen.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 06.04.2025.
-//
-
 import SwiftData
 import SwiftUI
 

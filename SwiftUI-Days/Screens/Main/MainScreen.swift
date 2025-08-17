@@ -1,10 +1,3 @@
-//
-//  MainScreen.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 19.03.2024.
-//
-
 import SwiftData
 import SwiftUI
 

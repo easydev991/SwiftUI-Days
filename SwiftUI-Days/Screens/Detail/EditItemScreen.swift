@@ -1,10 +1,3 @@
-//
-//  EditItemScreen.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 23.03.2024.
-//
-
 import SwiftUI
 
 struct EditItemScreen: View {

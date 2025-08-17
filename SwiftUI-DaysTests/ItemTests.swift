@@ -1,10 +1,3 @@
-//
-//  ItemTests.swift
-//  SwiftUI-DaysTests
-//
-//  Created by Oleg991 on 10.11.2024.
-//
-
 import Foundation
 import SwiftUI
 @testable import SwiftUI_Days

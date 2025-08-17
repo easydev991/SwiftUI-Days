@@ -1,10 +1,3 @@
-//
-//  SwiftUI_DaysUITests.swift
-//  SwiftUI-DaysUITests
-//
-//  Created by Oleg991 on 04.04.2024.
-//
-
 import XCTest
 
 @MainActor

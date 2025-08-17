@@ -1,10 +1,3 @@
-//
-//  AppTheme.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 26.03.2025.
-//
-
 import SwiftUI
 
 enum AppTheme: Int, CaseIterable, Identifiable {

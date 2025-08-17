@@ -1,10 +1,3 @@
-//
-//  DisplayOptionTests.swift
-//  SwiftUI-DaysTests
-//
-//  Created by Oleg991 on 17.08.2025.
-//
-
 import Foundation
 import SwiftUI
 @testable import SwiftUI_Days
@@ -23,7 +16,7 @@ struct DisplayOptionTests {
         #expect(DisplayOption.monthDay.allowedUnits == [.month, .day])
         #expect(DisplayOption.yearMonthDay.allowedUnits == [.year, .month, .day])
     }
-    
+
     /// Тестируем localizedTitle для каждого случая
     @Test func displayOptionLocalizedTitle() {
         let dayTitle = DisplayOption.day.localizedTitle

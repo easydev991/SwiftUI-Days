@@ -1,10 +1,3 @@
-//
-//  Item.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 19.03.2024.
-//
-
 import Foundation
 import SwiftData
 import SwiftUI
