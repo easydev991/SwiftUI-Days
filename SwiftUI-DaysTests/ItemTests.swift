@@ -1,5 +1,5 @@
 //
-//  SwiftUI_DaysTests.swift
+//  ItemTests.swift
 //  SwiftUI-DaysTests
 //
 //  Created by Oleg991 on 10.11.2024.
@@ -11,7 +11,7 @@ import SwiftUI
 import Testing
 
 @Suite("Item tests")
-struct SwiftUI_DaysTests {
+struct ItemTests {
     private let calendar = Calendar.current
     private let now = Date.now
 
