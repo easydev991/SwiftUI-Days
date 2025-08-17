@@ -64,8 +64,11 @@ struct MainScreen: View {
             editItem: $editItem
         )
         .navigationDestination(for: Item.self) { ItemScreen(item: $0) }
-        .navigationDestination(item: $editItem) {
-            EditItemScreen(oldItem: $0) { editItem = nil }
+        .navigationDestination(item: $editItem) { oldItem in
+            ScrollView {
+                EditItemScreen(oldItem: oldItem) { editItem = nil }
+            }
+            .scrollBounceBehavior(.basedOnSize)
         }
         .searchable(text: $searchQuery, placement: .navigationBarDrawer(displayMode: .automatic))
         .toolbar {
