@@ -110,12 +110,7 @@ struct EditItemScreen: View {
     }
 
     private var datePicker: some View {
-        DatePicker(
-            "Date",
-            selection: $timestamp,
-            displayedComponents: .date
-        )
-        .font(.title3.bold())
+        ItemDatePicker(date: $timestamp)
     }
 
     private var navigationTitle: LocalizedStringKey {

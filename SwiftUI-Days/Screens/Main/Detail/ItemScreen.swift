@@ -87,16 +87,8 @@ struct ItemScreen: View {
     }
 
     private var datePicker: some View {
-        DatePicker(
-            "Date",
-            selection: .init(
-                get: { item.timestamp },
-                set: { _ in }
-            ),
-            displayedComponents: .date
-        )
-        .font(.title3.bold())
-        .disabled(true)
+        ItemDatePicker(date: .constant(item.timestamp))
+            .disabled(true)
     }
 }
 
