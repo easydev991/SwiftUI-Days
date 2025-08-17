@@ -43,10 +43,11 @@ struct ItemScreen: View {
             detailsSection
             colorTagSection
             datePicker
+            displayOptionPicker
             Spacer()
         }
         .padding()
-        .navigationTitle("\(item.makeDaysCount(to: currentDate)) days")
+        .navigationTitle(item.makeDaysCount(to: currentDate))
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 DaysEditButton { isEditing.toggle() }
@@ -61,6 +62,9 @@ struct ItemScreen: View {
             headerText: "Title",
             bodyText: item.title
         )
+        .accessibilityElement()
+        .accessibilityLabel("Title")
+        .accessibilityValue(item.title)
     }
 
     @ViewBuilder
@@ -70,6 +74,9 @@ struct ItemScreen: View {
                 headerText: "Details",
                 bodyText: item.details
             )
+            .accessibilityElement()
+            .accessibilityLabel("Details")
+            .accessibilityValue(item.details)
         }
     }
 
@@ -88,6 +95,15 @@ struct ItemScreen: View {
 
     private var datePicker: some View {
         ItemDatePicker(date: .constant(item.timestamp))
+            .disabled(true)
+    }
+
+    private var displayOptionPicker: some View {
+        let value = item.displayOption ?? .day
+        return ItemDisplayOptionPicker(displayOption: .constant(value))
+            .accessibilityElement()
+            .accessibilityLabel("Display format")
+            .accessibilityValue(Text(value.localizedTitle))
             .disabled(true)
     }
 }

@@ -16,11 +16,19 @@ final class Item {
     var details = ""
     var timestamp = Date.now
     var colorTagData: Data?
+    var displayOption: DisplayOption?
 
-    init(title: String, details: String = "", timestamp: Date, colorTag: Color? = nil) {
+    init(
+        title: String,
+        details: String = "",
+        timestamp: Date,
+        colorTag: Color? = nil,
+        displayOption: DisplayOption? = .day
+    ) {
         self.title = title
         self.details = details
         self.timestamp = timestamp
+        self.displayOption = displayOption
         colorTagData = colorTag.flatMap { color in
             try? NSKeyedArchiver.archivedData(
                 withRootObject: UIColor(color),
@@ -30,11 +38,19 @@ final class Item {
     }
 
     /// Количество дней с момента события
-    func makeDaysCount(to date: Date) -> Int {
+    func makeDaysCount(to date: Date) -> String {
         let startDate = Self.calendar.startOfDay(for: timestamp)
         let endDate = Self.calendar.startOfDay(for: date)
         let daysCount = Self.calendar.dateComponents([.day], from: startDate, to: endDate).day
-        return daysCount ?? 0
+        let todayString = NSLocalizedString("Today", comment: "Today")
+        guard let daysCount, daysCount != 0 else {
+            return todayString
+        }
+        let formatter = DateComponentsFormatter()
+        let option = displayOption ?? .day
+        formatter.allowedUnits = option.allowedUnits
+        formatter.unitsStyle = option.unitsStyle
+        return formatter.string(from: startDate, to: endDate) ?? todayString
     }
 
     var colorTag: Color? {
@@ -62,7 +78,8 @@ final class Item {
             title: title,
             details: details,
             timestamp: timestamp,
-            colorTag: colorTag
+            colorTag: colorTag,
+            displayOption: displayOption
         )
     }
 }

@@ -25,6 +25,7 @@ struct SwiftUI_DaysTests {
         #expect(item.details == details)
         #expect(item.timestamp == oneDayAgo)
         #expect(item.colorTag == nil)
+        #expect(item.displayOption == .day)
     }
 
     /// Тестируем инициализацию объекта Item с цветовым тегом
@@ -38,6 +39,36 @@ struct SwiftUI_DaysTests {
         #expect(item.details == details)
         #expect(item.timestamp == oneDayAgo)
         #expect(item.colorTag != nil)
+        #expect(item.displayOption == .day)
+    }
+
+    /// Тестируем инициализацию объекта Item с displayOption
+    @Test(arguments: DisplayOption.allCases)
+    func itemInitializationWithDisplayOption(displayOption: DisplayOption) throws {
+        let title = "Test Title"
+        let details = "Test Details"
+        let oneDayAgo = try #require(calendar.date(byAdding: .day, value: -1, to: now))
+        let item = Item(title: title, details: details, timestamp: oneDayAgo, displayOption: displayOption)
+        #expect(item.title == title)
+        #expect(item.details == details)
+        #expect(item.timestamp == oneDayAgo)
+        #expect(item.colorTag == nil)
+        #expect(item.displayOption == displayOption)
+    }
+
+    /// Тестируем инициализацию объекта Item с colorTag и displayOption
+    @Test(arguments: DisplayOption.allCases)
+    func itemInitializationWithColorTagAndDisplayOption(displayOption: DisplayOption) throws {
+        let title = "Test Title"
+        let details = "Test Details"
+        let oneDayAgo = try #require(calendar.date(byAdding: .day, value: -1, to: now))
+        let colorTag = Color.blue
+        let item = Item(title: title, details: details, timestamp: oneDayAgo, colorTag: colorTag, displayOption: displayOption)
+        #expect(item.title == title)
+        #expect(item.details == details)
+        #expect(item.timestamp == oneDayAgo)
+        #expect(item.colorTag != nil)
+        #expect(item.displayOption == displayOption)
     }
 
     /// Тестируем backupItem с цветовым тегом
@@ -65,13 +96,52 @@ struct SwiftUI_DaysTests {
         #expect(backupItem.details == details)
         #expect(backupItem.timestamp == oneDayAgo)
         #expect(backupItem.colorTag == nil)
+        #expect(backupItem.displayOption == .day)
     }
 
-    /// Тестируем `daysCount`, когда событие произошло только что
-    @Test func daysCountWithNoDaysPassed() {
-        let item = Item(title: "Recent Event", timestamp: now)
-        let result = item.makeDaysCount(to: now)
-        #expect(result == 0)
+    /// Тестируем backupItem с displayOption
+    @Test(arguments: DisplayOption.allCases)
+    func backupItemWithDisplayOption(displayOption: DisplayOption) throws {
+        let title = "Test Title"
+        let details = "Test Details"
+        let oneDayAgo = try #require(calendar.date(byAdding: .day, value: -1, to: now))
+        let item = Item(title: title, details: details, timestamp: oneDayAgo, displayOption: displayOption)
+        let backupItem = item.backupItem
+        #expect(backupItem.title == title)
+        #expect(backupItem.details == details)
+        #expect(backupItem.timestamp == oneDayAgo)
+        #expect(backupItem.colorTag == nil)
+        #expect(backupItem.displayOption == displayOption)
+    }
+
+    /// Тестируем backupItem с displayOption и colorTag
+    @Test(arguments: DisplayOption.allCases)
+    func backupItemWithDisplayOptionAndColorTag(displayOption: DisplayOption) throws {
+        let title = "Test Title"
+        let details = "Test Details"
+        let oneDayAgo = try #require(calendar.date(byAdding: .day, value: -1, to: now))
+        let colorTag = Color.green
+        let item = Item(title: title, details: details, timestamp: oneDayAgo, colorTag: colorTag, displayOption: displayOption)
+        let backupItem = item.backupItem
+        #expect(backupItem.title == title)
+        #expect(backupItem.details == details)
+        #expect(backupItem.timestamp == oneDayAgo)
+        #expect(backupItem.colorTag != nil)
+        #expect(backupItem.displayOption == displayOption)
+    }
+
+    /// Тестируем backupItem с nil displayOption
+    @Test func backupItemWithNilDisplayOption() throws {
+        let title = "Test Title"
+        let details = "Test Details"
+        let oneDayAgo = try #require(calendar.date(byAdding: .day, value: -1, to: now))
+        let item = Item(title: title, details: details, timestamp: oneDayAgo, displayOption: nil)
+        let backupItem = item.backupItem
+        #expect(backupItem.title == title)
+        #expect(backupItem.details == details)
+        #expect(backupItem.timestamp == oneDayAgo)
+        #expect(backupItem.colorTag == nil)
+        #expect(backupItem.displayOption == nil)
     }
 
     /// Тестируем `daysCount` для события, произошедшего 1 день назад
@@ -82,7 +152,7 @@ struct SwiftUI_DaysTests {
             timestamp: oneDayAgo
         )
         let result = oneDayOldItem.makeDaysCount(to: now)
-        #expect(result == 1)
+        #expect(result == "1 день")
     }
 
     /// Тестируем `daysCount` для события, произошедшего 5 дней назад
@@ -93,23 +163,28 @@ struct SwiftUI_DaysTests {
             timestamp: fiveDaysAgo
         )
         let result = fiveDaysOldItem.makeDaysCount(to: now)
-        #expect(result == 5)
+        #expect(result == "5 дней")
     }
 
-    @Test(arguments: 1 ... 11)
+    @Test(arguments: 0 ... 11)
     func daysCountSameDay(hoursAgo: Int) throws {
         let date = try #require(Calendar.current.date(byAdding: .hour, value: -hoursAgo, to: now))
         let item = Item(title: "Recent Event", timestamp: date)
         let result = item.makeDaysCount(to: now)
-        #expect(result == 0, "Должно быть 0 дней, так как даты в одном календарном дне")
+        #expect(result == "Сегодня", "Должно быть 'Сегодня', так как даты в одном календарном дне")
     }
 
     @Test(arguments: 12 ... 23)
-    func daysCountDifferentDay(hoursAgo: Int) throws {
-        let date = try #require(Calendar.current.date(byAdding: .hour, value: -hoursAgo, to: now))
+    func daysCountYesterday(hoursAgo: Int) throws {
+        // Создаем событие, которое точно произошло вчера
+        let yesterday = try #require(calendar.date(byAdding: .day, value: -1, to: now))
+        let date = try #require(calendar.date(byAdding: .hour, value: -hoursAgo, to: yesterday))
         let item = Item(title: "Yesterday Event", timestamp: date)
         let result = item.makeDaysCount(to: now)
-        #expect(result >= 0, "Должен быть 0 или больше дней")
+        let containsPossibleNumber = [1, 2].contains { number in
+            result.contains("\(number)")
+        }
+        #expect(containsPossibleNumber, "Результат должен содержать одно из возможных чисел, т.к. событие произошло либо вчера, либо позавчера")
     }
 
     @Test func daysCountAcrossMidnight() throws {
@@ -118,13 +193,13 @@ struct SwiftUI_DaysTests {
         let justAfterMidnight = try #require(calendar.date(byAdding: .minute, value: 1, to: todayStart))
         let item = Item(title: "Late Event", timestamp: justBeforeMidnight)
         let result = item.makeDaysCount(to: justAfterMidnight)
-        #expect(result == 1, "Должен быть 1 день при переходе через полночь")
+        #expect(result == "1 день", "Должен быть '1 день' при переходе через полночь")
     }
 
     @Test func daysCountFutureEvent() throws {
         let futureDate = try #require(calendar.date(byAdding: .day, value: 1, to: now))
         let item = Item(title: "Future Event", timestamp: futureDate)
         let result = item.makeDaysCount(to: now)
-        #expect(result <= 0, "Для будущих событий результат должен быть 0 или отрицательным")
+        #expect(result == "-1 день", "Для будущих событий результат должен быть '-1 день'")
     }
 }
