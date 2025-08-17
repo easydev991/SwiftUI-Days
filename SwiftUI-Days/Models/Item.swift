@@ -34,15 +34,22 @@ final class Item {
     func makeDaysCount(to date: Date) -> String {
         let startDate = Self.calendar.startOfDay(for: timestamp)
         let endDate = Self.calendar.startOfDay(for: date)
-        let daysCount = Self.calendar.dateComponents([.day], from: startDate, to: endDate).day
+        let components = Self.calendar.dateComponents([.year, .month, .day], from: startDate, to: endDate)
+        let yearsCount = components.year ?? 0
+        let monthsCount = components.month ?? 0
+        let daysCount = components.day ?? 0
         let todayString = NSLocalizedString("Today", comment: "Today")
-        guard let daysCount, daysCount != 0 else {
+        guard yearsCount != 0 || monthsCount != 0 || daysCount != 0 else {
             return todayString
         }
         let formatter = DateComponentsFormatter()
         let option = displayOption ?? .day
         formatter.allowedUnits = option.allowedUnits
-        formatter.unitsStyle = option.unitsStyle
+        formatter.unitsStyle = DisplayOption.makeUnitsStyle(
+            years: yearsCount,
+            months: monthsCount,
+            days: daysCount
+        )
         return formatter.string(from: startDate, to: endDate) ?? todayString
     }
 

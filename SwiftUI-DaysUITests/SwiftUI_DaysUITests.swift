@@ -20,6 +20,13 @@ final class SwiftUI_DaysUITests: XCTestCase {
 
     func testDemoFlow() throws {
         snapshot("1-demoList")
+        сhooseDate()
+        сhooseDisplayOption()
+        app.buttons["saveItemNavButton"].tap()
+        sortByDate()
+    }
+
+    private func сhooseDate() {
         app.buttons["addItemButton"].tap()
         let firstSection = app.otherElements["editSectionView"].firstMatch
         let titleTextField = firstSection.children(matching: .textField)["sectionTextField"].firstMatch
@@ -39,8 +46,20 @@ final class SwiftUI_DaysUITests: XCTestCase {
         app.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: components.year!.description)
         snapshot("2-chooseDate")
         app.buttons["PopoverDismissRegion"].tap()
-        app.buttons["saveItemNavButton"].tap()
-        app.buttons["sortNavButton"].tap()
-        snapshot("3-sortByDate")
+    }
+
+    private func сhooseDisplayOption() {
+        app.buttons["itemDisplayOptionPicker"].tap()
+        snapshot("3-chooseDisplayOption")
+        app.collectionViews.buttons.element(boundBy: 2).tap()
+        snapshot("4-beforeSave")
+    }
+
+    private func sortByDate() {
+        let sortButton = app.buttons["sortNavButton"]
+        sortButton.tap()
+        app.collectionViews.buttons.element(boundBy: 1).tap()
+        sortButton.tap()
+        snapshot("5-sortByDate")
     }
 }

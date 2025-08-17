@@ -16,6 +16,7 @@ struct EditSectionView: View {
                 .accessibilityLabel(Text(headerText))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("editSectionView")
     }
 }

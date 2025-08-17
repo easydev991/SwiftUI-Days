@@ -7,14 +7,6 @@ enum DisplayOption: String, Codable, CaseIterable, Hashable {
     case monthDay
     case yearMonthDay
 
-    var unitsStyle: DateComponentsFormatter.UnitsStyle {
-        switch self {
-        case .day: .full
-        case .monthDay: .short
-        case .yearMonthDay: .abbreviated
-        }
-    }
-
     var allowedUnits: NSCalendar.Unit {
         switch self {
         case .day: [.day]
@@ -29,6 +21,23 @@ enum DisplayOption: String, Codable, CaseIterable, Hashable {
         case .day: "Days only"
         case .monthDay: "Months and days"
         case .yearMonthDay: "Years, months and days"
+        }
+    }
+}
+
+extension DisplayOption {
+    static func makeUnitsStyle(
+        years: Int,
+        months: Int,
+        days: Int
+    ) -> DateComponentsFormatter.UnitsStyle {
+        let hasYears = years != 0
+        let hasMonths = months != 0
+        let hasDays = days != 0
+        return switch (hasYears, hasMonths, hasDays) {
+        case (true, true, true): .abbreviated
+        case (true, true, false), (true, false, true), (false, true, true): .short
+        default: .full
         }
     }
 }

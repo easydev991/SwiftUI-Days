@@ -14,6 +14,8 @@ struct ItemDisplayOptionPicker: View {
                     Text(option.localizedTitle).tag(option)
                 }
             }
+            .accessibilityAddTraits(.isButton)
+            .accessibilityIdentifier("itemDisplayOptionPicker")
         }
     }
 }
