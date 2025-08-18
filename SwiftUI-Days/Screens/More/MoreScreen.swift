@@ -1,10 +1,3 @@
-//
-//  MoreScreen.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 24.03.2024.
-//
-
 import SwiftUI
 
 struct MoreScreen: View {
@@ -54,6 +47,7 @@ struct MoreScreen: View {
             Text("App theme")
         }
         .accessibilityIdentifier("appThemeButton")
+        .accessibilityValue(Text(appSettings.appTheme.title))
     }
 
     private var appDataButton: some View {

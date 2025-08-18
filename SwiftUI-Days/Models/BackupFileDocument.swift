@@ -1,10 +1,3 @@
-//
-//  BackupFileDocument.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 06.04.2025.
-//
-
 import SwiftUI
 import UniformTypeIdentifiers
 
@@ -16,7 +9,8 @@ struct BackupFileDocument: FileDocument {
             title: item.title,
             details: item.details,
             timestamp: item.timestamp,
-            colorTag: item.colorTag
+            colorTag: item.colorTag,
+            displayOption: item.displayOption
         )
     }
 
@@ -45,25 +39,34 @@ extension BackupFileDocument {
         let details: String
         let timestamp: Date
         let colorTag: Color?
+        let displayOption: DisplayOption?
 
         var realItem: Item {
             .init(
                 title: title,
                 details: details,
                 timestamp: timestamp,
-                colorTag: colorTag
+                colorTag: colorTag,
+                displayOption: displayOption
             )
         }
 
         private enum CodingKeys: String, CodingKey {
-            case title, details, timestamp, colorTag
+            case title, details, timestamp, colorTag, displayOption
         }
 
-        init(title: String, details: String, timestamp: Date, colorTag: Color? = nil) {
+        init(
+            title: String,
+            details: String,
+            timestamp: Date,
+            colorTag: Color? = nil,
+            displayOption: DisplayOption? = .day
+        ) {
             self.title = title
             self.details = details
             self.timestamp = timestamp
             self.colorTag = colorTag
+            self.displayOption = displayOption
         }
 
         init(from decoder: Decoder) throws {
@@ -80,6 +83,7 @@ extension BackupFileDocument {
             } else {
                 colorTag = nil
             }
+            displayOption = try container.decodeIfPresent(DisplayOption.self, forKey: .displayOption) ?? .day
         }
 
         func encode(to encoder: Encoder) throws {
@@ -95,6 +99,7 @@ extension BackupFileDocument {
                 )
                 try container.encode(colorData, forKey: .colorTag)
             }
+            try container.encodeIfPresent(displayOption, forKey: .displayOption)
         }
     }
 }

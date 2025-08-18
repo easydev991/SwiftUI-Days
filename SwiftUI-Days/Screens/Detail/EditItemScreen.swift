@@ -1,10 +1,3 @@
-//
-//  EditItemScreen.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 23.03.2024.
-//
-
 import SwiftUI
 
 struct EditItemScreen: View {
@@ -13,6 +6,7 @@ struct EditItemScreen: View {
     @State private var details: String
     @State private var timestamp: Date
     @State private var colorTag: Color?
+    @State private var displayOption: DisplayOption
     @FocusState private var isFirstFieldFocused
     private let oldItem: Item?
     private let closeAction: () -> Void
@@ -25,6 +19,7 @@ struct EditItemScreen: View {
         _details = .init(initialValue: oldItem?.details ?? "")
         _timestamp = .init(initialValue: oldItem?.timestamp ?? .now)
         _colorTag = .init(initialValue: oldItem?.colorTag)
+        _displayOption = .init(initialValue: oldItem?.displayOption ?? .day)
         self.oldItem = oldItem
         self.closeAction = closeAction
     }
@@ -35,6 +30,7 @@ struct EditItemScreen: View {
             detailsSection
             colorPicker
             datePicker
+            displayOptionPicker
             Spacer()
         }
         .padding()
@@ -110,12 +106,11 @@ struct EditItemScreen: View {
     }
 
     private var datePicker: some View {
-        DatePicker(
-            "Date",
-            selection: $timestamp,
-            displayedComponents: .date
-        )
-        .font(.title3.bold())
+        ItemDatePicker(date: $timestamp)
+    }
+
+    private var displayOptionPicker: some View {
+        ItemDisplayOptionPicker(displayOption: $displayOption)
     }
 
     private var navigationTitle: LocalizedStringKey {
@@ -137,7 +132,8 @@ struct EditItemScreen: View {
                 && (title != oldItem.title
                     || details != oldItem.details
                     || timestamp != oldItem.timestamp
-                    || colorTag != oldItem.colorTag)
+                    || colorTag != oldItem.colorTag
+                    || displayOption != (oldItem.displayOption ?? .day))
         } else {
             !isTitleEmpty
         }
@@ -149,7 +145,8 @@ struct EditItemScreen: View {
                 title: title,
                 details: details,
                 timestamp: timestamp,
-                colorTag: colorTag
+                colorTag: colorTag,
+                displayOption: displayOption
             )
             modelContext.insert(newItem)
             return
@@ -158,6 +155,7 @@ struct EditItemScreen: View {
         oldItem.details = details
         oldItem.timestamp = timestamp
         oldItem.colorTag = colorTag
+        oldItem.displayOption = displayOption
     }
 }
 

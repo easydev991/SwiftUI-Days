@@ -1,10 +1,3 @@
-//
-//  SortOrder+.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 03.04.2025.
-//
-
 import SwiftUI
 
 extension SortOrder {

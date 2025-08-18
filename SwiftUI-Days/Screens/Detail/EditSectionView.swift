@@ -1,10 +1,3 @@
-//
-//  EditSectionView.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 24.03.2024.
-//
-
 import SwiftUI
 
 struct EditSectionView: View {
@@ -15,11 +8,12 @@ struct EditSectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(headerText).font(.title3.bold())
-                .accessibilityIdentifier("sectionHeader")
+                .accessibilityHidden(true)
             TextField(placeholder, text: $text, axis: .vertical)
                 .textFieldStyle(.roundedBorder)
                 .lineLimit(1 ... 3)
                 .accessibilityIdentifier("sectionTextField")
+                .accessibilityLabel(Text(headerText))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityElement(children: .contain)

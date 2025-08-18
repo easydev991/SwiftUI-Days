@@ -1,10 +1,3 @@
-//
-//  MainScreen+ListView.swift
-//  SwiftUI-Days
-//
-//  Created by Oleg991 on 23.03.2024.
-//
-
 import SwiftData
 import SwiftUI
 
@@ -32,7 +25,7 @@ extension MainScreen {
             List {
                 ForEach(items) { item in
                     NavigationLink(value: item) {
-                        makeItemView(item)
+                        ListItemView(item: item)
                     }
                     .swipeActions {
                         DaysDeleteButton {
@@ -45,23 +38,6 @@ extension MainScreen {
             .listStyle(.plain)
             .animation(.default, value: items)
             .overlay { emptySearchViewIfNeeded }
-        }
-
-        private func makeItemView(_ item: Item) -> some View {
-            HStack(spacing: 12) {
-                if let colorTag = item.colorTag {
-                    colorTag.frame(width: 16, height: 16)
-                        .clipShape(.circle)
-                }
-                Text(item.title)
-                    .lineLimit(2)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text("\(item.makeDaysCount(to: currentDate)) days")
-                    .contentTransition(.numericText())
-                    .containerRelativeFrame(.horizontal, alignment: .trailing) { length, _ in
-                        length * 0.3
-                    }
-            }
         }
 
         private var emptySearchViewIfNeeded: some View {

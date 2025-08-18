@@ -43,11 +43,11 @@ make screenshots
 make upload_screenshots
 ```
 ### iPhone
-| Список записей | Создание новой записи | Сортировка на главном экране |
-| --- | --- | --- |
-| <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-1-demoList.png"> | <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-2-chooseDate.png"> | <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-3-sortByDate.png"> |
+| Список записей | Создание новой записи | Выбор опции отображения | Перед сохранением | Сортировка на главном экране |
+| --- | --- | --- | --- | --- |
+| <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-1-demoList.png"> | <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-2-chooseDate.png"> | <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-3-chooseDisplayOption.png"> | <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-4-beforeSave.png"> | <img src="./fastlane/screenshots/ru/iPhone 15 Pro Max-5-sortByDate.png"> |
 
 ### iPad
-| Список записей | Создание новой записи | Сортировка на главном экране |
-| --- | --- | --- |
-| <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-1-demoList.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-2-chooseDate.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-3-sortByDate.png"> |
+| Список записей | Создание новой записи | Выбор опции отображения | Перед сохранением | Сортировка на главном экране |
+| --- | --- | --- | --- | --- |
+| <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-1-demoList.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-2-chooseDate.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-3-chooseDisplayOption.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-4-beforeSave.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-5-sortByDate.png"> |
