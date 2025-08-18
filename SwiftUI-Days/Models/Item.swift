@@ -45,7 +45,7 @@ final class Item {
         let formatter = DateComponentsFormatter()
         let option = displayOption ?? .day
         formatter.allowedUnits = option.allowedUnits
-        formatter.unitsStyle = DisplayOption.makeUnitsStyle(
+        formatter.unitsStyle = option.unitsStyle(
             years: yearsCount,
             months: monthsCount,
             days: daysCount

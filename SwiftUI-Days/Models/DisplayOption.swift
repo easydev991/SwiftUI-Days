@@ -26,18 +26,30 @@ enum DisplayOption: String, Codable, CaseIterable, Hashable {
 }
 
 extension DisplayOption {
-    static func makeUnitsStyle(
+    func unitsStyle(
         years: Int,
         months: Int,
         days: Int
     ) -> DateComponentsFormatter.UnitsStyle {
-        let hasYears = years != 0
-        let hasMonths = months != 0
-        let hasDays = days != 0
-        return switch (hasYears, hasMonths, hasDays) {
-        case (true, true, true): .abbreviated
-        case (true, true, false), (true, false, true), (false, true, true): .short
-        default: .full
+        switch self {
+        case .day:
+            return .full
+        case .monthDay:
+            let hasMonths = months != 0
+            let hasDays = days != 0
+            return (hasMonths && hasDays) ? .short : .full
+        case .yearMonthDay:
+            let hasYears = years != 0
+            let hasMonths = months != 0
+            let hasDays = days != 0
+            switch (hasYears, hasMonths, hasDays) {
+            case (true, true, true):
+                return .abbreviated
+            case (true, true, false), (true, false, true), (false, true, true):
+                return .short
+            default:
+                return .full
+            }
         }
     }
 }
