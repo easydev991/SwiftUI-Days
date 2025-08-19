@@ -5,13 +5,15 @@ import Testing
 
 @Suite("DisplayOption tests")
 struct DisplayOptionTests {
-    @Test func displayOptionAllowedUnits() {
+    @Test("allowedUnits: проверка корректных единиц для каждого DisplayOption")
+    func displayOptionAllowedUnits() {
         #expect(DisplayOption.day.allowedUnits == [.day])
         #expect(DisplayOption.monthDay.allowedUnits == [.month, .day])
         #expect(DisplayOption.yearMonthDay.allowedUnits == [.year, .month, .day])
     }
 
-    @Test func displayOptionLocalizedTitle() {
+    @Test("localizedTitle: проверка локализованных заголовков")
+    func displayOptionLocalizedTitle() {
         let dayTitle = DisplayOption.day.localizedTitle
         let monthDayTitle = DisplayOption.monthDay.localizedTitle
         let yearMonthDayTitle = DisplayOption.yearMonthDay.localizedTitle
@@ -20,54 +22,70 @@ struct DisplayOptionTests {
         #expect(yearMonthDayTitle == LocalizedStringKey("Years, months and days"))
     }
 
-    @Test(arguments: abbreviatedTestCases)
-    func makeUnitsStyleAbbreviated(years: Int, months: Int, days: Int) throws {
-        let style = DisplayOption.makeUnitsStyle(years: years, months: months, days: days)
-        #expect(style == .abbreviated)
+    @Test(".day: вне зависимости от значений всегда .full", arguments: allCombos)
+    func unitsStyle_day_alwaysFull(years: Int, months: Int, days: Int) {
+        let style = DisplayOption.day.unitsStyle(years: years, months: months, days: days)
+        #expect(style == .full)
     }
 
-    @Test(arguments: shortTestCases)
-    func makeUnitsStyleShort(years: Int, months: Int, days: Int) throws {
-        let style = DisplayOption.makeUnitsStyle(years: years, months: months, days: days)
+    @Test(".monthDay: .short, если есть месяцы и дни одновременно", arguments: monthDayShortCombos)
+    func unitsStyle_monthDay_short_whenMonthsAndDays(years: Int, months: Int, days: Int) {
+        let style = DisplayOption.monthDay.unitsStyle(years: years, months: months, days: days)
         #expect(style == .short)
     }
 
-    @Test(arguments: fullTestCases)
-    func makeUnitsStyleFull(years: Int, months: Int, days: Int) throws {
-        let style = DisplayOption.makeUnitsStyle(years: years, months: months, days: days)
+    @Test(".monthDay: .full в остальных случаях", arguments: monthDayFullCombos)
+    func unitsStyle_monthDay_full_otherwise(years: Int, months: Int, days: Int) {
+        let style = DisplayOption.monthDay.unitsStyle(years: years, months: months, days: days)
+        #expect(style == .full)
+    }
+
+    @Test(".yearMonthDay: .abbreviated когда все три значения", arguments: ymdAbbreviatedCombos)
+    func unitsStyle_yearMonthDay_abbreviated_whenAll(years: Int, months: Int, days: Int) {
+        let style = DisplayOption.yearMonthDay.unitsStyle(years: years, months: months, days: days)
+        #expect(style == .abbreviated)
+    }
+
+    @Test(".yearMonthDay: .short когда два значения", arguments: ymdShortCombos)
+    func unitsStyle_yearMonthDay_short_whenTwo(years: Int, months: Int, days: Int) {
+        let style = DisplayOption.yearMonthDay.unitsStyle(years: years, months: months, days: days)
+        #expect(style == .short)
+    }
+
+    @Test(".yearMonthDay: .full когда ноль или одно значение", arguments: ymdFullCombos)
+    func unitsStyle_yearMonthDay_full_whenZeroOrOne(years: Int, months: Int, days: Int) {
+        let style = DisplayOption.yearMonthDay.unitsStyle(years: years, months: months, days: days)
         #expect(style == .full)
     }
 
     // MARK: - Параметры для тестов
 
-    /// Все три компонента ненулевые
-    static let abbreviatedTestCases: [(years: Int, months: Int, days: Int)] = [
-        (1, 1, 1), // положительные значения
-        (-1, 1, 1), // отрицательный год
-        (1, -1, 1), // отрицательный месяц
-        (1, 1, -1), // отрицательный день
-        (-1, -1, -1), // все отрицательные
+    /// Набор общих комбо для проверки .day (всегда .full)
+    static let allCombos: [(years: Int, months: Int, days: Int)] = [
+        (0, 0, 0), (1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1), (1, 1, 1),
+        (-1, 0, 0), (0, -1, 0), (0, 0, -1), (-1, -1, 0), (-1, 0, -1), (0, -1, -1), (-1, -1, -1),
     ]
 
-    /// Два компонента ненулевые
-    static let shortTestCases: [(years: Int, months: Int, days: Int)] = [
-        (1, 1, 0), // годы и месяцы
-        (1, 0, 1), // годы и дни
-        (0, 1, 1), // месяцы и дни
-        (-1, 1, 0), // отрицательный год и месяц
-        (1, -1, 0), // год и отрицательный месяц
-        (1, 0, -1), // год и отрицательный день
-        (0, -1, 1), // отрицательный месяц и день
+    /// Для .monthDay -> .short, когда одновременно есть месяцы и дни (годы не важны)
+    static let monthDayShortCombos: [(years: Int, months: Int, days: Int)] = [
+        (0, 1, 1), (1, 1, 1), (-1, 1, 1), (1, -1, 1), (1, 1, -1),
     ]
 
-    /// Один или ноль компонентов ненулевые
-    static let fullTestCases: [(years: Int, months: Int, days: Int)] = [
-        (1, 0, 0), // только годы
-        (0, 1, 0), // только месяцы
-        (0, 0, 1), // только дни
-        (0, 0, 0), // все нули
-        (-1, 0, 0), // только отрицательный год
-        (0, -1, 0), // только отрицательный месяц
-        (0, 0, -1), // только отрицательный день
+    /// Для .monthDay -> .full в остальных случаях (нет одновременных месяцев и дней)
+    static let monthDayFullCombos: [(years: Int, months: Int, days: Int)] = [
+        (0, 0, 0), (1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 0, 1), (-1, 1, 0), (1, 0, 0),
+    ]
+
+    /// Для .yearMonthDay
+    static let ymdAbbreviatedCombos: [(years: Int, months: Int, days: Int)] = [
+        (1, 1, 1), (-1, 1, 1), (1, -1, 1), (1, 1, -1), (-1, -1, -1),
+    ]
+
+    static let ymdShortCombos: [(years: Int, months: Int, days: Int)] = [
+        (1, 1, 0), (1, 0, 1), (0, 1, 1), (-1, 1, 0), (1, -1, 0), (1, 0, -1), (0, -1, 1),
+    ]
+
+    static let ymdFullCombos: [(years: Int, months: Int, days: Int)] = [
+        (1, 0, 0), (0, 1, 0), (0, 0, 1), (0, 0, 0), (-1, 0, 0), (0, -1, 0), (0, 0, -1),
     ]
 }
