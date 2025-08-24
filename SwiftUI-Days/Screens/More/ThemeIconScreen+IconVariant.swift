@@ -29,7 +29,6 @@ extension ThemeIconScreen {
             alternateName == UIApplication.shared.alternateIconName
         }
 
-        /// Локализованная строка для accessibility
         @MainActor
         var accessibilityLabel: String {
             let isSelectedText = isSelected ? String(localized: "Selected") : String(localized: "Not selected")
