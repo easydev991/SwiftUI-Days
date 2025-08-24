@@ -44,12 +44,32 @@
         }
       }
     },
+    "App Icon" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иконка приложения"
+          }
+        }
+      }
+    },
     "App theme" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тема приложения"
+          }
+        }
+      }
+    },
+    "App theme and Icon" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема и иконка приложения"
           }
         }
       }
@@ -334,6 +354,16 @@
         }
       }
     },
+    "Not selected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не выбрано"
+          }
+        }
+      }
+    },
     "Ok" : {
       "localizations" : {
         "ru" : {
@@ -350,6 +380,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сначала старые"
+          }
+        }
+      }
+    },
+    "Primary icon" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основная иконка"
           }
         }
       }
@@ -380,6 +420,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить"
+          }
+        }
+      }
+    },
+    "Selected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрано"
           }
         }
       }
@@ -478,6 +528,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось восстановить данные из выбранного файла"
+          }
+        }
+      }
+    },
+    "Variant %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вариант %lld"
           }
         }
       }

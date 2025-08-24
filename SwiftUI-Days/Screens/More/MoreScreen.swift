@@ -12,7 +12,7 @@ struct MoreScreen: View {
                     Spacer().containerRelativeFrame([.vertical])
                     VStack(spacing: 16) {
                         Group {
-                            appThemePicker
+                            appThemeIconButton
                             appDataButton
                             feedbackButton
                             rateAppButton
@@ -30,24 +30,9 @@ struct MoreScreen: View {
         }
     }
 
-    private var appThemePicker: some View {
-        Menu {
-            Picker(
-                "App theme",
-                selection: .init(
-                    get: { appSettings.appTheme },
-                    set: { appSettings.appTheme = $0 }
-                )
-            ) {
-                ForEach(AppTheme.allCases) {
-                    Text($0.title).tag($0)
-                }
-            }
-        } label: {
-            Text("App theme")
-        }
-        .accessibilityIdentifier("appThemeButton")
-        .accessibilityValue(Text(appSettings.appTheme.title))
+    private var appThemeIconButton: some View {
+        NavigationLink("App theme and Icon", destination: ThemeIconScreen())
+            .accessibilityIdentifier("appThemeIconButton")
     }
 
     private var appDataButton: some View {
