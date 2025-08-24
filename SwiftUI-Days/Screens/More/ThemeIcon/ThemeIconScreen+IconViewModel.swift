@@ -1,15 +1,16 @@
 import Foundation
+import Observation
 import OSLog
 import UIKit.UIApplication
 
 extension ThemeIconScreen {
-    @MainActor
-    final class IconViewModel: ObservableObject {
+    @Observable @MainActor
+    final class IconViewModel {
         private let logger = Logger(
             subsystem: Bundle.main.bundleIdentifier!,
             category: String(describing: IconViewModel.self)
         )
-        @Published private(set) var currentAppIcon: IconVariant
+        private(set) var currentAppIcon: IconVariant
 
         init() {
             if let currentIconName = UIApplication.shared.alternateIconName {

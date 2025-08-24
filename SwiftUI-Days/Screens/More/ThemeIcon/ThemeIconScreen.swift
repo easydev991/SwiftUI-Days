@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ThemeIconScreen: View {
     @Environment(AppSettings.self) private var appSettings
-    @StateObject private var iconViewModel = IconViewModel()
+    @State private var iconViewModel = IconViewModel()
 
     var body: some View {
         ScrollView {
