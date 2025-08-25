@@ -38,7 +38,7 @@ final class Item {
         let yearsCount = components.year ?? 0
         let monthsCount = components.month ?? 0
         let daysCount = components.day ?? 0
-        let todayString = NSLocalizedString("Today", comment: "Today")
+        let todayString = String(localized: "Today")
         guard yearsCount != 0 || monthsCount != 0 || daysCount != 0 else {
             return todayString
         }

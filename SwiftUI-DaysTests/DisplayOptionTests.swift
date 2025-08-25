@@ -73,7 +73,7 @@ struct DisplayOptionTests {
 
     /// Для .monthDay -> .full в остальных случаях (нет одновременных месяцев и дней)
     static let monthDayFullCombos: [(years: Int, months: Int, days: Int)] = [
-        (0, 0, 0), (1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 0, 1), (-1, 1, 0), (1, 0, 0),
+        (0, 0, 0), (1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 0, 1), (-1, 1, 0),
     ]
 
     /// Для .yearMonthDay
