@@ -87,8 +87,7 @@ struct EditItemScreen: View {
                     }
                 ),
                 label: {
-                    Text("Add color tag")
-                        .font(.title3.bold())
+                    SectionTitleView("Add color tag")
                 }
             )
             if let colorTag {

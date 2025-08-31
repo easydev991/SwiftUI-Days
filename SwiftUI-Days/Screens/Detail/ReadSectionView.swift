@@ -6,7 +6,7 @@ struct ReadSectionView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(headerText).font(.title3.bold())
+            SectionTitleView(headerText)
                 .accessibilityIdentifier("sectionHeader")
             Text(bodyText)
                 .accessibilityIdentifier("sectionBody")

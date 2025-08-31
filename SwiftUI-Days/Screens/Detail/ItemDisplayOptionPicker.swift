@@ -5,9 +5,7 @@ struct ItemDisplayOptionPicker: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Text("Display format")
-                .font(.title3.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
+            SectionTitleView("Display format")
                 .accessibilityHidden(true)
             Picker("Display format", selection: $displayOption) {
                 ForEach(DisplayOption.allCases, id: \.self) { option in
