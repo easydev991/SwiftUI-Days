@@ -55,7 +55,42 @@ end
 platform :ios do
   desc "Сгенерировать новые локализованные скриншоты"
   lane :screenshots do
-    capture_screenshots(scheme: UITESTS_SCHEME_FOR_SCREENSHOTS)
+    # Путь к файлу SwiftUI_DaysApp.swift
+    app_file_path = "../SwiftUI-Days/SwiftUI_DaysApp.swift"
+    
+    # Проверяем, что файл существует
+    UI.user_error!("Файл #{app_file_path} не найден") unless File.exist?(app_file_path)
+    
+    # Читаем содержимое файла
+    file_content = File.read(app_file_path)
+    
+    # Проверяем, содержит ли файл строку "RootScreen()"
+    unless file_content.include?("RootScreen()")
+      UI.user_error!("Файл не содержит строку 'RootScreen()'")
+    end
+    
+    # Создаем резервную копию
+    backup_path = "#{app_file_path}.backup"
+    File.write(backup_path, file_content)
+    UI.message("Создана резервная копия: #{backup_path}")
+    
+    begin
+      # Заменяем "RootScreen()" на "RootScreen().tint(.accent)"
+      modified_content = file_content.gsub("RootScreen()", "RootScreen().tint(.accent)")
+      
+      # Записываем измененный файл
+      File.write(app_file_path, modified_content)
+      UI.message("Обновили .tint для RootScreen на черный")
+      
+      # Выполняем захват скриншотов
+      capture_screenshots(scheme: UITESTS_SCHEME_FOR_SCREENSHOTS)
+      
+    ensure
+      # Восстанавливаем оригинальный файл из резервной копии
+      File.write(app_file_path, file_content)
+      File.delete(backup_path)
+      UI.message("Восстановлен оригинальный файл")
+    end
   end
 
   desc "Загрузить существующие скриншоты в App Store Connect"
