@@ -38,7 +38,6 @@ struct SwiftUI_DaysApp: App {
     var body: some Scene {
         WindowGroup {
             RootScreen()
-                .dynamicTypeSize(...DynamicTypeSize.accessibility2)
                 .environment(appSettings)
                 .preferredColorScheme(appSettings.appTheme.colorScheme)
         }
