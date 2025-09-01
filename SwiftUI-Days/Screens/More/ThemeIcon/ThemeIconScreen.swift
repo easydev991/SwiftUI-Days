@@ -20,9 +20,7 @@ struct ThemeIconScreen: View {
 
     private var themePicker: some View {
         HStack(spacing: 12) {
-            Text("App theme")
-                .bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
+            SectionTitleView("App theme")
                 .accessibilityHidden(true)
             Picker(
                 "App theme",
@@ -42,9 +40,7 @@ struct ThemeIconScreen: View {
 
     private var iconsGrid: some View {
         VStack(spacing: 16) {
-            Text("App Icon")
-                .bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
+            SectionTitleView("App Icon")
             LazyVGrid(
                 columns: [GridItem(.adaptive(minimum: 65), spacing: 32, alignment: .leading)],
                 spacing: 32

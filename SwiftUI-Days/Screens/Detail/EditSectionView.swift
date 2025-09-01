@@ -7,7 +7,7 @@ struct EditSectionView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(headerText).font(.title3.bold())
+            SectionTitleView(headerText)
                 .accessibilityHidden(true)
             TextField(placeholder, text: $text, axis: .vertical)
                 .textFieldStyle(.roundedBorder)

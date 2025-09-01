@@ -9,7 +9,7 @@ struct ItemDatePicker: View {
             selection: $date,
             displayedComponents: .date
         )
-        .font(.title3.bold())
+        .bold()
     }
 }
 

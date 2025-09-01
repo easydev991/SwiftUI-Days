@@ -80,7 +80,7 @@ struct ItemScreen: View {
                 "Color tag",
                 selection: .constant(colorTag)
             )
-            .font(.title3.bold())
+            .bold()
             .disabled(true)
             .padding(.bottom, 4)
         }

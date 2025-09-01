@@ -24,7 +24,10 @@ struct MainScreen: View {
         }
         .sheet(isPresented: $showAddItemSheet) {
             NavigationStack {
-                EditItemScreen { showAddItemSheet.toggle() }
+                ScrollView {
+                    EditItemScreen { showAddItemSheet.toggle() }
+                }
+                .scrollBounceBehavior(.basedOnSize)
             }
         }
     }
