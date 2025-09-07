@@ -11,13 +11,9 @@ struct MoreScreen: View {
                 ZStack {
                     Spacer().containerRelativeFrame([.vertical])
                     VStack(spacing: 16) {
-                        Group {
-                            appThemeIconButton
-                            appDataButton
-                            feedbackButton
-                            rateAppButton
-                            shareAppButton
-                            githubButton
+                        ViewThatFits(in: .horizontal) {
+                            horizontalLayout
+                            verticalLayout
                         }
                         .buttonStyle(.borderedProminent)
                         .foregroundStyle(.buttonTint)
@@ -27,6 +23,32 @@ struct MoreScreen: View {
             }
             .scrollBounceBehavior(.basedOnSize)
             .navigationTitle("More")
+        }
+    }
+
+    private var horizontalLayout: some View {
+        HStack(spacing: 24) {
+            VStack(alignment: .trailing, spacing: 16) {
+                appThemeIconButton
+                appDataButton
+                feedbackButton
+            }
+            VStack(alignment: .leading, spacing: 16) {
+                rateAppButton
+                shareAppButton
+                githubButton
+            }
+        }
+    }
+
+    private var verticalLayout: some View {
+        VStack(spacing: 16) {
+            appThemeIconButton
+            appDataButton
+            feedbackButton
+            rateAppButton
+            shareAppButton
+            githubButton
         }
     }
 
