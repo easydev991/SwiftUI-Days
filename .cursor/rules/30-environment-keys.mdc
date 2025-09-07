@@ -1,0 +1,14 @@
+---
+description: Пользовательские ключи Environment и их назначение
+globs:
+  - "**/*.swift"
+alwaysApply: false
+---
+
+## Пользовательские ключи Environment
+
+- Для кросс-иерархических значений, не требующих наблюдаемости, используем `EnvironmentKeys/`.
+- Пример: `currentDate` — источник истины для расчётов, связанных с датой.
+
+Определение ключа (фрагмент `EnvironmentKeys/CurrentDateEnvironmentKey.swift`):
+@SwiftUI-Days/EnvironmentKeys/CurrentDateEnvironmentKey.swift

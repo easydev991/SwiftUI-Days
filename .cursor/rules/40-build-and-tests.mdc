@@ -1,0 +1,32 @@
+---
+description: Команды сборки/тестов, fastlane и форматирование
+globs:
+alwaysApply: true
+---
+
+## Сборка и тесты
+
+- Сборка проекта (симулятор iPhone 16 Pro):
+
+```
+make build
+```
+
+- Запуск unit-тестов (Swift Testing):
+
+```
+make test
+```
+
+## Форматирование
+
+```
+make format
+```
+
+## Fastlane
+
+- Скриншоты: `make screenshots`
+- TestFlight: `make testflight`
+- Меню fastlane: `make fastlane`
+- Первичная настройка окружения: `make setup`

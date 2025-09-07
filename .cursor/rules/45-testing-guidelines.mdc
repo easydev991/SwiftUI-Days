@@ -1,0 +1,22 @@
+---
+description: Подход к тестам — Swift Testing (@Test, #expect, #require), покрытие бизнес-логики
+globs:
+  - "**/SwiftUI-DaysTests/**/*"
+  - "**/SwiftUI-DaysUITests/**/*"
+alwaysApply: false
+---
+## Тестирование
+
+- Для модульных тестов используем Swift Testing (`import Testing`).
+- Для тестовых функций — `@Test`. Если используются операции, которые могут выбросить ошибку, помечайте тест `throws` и разворачивайте опционалы через `try #require`.
+- Для проверок — `#expect`, избегайте сравнений `Bool` через `==`; вместо этого используйте `#expect(isTrue)`/`#expect(isFalse)`.
+- Логику, связанную с моделями и преобразованием данных, тестируем в `SwiftUI-DaysTests/`.
+
+### Примеры из проекта
+
+- Тесты моделей и форматирования данных:
+@SwiftUI-Days/SwiftUI-DaysTests/ItemTests.swift
+@SwiftUI-Days/SwiftUI-DaysTests/DisplayOptionTests.swift
+@SwiftUI-Days/SwiftUI-DaysTests/IconVariantTests.swift
+
+<!-- Запуск тестов описан в 40-build-and-tests.mdc -->
