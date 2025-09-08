@@ -1,0 +1,25 @@
+---
+description: SwiftUI-Days - сервисы и DI (Services)
+globs:
+  - "**/SwiftUI-Days/**/*"
+alwaysApply: false
+---
+## Сервисы через Environment
+
+- Общие сервисы приложения объявляются в `SwiftUI-Days/Services`.
+- Прокидываются сверху в `SwiftUI_DaysApp` через `.environment(serviceInstance)`.
+- Доступ из вью: `@Environment(ServiceType.self)`.
+
+Пример инициализации (фрагмент `SwiftUI_DaysApp.swift`):
+@SwiftUI-Days/SwiftUI_DaysApp.swift
+
+Пример сервиса (фрагмент `Services/AppSettings.swift`):
+@SwiftUI-Days/Services/AppSettings.swift
+
+Пример использования во вью (фрагмент `Screens/More/MoreScreen.swift`):
+@SwiftUI-Days/Screens/More/MoreScreen.swift
+
+## Локальная логика экрана
+
+- Если состояние и логика ограничены одной вью/экраном — используйте `@State`/`@StateObject`.
+- Не создавайте отдельный публичный сервис для частной логики одного экрана.
