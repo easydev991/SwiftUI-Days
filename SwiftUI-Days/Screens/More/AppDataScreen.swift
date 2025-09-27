@@ -20,8 +20,7 @@ struct AppDataScreen: View {
                     removeAllDataButton
                 }
             }
-            .buttonStyle(.borderedProminent)
-            .foregroundStyle(.buttonTint)
+            .daysButtonStyle()
         }
         .animation(.default, value: items.isEmpty)
         .alert(

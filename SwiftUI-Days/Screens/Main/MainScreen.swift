@@ -85,8 +85,7 @@ struct MainScreen: View {
             description: { Text("Create your first item") },
             actions: {
                 addItemButton
-                    .buttonStyle(.borderedProminent)
-                    .foregroundStyle(.buttonTint)
+                    .daysButtonStyle()
             }
         )
         .accessibilityElement(children: .contain)
