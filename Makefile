@@ -301,11 +301,11 @@ format:
 
 ## build: Сборка проекта в терминале
 build:
-	xcodebuild -project SwiftUI-Days.xcodeproj -scheme SwiftUI-Days -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build
+	xcodebuild -project SwiftUI-Days.xcodeproj -scheme SwiftUI-Days -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 17' build
 
 ## test: Запускает unit-тесты в терминале
 test:
-	xcodebuild -project SwiftUI-Days.xcodeproj -scheme SwiftUI-Days -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16 Pro' test -testPlan SwiftUI-DaysTests
+	xcodebuild -project SwiftUI-Days.xcodeproj -scheme SwiftUI-Days -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 17' test -testPlan SwiftUI-DaysTests
 
 ## screenshots: Запустить fastlane snapshot для генерации скриншотов приложения
 screenshots:
