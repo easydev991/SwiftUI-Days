@@ -117,7 +117,7 @@ extension Item {
                 details: ("Плановое хирургическое вмешательство в клинике", "Scheduled surgical procedure at clinic"),
                 timestamp: 1_538_352_000, // 2018-10-01
                 colorTag: nil
-            ),
+            )
         ]
 
         return items.map { item in

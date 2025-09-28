@@ -20,7 +20,7 @@ struct SectionTitleView: View {
     let titleStringKeys: [LocalizedStringKey] = [
         "Title",
         "Details",
-        "Add color tag",
+        "Add color tag"
     ]
     VStack(spacing: 20) {
         ForEach(

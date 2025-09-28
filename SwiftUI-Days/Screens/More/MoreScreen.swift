@@ -15,8 +15,7 @@ struct MoreScreen: View {
                             horizontalLayout
                             verticalLayout
                         }
-                        .buttonStyle(.borderedProminent)
-                        .foregroundStyle(.buttonTint)
+                        .daysButtonStyle()
                         appVersionText
                     }
                 }
