@@ -15,7 +15,7 @@
       "scale" : "1x"
     },
     {
-      "filename" : "AppIcon5Small.png",
+      "filename" : "AppIcon5-iOS-Default-64x642x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -26,12 +26,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "ThumbDark5 1.png",
+      "filename" : "AppIcon5-iOS-Dark-64x642x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ThumbLight5.png",
+      "filename" : "AppIcon5-iOS-Default-64x643x.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -42,7 +42,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "ThumbDark5.png",
+      "filename" : "AppIcon5-iOS-Dark-64x643x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
