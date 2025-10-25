@@ -20,7 +20,7 @@ struct MainScreen: View {
             }
             .animation(.bouncy, value: items.isEmpty)
             .toolbar(path.isEmpty ? .automatic : .hidden, for: .tabBar)
-            .navigationTitle("Events")
+            .navigationTitle(.events)
         }
         .sheet(isPresented: $showAddItemSheet) {
             NavigationStack {
@@ -34,21 +34,21 @@ struct MainScreen: View {
 
     private var sortButton: some View {
         Menu {
-            Picker("Sort Order", selection: $sortOrder) {
+            Picker(.sortOrder, selection: $sortOrder) {
                 ForEach([SortOrder.forward, .reverse], id: \.self) { order in
                     Text(order.name)
                         .tag(order.rawValue)
                 }
             }
         } label: {
-            Label("Sort", systemImage: "arrow.up.arrow.down")
+            Label(.sort, systemImage: "arrow.up.arrow.down")
         }
         .accessibilityIdentifier("sortNavButton")
     }
 
     private var addItemButton: some View {
         Button { showAddItemSheet.toggle() } label: {
-            Label("Add Item", systemImage: "plus")
+            Label(.addItem, systemImage: "plus")
         }
         .accessibilityIdentifier("addItemButton")
     }
@@ -81,8 +81,8 @@ struct MainScreen: View {
 
     private var emptyView: some View {
         ContentUnavailableView(
-            label: { Label("What should we remember?", systemImage: "tray.fill") },
-            description: { Text("Create your first item") },
+            label: { Label(.whatShouldWeRemember, systemImage: "tray.fill") },
+            description: { Text(.createYourFirstItem) },
             actions: {
                 addItemButton
                     .daysButtonStyle()

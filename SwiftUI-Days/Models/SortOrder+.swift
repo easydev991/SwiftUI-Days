@@ -1,10 +1,10 @@
 import SwiftUI
 
 extension SortOrder {
-    var name: LocalizedStringKey {
+    var name: String {
         switch self {
-        case .forward: "Old first"
-        case .reverse: "New first"
+        case .forward: String(localized: .oldFirst)
+        case .reverse: String(localized: .newFirst)
         }
     }
 }

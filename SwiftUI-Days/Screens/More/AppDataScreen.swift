@@ -28,17 +28,17 @@ struct AppDataScreen: View {
             isPresented: $operationResult.mappedToBool(),
             presenting: operationResult,
             actions: { _ in
-                Button("Ok") {}
+                Button(.ok) {}
             },
             message: { result in
                 Text(result.message)
             }
         )
-        .navigationTitle("App data")
+        .navigationTitle(.appData)
     }
 
     private var backupDataButton: some View {
-        Button("Create a backup") {
+        Button(.createABackup) {
             isCreatingBackup.toggle()
         }
         .accessibilityIdentifier("backupDataButton")
@@ -58,7 +58,7 @@ struct AppDataScreen: View {
     }
 
     private var restoreDataButton: some View {
-        Button("Restore from backup") {
+        Button(.restoreFromBackup) {
             isRestoringFromBackup.toggle()
         }
         .accessibilityIdentifier("restoreDataButton")
@@ -92,17 +92,17 @@ struct AppDataScreen: View {
     }
 
     private var removeAllDataButton: some View {
-        Button("Delete all data", role: .destructive) {
+        Button(.deleteAllData, role: .destructive) {
             showDeleteDataConfirmation.toggle()
         }
         .accessibilityIdentifier("removeAllDataButton")
         .transition(.slide.combined(with: .scale).combined(with: .opacity))
         .confirmationDialog(
-            "Do you want to delete all data permanently?",
+            .doYouWantToDeleteAllDataPermanently,
             isPresented: $showDeleteDataConfirmation,
             titleVisibility: .visible
         ) {
-            Button("Delete", role: .destructive) {
+            Button(.delete, role: .destructive) {
                 do {
                     try modelContext.delete(model: Item.self)
                     try modelContext.save()
@@ -125,19 +125,19 @@ extension AppDataScreen {
         case failedToRestore
         case error(String)
 
-        var title: LocalizedStringKey {
+        var title: String {
             switch self {
-            case .backupSuccess, .restoreSuccess, .deletionSuccess: "Done"
-            case .failedToRestore, .error: "Error"
+            case .backupSuccess, .restoreSuccess, .deletionSuccess: String(localized: .done)
+            case .failedToRestore, .error: String(localized: .error)
             }
         }
 
-        var message: LocalizedStringKey {
+        var message: String {
             switch self {
-            case .backupSuccess: "Backup data saved"
-            case .restoreSuccess: "Data restored from backup"
-            case .deletionSuccess: "All data deleted"
-            case .failedToRestore: "Unable to recover data from the selected file"
+            case .backupSuccess: String(localized: .backupDataSaved)
+            case .restoreSuccess: String(localized: .dataRestoredFromBackup)
+            case .deletionSuccess: String(localized: .allDataDeleted)
+            case .failedToRestore: String(localized: .unableToRecoverDataFromTheSelectedFile)
             case let .error(message): .init(message)
             }
         }

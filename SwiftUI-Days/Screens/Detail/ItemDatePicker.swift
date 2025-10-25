@@ -5,7 +5,7 @@ struct ItemDatePicker: View {
 
     var body: some View {
         DatePicker(
-            "Date",
+            .date,
             selection: $date,
             displayedComponents: .date
         )

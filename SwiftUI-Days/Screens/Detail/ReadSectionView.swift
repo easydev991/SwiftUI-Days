@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ReadSectionView: View {
-    let headerText: LocalizedStringKey
+    let headerText: String
     let bodyText: String
 
     var body: some View {
@@ -18,14 +18,14 @@ struct ReadSectionView: View {
 
 #Preview("Много текста (название)") {
     ReadSectionView(
-        headerText: "Title",
+        headerText: String(localized: "Title"),
         bodyText: "Событие, которое очень хочется запомнить, и никак нельзя забывать, например, первая поездка на велосипеде"
     )
 }
 
 #Preview("Много текста (детали)") {
     ReadSectionView(
-        headerText: "Details",
+        headerText: String(localized: "Details"),
         bodyText: "Детали события, которые очень хочется запомнить, и никак нельзя забывать, например, первая поездка на велосипеде"
     )
 }

@@ -16,11 +16,11 @@ enum DisplayOption: String, Codable, CaseIterable, Hashable {
     }
 
     /// Локализованное название формата отображения
-    var localizedTitle: LocalizedStringKey {
+    var localizedTitle: String {
         switch self {
-        case .day: "Days only"
-        case .monthDay: "Months and days"
-        case .yearMonthDay: "Years, months and days"
+        case .day: String(localized: .daysOnly)
+        case .monthDay: String(localized: .monthsAndDays)
+        case .yearMonthDay: String(localized: .yearsMonthsAndDays)
         }
     }
 }

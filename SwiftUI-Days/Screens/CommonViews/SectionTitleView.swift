@@ -2,9 +2,9 @@ import SwiftUI
 
 struct SectionTitleView: View {
     @Environment(\.isEnabled) private var isEnabled
-    private let title: LocalizedStringKey
+    private let title: String
 
-    init(_ title: LocalizedStringKey) {
+    init(_ title: String) {
         self.title = title
     }
 
@@ -17,10 +17,10 @@ struct SectionTitleView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    let titleStringKeys: [LocalizedStringKey] = [
-        "Title",
-        "Details",
-        "Add color tag"
+    let titleStringKeys: [String] = [
+        String(localized: "Title"),
+        String(localized: "Details"),
+        String(localized: "Add color tag")
     ]
     VStack(spacing: 20) {
         ForEach(

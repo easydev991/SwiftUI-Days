@@ -5,7 +5,7 @@ struct DaysEditButton: View {
 
     var body: some View {
         Button(action: action) {
-            Label("Edit", systemImage: "pencil")
+            Label(.edit, systemImage: "pencil")
         }
         .accessibilityIdentifier("editButton")
     }
