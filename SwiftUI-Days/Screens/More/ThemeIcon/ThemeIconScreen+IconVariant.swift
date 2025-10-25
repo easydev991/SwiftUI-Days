@@ -31,12 +31,12 @@ extension ThemeIconScreen {
 
         @MainActor
         var accessibilityLabel: String {
-            let isSelectedText = isSelected ? String(localized: "Selected") : String(localized: "Not selected")
+            let isSelectedText = isSelected ? String(localized: .selected) : String(localized: .notSelected)
             switch self {
             case .primary:
-                return String(localized: "Primary icon") + ", " + isSelectedText
+                return String(localized: .primaryIcon) + ", " + isSelectedText
             default:
-                return String(format: String(localized: "Variant %lld"), variantNumber) + ", " + isSelectedText
+                return String(localized: .variant(variantNumber)) + ", " + isSelectedText
             }
         }
 

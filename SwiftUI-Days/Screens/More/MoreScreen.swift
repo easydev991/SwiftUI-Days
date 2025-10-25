@@ -21,7 +21,7 @@ struct MoreScreen: View {
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
-            .navigationTitle("More")
+            .navigationTitle(.more)
         }
     }
 
@@ -52,24 +52,28 @@ struct MoreScreen: View {
     }
 
     private var appThemeIconButton: some View {
-        NavigationLink("App theme and Icon", destination: ThemeIconScreen())
-            .accessibilityIdentifier("appThemeIconButton")
+        NavigationLink(.appThemeAndIcon) {
+            ThemeIconScreen()
+        }
+        .accessibilityIdentifier("appThemeIconButton")
     }
 
     private var appDataButton: some View {
-        NavigationLink("App data", destination: AppDataScreen())
-            .accessibilityIdentifier("appDataButton")
+        NavigationLink(.appData) {
+            AppDataScreen()
+        }
+        .accessibilityIdentifier("appDataButton")
     }
 
     private var feedbackButton: some View {
-        Button("Send feedback", action: FeedbackSender.sendFeedback)
+        Button(.sendFeedback, action: FeedbackSender.sendFeedback)
             .accessibilityIdentifier("sendFeedbackButton")
     }
 
     @ViewBuilder
     private var rateAppButton: some View {
         if let appReviewLink = URL(string: "https://apps.apple.com/app/\(appId)?action=write-review") {
-            Link("Rate the app", destination: appReviewLink)
+            Link(.rateTheApp, destination: appReviewLink)
                 .accessibilityIdentifier("rateAppButton")
         }
     }
@@ -79,7 +83,7 @@ struct MoreScreen: View {
         let languageCode = locale.identifier.split(separator: "_").first == "ru" ? "ru" : "us"
         if let appStoreLink = URL(string: "https://apps.apple.com/\(languageCode)/app/\(appId)") {
             ShareLink(item: appStoreLink) {
-                Text("Share the app")
+                Text(.shareTheApp)
             }
             .accessibilityIdentifier("shareAppButton")
         }
@@ -88,13 +92,13 @@ struct MoreScreen: View {
     @ViewBuilder
     private var githubButton: some View {
         if let githubLink = URL(string: "https://github.com/easydev991/SwiftUI-Days") {
-            Link("GitHub page", destination: githubLink)
+            Link(.gitHubPage, destination: githubLink)
                 .accessibilityIdentifier("linkToGitHubPage")
         }
     }
 
     private var appVersionText: some View {
-        Text("App version: \(appSettings.appVersion)")
+        Text(.appVersion(appSettings.appVersion))
             .foregroundStyle(.secondary)
             .multilineTextAlignment(.center)
     }

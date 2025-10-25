@@ -1,11 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "Add color tag" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add color tag"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15,7 +19,14 @@
       }
     },
     "Add Item" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Item"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25,7 +36,14 @@
       }
     },
     "All data deleted" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All data deleted"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35,7 +53,14 @@
       }
     },
     "App data" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App data"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45,7 +70,14 @@
       }
     },
     "App Icon" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Icon"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55,7 +87,14 @@
       }
     },
     "App theme" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App theme"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -65,7 +104,14 @@
       }
     },
     "App theme and Icon" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App theme and Icon"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -75,7 +121,14 @@
       }
     },
     "App version: %@" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App version: %@"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -85,7 +138,14 @@
       }
     },
     "Backup data saved" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Backup data saved"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -95,7 +155,14 @@
       }
     },
     "Cancel" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105,7 +172,14 @@
       }
     },
     "Close" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,7 +189,14 @@
       }
     },
     "Color tag" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Color tag"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -125,7 +206,14 @@
       }
     },
     "Create a backup" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a backup"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -135,7 +223,14 @@
       }
     },
     "Create your first item" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create your first item"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -145,7 +240,14 @@
       }
     },
     "Dark" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -155,7 +257,14 @@
       }
     },
     "Data restored from backup" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data restored from backup"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -165,7 +274,14 @@
       }
     },
     "Date" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -175,7 +291,14 @@
       }
     },
     "Days only" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Days only"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -185,7 +308,14 @@
       }
     },
     "Delete" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,7 +325,14 @@
       }
     },
     "Delete all data" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete all data"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -205,7 +342,14 @@
       }
     },
     "Details" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Details"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -215,7 +359,14 @@
       }
     },
     "Details for the Item" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Details for the Item"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -225,7 +376,14 @@
       }
     },
     "Display format" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Display format"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -235,7 +393,14 @@
       }
     },
     "Do you want to delete all data permanently?" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you want to delete all data permanently?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -245,7 +410,14 @@
       }
     },
     "Done" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -255,7 +427,14 @@
       }
     },
     "Edit" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -265,7 +444,14 @@
       }
     },
     "Edit Item" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Item"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -275,7 +461,14 @@
       }
     },
     "Error" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -285,7 +478,14 @@
       }
     },
     "Events" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Events"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -295,7 +495,14 @@
       }
     },
     "GitHub page" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub page"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -305,7 +512,14 @@
       }
     },
     "Light" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -315,7 +529,14 @@
       }
     },
     "Months and days" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Months and days"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -325,7 +546,14 @@
       }
     },
     "More" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -335,7 +563,14 @@
       }
     },
     "New first" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New first"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -345,7 +580,14 @@
       }
     },
     "New Item" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Item"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -355,7 +597,14 @@
       }
     },
     "Not selected" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not selected"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -365,7 +614,14 @@
       }
     },
     "Ok" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -375,7 +631,14 @@
       }
     },
     "Old first" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Old first"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -385,7 +648,14 @@
       }
     },
     "Primary icon" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primary icon"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -395,7 +665,14 @@
       }
     },
     "Rate the app" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rate the app"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -405,7 +682,14 @@
       }
     },
     "Restore from backup" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore from backup"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -415,7 +699,14 @@
       }
     },
     "Save" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -425,7 +716,14 @@
       }
     },
     "Selected" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selected"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -435,7 +733,14 @@
       }
     },
     "Send feedback" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send feedback"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -445,7 +750,14 @@
       }
     },
     "Share the app" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share the app"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -455,7 +767,14 @@
       }
     },
     "Sort" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -465,7 +784,14 @@
       }
     },
     "Sort Order" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort Order"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -475,7 +801,14 @@
       }
     },
     "System" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -485,7 +818,14 @@
       }
     },
     "Title" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Title"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -495,7 +835,14 @@
       }
     },
     "Title for the Item" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Title for the Item"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -506,6 +853,7 @@
     },
     "Today" : {
       "comment" : "Today",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -524,6 +872,12 @@
     "Unable to recover data from the selected file" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unable to recover data from the selected file"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -533,7 +887,14 @@
       }
     },
     "Variant %lld" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Variant %lld"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -543,7 +904,14 @@
       }
     },
     "What should we remember?" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What should we remember?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -553,7 +921,14 @@
       }
     },
     "Years, months and days" : {
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Years, months and days"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

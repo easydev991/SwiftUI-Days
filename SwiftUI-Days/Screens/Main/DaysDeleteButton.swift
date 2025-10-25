@@ -5,7 +5,7 @@ struct DaysDeleteButton: View {
 
     var body: some View {
         Button(
-            "Delete",
+            .delete,
             systemImage: "trash",
             role: .destructive,
             action: action

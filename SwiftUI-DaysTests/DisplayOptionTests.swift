@@ -17,9 +17,9 @@ struct DisplayOptionTests {
         let dayTitle = DisplayOption.day.localizedTitle
         let monthDayTitle = DisplayOption.monthDay.localizedTitle
         let yearMonthDayTitle = DisplayOption.yearMonthDay.localizedTitle
-        #expect(dayTitle == LocalizedStringKey("Days only"))
-        #expect(monthDayTitle == LocalizedStringKey("Months and days"))
-        #expect(yearMonthDayTitle == LocalizedStringKey("Years, months and days"))
+        #expect(dayTitle == String(localized: "Days only"))
+        #expect(monthDayTitle == String(localized: "Months and days"))
+        #expect(yearMonthDayTitle == String(localized: "Years, months and days"))
     }
 
     @Test(".day: вне зависимости от значений всегда .full", arguments: allCombos)

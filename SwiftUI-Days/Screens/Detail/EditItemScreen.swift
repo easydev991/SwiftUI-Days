@@ -46,7 +46,7 @@ struct EditItemScreen: View {
                 .accessibilityIdentifier(backButtonAccessibilityIdentifier)
             }
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Save") {
+                Button(.save) {
                     save()
                     closeAction()
                 }
@@ -58,8 +58,8 @@ struct EditItemScreen: View {
 
     private var titleSection: some View {
         EditSectionView(
-            headerText: "Title",
-            placeholder: "Title for the Item",
+            headerText: String(localized: .title),
+            placeholder: String(localized: .titleForTheItem),
             text: $title
         )
         .focused($isFirstFieldFocused)
@@ -68,8 +68,8 @@ struct EditItemScreen: View {
 
     private var detailsSection: some View {
         EditSectionView(
-            headerText: "Details",
-            placeholder: "Details for the Item",
+            headerText: String(localized: .details),
+            placeholder: String(localized: .detailsForTheItem),
             text: $details
         )
     }
@@ -87,12 +87,12 @@ struct EditItemScreen: View {
                     }
                 ),
                 label: {
-                    SectionTitleView("Add color tag")
+                    SectionTitleView(String(localized: .addColorTag))
                 }
             )
             if let colorTag {
                 ColorPicker(
-                    "Color tag",
+                    .colorTag,
                     selection: .init(
                         get: { colorTag },
                         set: { self.colorTag = $0 }
@@ -112,12 +112,12 @@ struct EditItemScreen: View {
         ItemDisplayOptionPicker(displayOption: $displayOption)
     }
 
-    private var navigationTitle: LocalizedStringKey {
-        oldItem == nil ? "New Item" : "Edit Item"
+    private var navigationTitle: String {
+        oldItem == nil ? String(localized: .newItem) : String(localized: .editItem)
     }
 
-    private var backButtonTitle: LocalizedStringKey {
-        oldItem == nil ? "Close" : "Cancel"
+    private var backButtonTitle: String {
+        oldItem == nil ? String(localized: .close) : String(localized: .cancel)
     }
 
     private var backButtonAccessibilityIdentifier: String {

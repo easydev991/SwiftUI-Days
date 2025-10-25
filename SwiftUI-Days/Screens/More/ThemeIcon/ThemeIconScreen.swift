@@ -14,16 +14,16 @@ struct ThemeIconScreen: View {
             .padding()
         }
         .scrollBounceBehavior(.basedOnSize)
-        .navigationTitle("App theme and Icon")
+        .navigationTitle(.appThemeAndIcon)
         .navigationBarTitleDisplayMode(.inline)
     }
 
     private var themePicker: some View {
         HStack(spacing: 12) {
-            SectionTitleView("App theme")
+            SectionTitleView(String(localized: .appTheme))
                 .accessibilityHidden(true)
             Picker(
-                "App theme",
+                .appTheme,
                 selection: .init(
                     get: { appSettings.appTheme },
                     set: { appSettings.appTheme = $0 }
@@ -40,7 +40,7 @@ struct ThemeIconScreen: View {
 
     private var iconsGrid: some View {
         VStack(spacing: 16) {
-            SectionTitleView("App Icon")
+            SectionTitleView(String(localized: .appIcon))
             LazyVGrid(
                 columns: [GridItem(.adaptive(minimum: 65), spacing: 32, alignment: .leading)],
                 spacing: 32

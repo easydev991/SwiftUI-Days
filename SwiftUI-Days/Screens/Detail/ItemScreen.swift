@@ -52,11 +52,11 @@ struct ItemScreen: View {
     @ViewBuilder
     private var titleSection: some View {
         ReadSectionView(
-            headerText: "Title",
+            headerText: String(localized: .title),
             bodyText: item.title
         )
         .accessibilityElement()
-        .accessibilityLabel("Title")
+        .accessibilityLabel(.title)
         .accessibilityValue(item.title)
     }
 
@@ -64,11 +64,11 @@ struct ItemScreen: View {
     private var detailsSection: some View {
         if !item.details.isEmpty {
             ReadSectionView(
-                headerText: "Details",
+                headerText: String(localized: .details),
                 bodyText: item.details
             )
             .accessibilityElement()
-            .accessibilityLabel("Details")
+            .accessibilityLabel(.details)
             .accessibilityValue(item.details)
         }
     }
@@ -77,7 +77,7 @@ struct ItemScreen: View {
     private var colorTagSection: some View {
         if let colorTag = item.colorTag {
             ColorPicker(
-                "Color tag",
+                .colorTag,
                 selection: .constant(colorTag)
             )
             .bold()
@@ -95,7 +95,7 @@ struct ItemScreen: View {
         let value = item.displayOption ?? .day
         return ItemDisplayOptionPicker(displayOption: .constant(value))
             .accessibilityElement()
-            .accessibilityLabel("Display format")
+            .accessibilityLabel(.displayFormat)
             .accessibilityValue(Text(value.localizedTitle))
             .disabled(true)
     }
