@@ -63,10 +63,10 @@ struct ThemeIconScreen: View {
             .listImage
             .resizable()
             .scaledToFit()
-            .frame(width: 65, height: 65)
-            .clipShape(.rect(cornerRadius: 12))
+            .frame(width: 64, height: 64)
+            .clipShape(.rect(cornerRadius: 16))
             .overlay {
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: 16)
                     .strokeBorder(.iconBorder, lineWidth: 1)
             }
             .drawingGroup()
