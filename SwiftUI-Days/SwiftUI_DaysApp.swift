@@ -17,7 +17,11 @@ struct SwiftUI_DaysApp: App {
             let schema = Schema([Item.self])
             let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
             do {
-                sharedModelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+                sharedModelContainer = try ModelContainer(
+                    for: schema,
+                    migrationPlan: ItemMigrationPlan.self,
+                    configurations: [modelConfiguration]
+                )
             } catch {
                 fatalError("Не смогли создать ModelContainer: \(error)")
             }
@@ -28,7 +32,11 @@ struct SwiftUI_DaysApp: App {
         let schema = Schema([Item.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         do {
-            sharedModelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
+            sharedModelContainer = try ModelContainer(
+                for: schema,
+                migrationPlan: ItemMigrationPlan.self,
+                configurations: [modelConfiguration]
+            )
         } catch {
             fatalError("Не смогли создать ModelContainer: \(error)")
         }
