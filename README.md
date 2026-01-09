@@ -1,7 +1,8 @@
-# SwiftUI-Days
+# Счётчик дней
 [<img alt="Xcode Version" src="https://img.shields.io/badge/Xcode_Version-26.0-blue">](https://developer.apple.com/xcode/)
 [<img alt="Swift Version" src="https://img.shields.io/badge/Swift_Version-6.2-orange">](https://swift.org/)
 [<img alt="iOS Version" src="https://img.shields.io/badge/iOS_Version-17-blue">](https://developer.apple.com/ios/)
+[![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/easydev991/SwiftUI-Days)](https://gitmcp.io/easydev991/SwiftUI-Days)
 
 - Идея приложения в том, чтобы было удобно запоминать события в указанные даты, а потом легко проверить, сколько прошло дней с момента события.
 - Это вторая версия моего пет-проекта. Первая версия находится [тут](https://github.com/easydev991/Days), и я не публиковал ее в `AppStore`.
