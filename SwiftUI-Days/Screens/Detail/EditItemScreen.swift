@@ -74,7 +74,6 @@ struct EditItemScreen: View {
         )
     }
 
-    @ViewBuilder
     private var colorPicker: some View {
         VStack(spacing: 20) {
             Toggle(

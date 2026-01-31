@@ -2,8 +2,14 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct BackupFileDocument: FileDocument {
-    static var readableContentTypes: [UTType] { [.json] }
-    static var writableContentTypes: [UTType] { [.json] }
+    static var readableContentTypes: [UTType] {
+        [.json]
+    }
+
+    static var writableContentTypes: [UTType] {
+        [.json]
+    }
+
     static func toBackupItem(item: Item) -> BackupItem {
         .init(
             title: item.title,
