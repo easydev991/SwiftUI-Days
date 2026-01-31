@@ -49,7 +49,6 @@ struct ItemScreen: View {
         }
     }
 
-    @ViewBuilder
     private var titleSection: some View {
         ReadSectionView(
             headerText: String(localized: .title),

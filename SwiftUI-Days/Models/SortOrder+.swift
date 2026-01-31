@@ -9,7 +9,7 @@ extension SortOrder {
     }
 }
 
-// Для использования с `@AppStorage`
+/// Для использования с `@AppStorage`
 extension SortOrder: @retroactive RawRepresentable {
     public init?(rawValue: Int) {
         switch rawValue {

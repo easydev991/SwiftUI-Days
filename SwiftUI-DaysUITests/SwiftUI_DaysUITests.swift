@@ -18,7 +18,7 @@ final class SwiftUI_DaysUITests: XCTestCase {
         app = nil
     }
 
-    func testDemoFlow() throws {
+    func testDemoFlow() {
         snapshot("1-demoList")
         сhooseDate()
         сhooseDisplayOption()
