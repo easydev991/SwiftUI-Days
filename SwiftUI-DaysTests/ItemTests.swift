@@ -161,9 +161,11 @@ struct ItemTests {
 
     @Test(arguments: 0 ... 11)
     func daysCountSameDay(hoursAgo: Int) throws {
-        let date = try #require(Calendar.current.date(byAdding: .hour, value: -hoursAgo, to: now))
+        // Используем полдень как базу, чтобы гарантировать нахождение в том же календарном дне
+        let todayNoon = try #require(calendar.date(byAdding: .hour, value: 12, to: calendar.startOfDay(for: now)))
+        let date = try #require(calendar.date(byAdding: .hour, value: -hoursAgo, to: todayNoon))
         let item = Item(title: "Recent Event", timestamp: date)
-        let result = item.makeDaysCount(to: now)
+        let result = item.makeDaysCount(to: todayNoon)
         #expect(result == "Сегодня", "Должно быть 'Сегодня', так как даты в одном календарном дне")
     }
 
