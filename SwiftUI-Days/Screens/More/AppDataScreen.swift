@@ -148,8 +148,8 @@ extension AppDataScreen {
 #Preview {
     NavigationStack {
         AppDataScreen()
-            .environment(AppSettings())
-            .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
     }
+    .environment(AppSettings())
+    .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
 }
 #endif
