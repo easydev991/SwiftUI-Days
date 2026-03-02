@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct RootScreen: View {
+    @Environment(AppSettings.self) private var appSettings
     @Environment(\.scenePhase) private var scenePhase
     @State private var tab = Tab.list
     @State private var currentDate = Date.now
+    @State private var isBlurred = false
 
     var body: some View {
         TabView(selection: $tab) {
@@ -13,11 +15,16 @@ struct RootScreen: View {
                     .tag(tab)
             }
         }
+        .environment(\.isBlurred, isBlurred)
         .environment(\.currentDate, currentDate)
         .animation(.default, value: currentDate)
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
                 currentDate = .now
+            }
+            guard appSettings.blurWhenMinimized else { return }
+            withAnimation {
+                isBlurred = newPhase != .active
             }
         }
     }

@@ -2,9 +2,10 @@ import SwiftData
 import SwiftUI
 
 struct MainScreen: View {
+    @Environment(\.isBlurred) private var isBlurred
     @Query private var items: [Item]
     @State private var showAddItemSheet = false
-    @AppStorage("listSortOrder") private var sortOrder = SortOrder.forward.rawValue
+    @AppStorage(DefaultsKey.listSortOrder.rawValue) private var sortOrder = SortOrder.forward.rawValue
     @State private var searchQuery = ""
     @State private var editItem: Item?
     @State private var path = NavigationPath()
@@ -22,6 +23,7 @@ struct MainScreen: View {
             .toolbar(path.isEmpty ? .automatic : .hidden, for: .tabBar)
             .navigationTitle(.events)
         }
+        .applyBlur(if: isBlurred)
         .sheet(isPresented: $showAddItemSheet) {
             NavigationStack {
                 ScrollView {

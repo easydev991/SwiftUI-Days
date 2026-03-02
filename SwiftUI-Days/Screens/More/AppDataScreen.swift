@@ -76,7 +76,8 @@ struct AppDataScreen: View {
                 do {
                     defer { url.stopAccessingSecurityScopedResource() }
                     let data = try Data(contentsOf: url)
-                    let importedItems = try JSONDecoder().decode([BackupFileDocument.BackupItem].self, from: data)
+                    let importer = try BackupImporter(data: data)
+                    let importedItems = importer.items
                     let currentItems = items.map(\.backupItem)
                     let newItemsFromBackup = importedItems.filter { !currentItems.contains($0) }
                     newItemsFromBackup.forEach { modelContext.insert($0.realItem) }
@@ -148,8 +149,8 @@ extension AppDataScreen {
 #Preview {
     NavigationStack {
         AppDataScreen()
-            .environment(AppSettings())
-            .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
     }
+    .environment(AppSettings())
+    .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
 }
 #endif

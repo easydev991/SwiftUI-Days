@@ -11,4 +11,8 @@ extension View {
                 .foregroundStyle(.buttonTint)
         }
     }
+
+    func applyBlur(if condition: Bool) -> some View {
+        blur(radius: condition ? 8 : 0)
+    }
 }

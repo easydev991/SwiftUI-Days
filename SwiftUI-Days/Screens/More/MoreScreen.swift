@@ -26,23 +26,27 @@ struct MoreScreen: View {
     }
 
     private var horizontalLayout: some View {
-        HStack(spacing: 24) {
-            VStack(alignment: .trailing, spacing: 16) {
-                appThemeIconButton
-                appDataButton
-                feedbackButton
+        VStack(spacing: 16) {
+            HStack(spacing: 24) {
+                VStack(alignment: .trailing, spacing: 16) {
+                    appThemeIconButton
+                    privacyButton
+                    appDataButton
+                }
+                VStack(alignment: .leading, spacing: 16) {
+                    feedbackButton
+                    rateAppButton
+                    shareAppButton
+                }
             }
-            VStack(alignment: .leading, spacing: 16) {
-                rateAppButton
-                shareAppButton
-                githubButton
-            }
+            githubButton
         }
     }
 
     private var verticalLayout: some View {
         VStack(spacing: 16) {
             appThemeIconButton
+            privacyButton
             appDataButton
             feedbackButton
             rateAppButton
@@ -63,6 +67,12 @@ struct MoreScreen: View {
             AppDataScreen()
         }
         .accessibilityIdentifier("appDataButton")
+    }
+
+    private var privacyButton: some View {
+        NavigationLink(.privacy) {
+            PrivacyScreen()
+        }
     }
 
     private var feedbackButton: some View {

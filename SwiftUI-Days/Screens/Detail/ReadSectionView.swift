@@ -9,6 +9,7 @@ struct ReadSectionView: View {
             SectionTitleView(headerText)
                 .accessibilityIdentifier("sectionHeader")
             Text(bodyText)
+                .textSelection(.enabled)
                 .accessibilityIdentifier("sectionBody")
         }
         .frame(maxWidth: .infinity, alignment: .leading)

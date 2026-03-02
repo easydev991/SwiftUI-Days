@@ -2,6 +2,7 @@ import SwiftUI
 
 struct EditItemScreen: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.isBlurred) private var isBlurred
     @State private var title: String
     @State private var details: String
     @State private var timestamp: Date
@@ -54,6 +55,7 @@ struct EditItemScreen: View {
                 .accessibilityIdentifier("saveItemNavButton")
             }
         }
+        .applyBlur(if: isBlurred)
     }
 
     private var titleSection: some View {
