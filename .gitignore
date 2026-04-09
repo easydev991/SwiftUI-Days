@@ -9,3 +9,4 @@ fastlane/.env
 *.dSYM.zip
 *.dSYM
 buildServer.json
+SwiftUI-Days/GoogleService-Info.plist
