@@ -3,6 +3,7 @@ import SwiftUI
 
 @main
 struct SwiftUI_DaysApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State private var appSettings = AppSettings()
     private let sharedModelContainer: ModelContainer
 
