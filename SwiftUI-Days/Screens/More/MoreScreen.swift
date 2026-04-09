@@ -69,10 +69,13 @@ struct MoreScreen: View {
         .accessibilityIdentifier("appDataButton")
     }
 
+    @ViewBuilder
     private var privacyButton: some View {
+        #if !os(macOS)
         NavigationLink(.privacy) {
             PrivacyScreen()
         }
+        #endif
     }
 
     private var feedbackButton: some View {
