@@ -5,6 +5,9 @@ import SwiftUI
 struct SwiftUI_DaysApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State private var appSettings = AppSettings()
+    private let analyticsService = AnalyticsService(
+        providers: [FirebaseAnalyticsProvider()]
+    )
     private let sharedModelContainer: ModelContainer
 
     #if DEBUG
@@ -48,6 +51,7 @@ struct SwiftUI_DaysApp: App {
         WindowGroup {
             RootScreen()
                 .environment(appSettings)
+                .environment(\.analyticsService, analyticsService)
                 .preferredColorScheme(appSettings.appTheme.colorScheme)
         }
         .modelContainer(sharedModelContainer)

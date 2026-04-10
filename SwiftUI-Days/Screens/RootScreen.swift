@@ -18,6 +18,7 @@ struct RootScreen: View {
         .environment(\.isBlurred, isBlurred)
         .environment(\.currentDate, currentDate)
         .animation(.default, value: currentDate)
+        .trackScreen(.root)
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
                 currentDate = .now
@@ -71,5 +72,5 @@ extension RootScreen {
 }
 
 #Preview {
-    RootScreen()
+    RootScreen().environment(AppSettings())
 }

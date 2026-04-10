@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct EditItemScreen: View {
+    @Environment(\.analyticsService) private var analytics
     @Environment(\.modelContext) private var modelContext
     @Environment(\.isBlurred) private var isBlurred
     @State private var title: String
@@ -149,6 +150,7 @@ struct EditItemScreen: View {
                 displayOption: displayOption
             )
             modelContext.insert(newItem)
+            analytics.log(.userAction(action: .itemSaved))
             return
         }
         oldItem.title = title
@@ -156,6 +158,7 @@ struct EditItemScreen: View {
         oldItem.timestamp = timestamp
         oldItem.colorTag = colorTag
         oldItem.displayOption = displayOption
+        analytics.log(.userAction(action: .itemSaved))
     }
 }
 

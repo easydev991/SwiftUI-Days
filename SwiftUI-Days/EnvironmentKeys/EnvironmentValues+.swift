@@ -11,4 +11,7 @@ extension EnvironmentValues {
 
     /// Нужно ли блюрить контент
     @Entry var isBlurred = false
+
+    /// Сервис аналитики приложения
+    @Entry var analyticsService = AnalyticsService(providers: [NoopAnalyticsProvider()])
 }

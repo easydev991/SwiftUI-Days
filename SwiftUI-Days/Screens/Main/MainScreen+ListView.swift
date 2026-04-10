@@ -3,6 +3,7 @@ import SwiftUI
 
 extension MainScreen {
     struct ListView: View {
+        @Environment(\.analyticsService) private var analytics
         @Environment(\.currentDate) private var currentDate
         @Environment(\.modelContext) private var modelContext
         @Binding private var editItem: Item?
@@ -31,7 +32,10 @@ extension MainScreen {
                         DaysDeleteButton {
                             modelContext.delete(item)
                         }
-                        DaysEditButton { editItem = item }
+                        DaysEditButton {
+                            analytics.log(.userAction(action: .edit))
+                            editItem = item
+                        }
                     }
                 }
             }

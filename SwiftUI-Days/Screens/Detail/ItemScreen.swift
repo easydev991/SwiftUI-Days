@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ItemScreen: View {
+    @Environment(\.analyticsService) private var analytics
     @Environment(\.currentDate) private var currentDate
     @State private var isEditing = false
     let item: Item
@@ -28,6 +29,7 @@ struct ItemScreen: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .scrollBounceBehavior(.basedOnSize)
+        .trackScreen(.item)
     }
 
     private var regularView: some View {
@@ -43,8 +45,11 @@ struct ItemScreen: View {
         .navigationTitle(item.makeDaysCount(to: currentDate))
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                DaysEditButton { isEditing.toggle() }
-                    .labelStyle(.titleOnly)
+                DaysEditButton {
+                    analytics.log(.userAction(action: .edit))
+                    isEditing.toggle()
+                }
+                .labelStyle(.titleOnly)
             }
         }
     }

@@ -2,6 +2,7 @@ import SwiftData
 import SwiftUI
 
 struct MainScreen: View {
+    @Environment(\.analyticsService) private var analytics
     @Environment(\.isBlurred) private var isBlurred
     @Query private var items: [Item]
     @State private var showAddItemSheet = false
@@ -32,6 +33,7 @@ struct MainScreen: View {
                 .scrollBounceBehavior(.basedOnSize)
             }
         }
+        .trackScreen(.main)
     }
 
     private var sortButton: some View {
@@ -49,7 +51,10 @@ struct MainScreen: View {
     }
 
     private var addItemButton: some View {
-        Button { showAddItemSheet.toggle() } label: {
+        Button {
+            analytics.log(.userAction(action: .create))
+            showAddItemSheet.toggle()
+        } label: {
             Label(.addItem, systemImage: "plus")
         }
         .accessibilityIdentifier("addItemButton")
@@ -97,6 +102,7 @@ struct MainScreen: View {
 
 #Preview("Пусто") {
     MainScreen()
+        .environment(\.analyticsService, AnalyticsService(providers: [NoopAnalyticsProvider()]))
         .modelContainer(for: Item.self, inMemory: true)
 }
 

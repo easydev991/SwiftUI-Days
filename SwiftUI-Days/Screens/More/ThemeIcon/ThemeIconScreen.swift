@@ -2,7 +2,11 @@ import SwiftUI
 
 struct ThemeIconScreen: View {
     @Environment(AppSettings.self) private var appSettings
-    @State private var iconViewModel = IconViewModel()
+    @State private var iconViewModel: IconViewModel
+
+    init(analytics: AnalyticsService) {
+        _iconViewModel = .init(initialValue: IconViewModel(analytics: analytics))
+    }
 
     var body: some View {
         ScrollView {
@@ -16,6 +20,7 @@ struct ThemeIconScreen: View {
         .scrollBounceBehavior(.basedOnSize)
         .navigationTitle(.appThemeAndIcon)
         .navigationBarTitleDisplayMode(.inline)
+        .trackScreen(.themeIcon)
     }
 
     private var themePicker: some View {
@@ -83,7 +88,7 @@ struct ThemeIconScreen: View {
 
 #Preview {
     NavigationStack {
-        ThemeIconScreen()
+        ThemeIconScreen(analytics: AnalyticsService(providers: [NoopAnalyticsProvider()]))
     }
     .environment(AppSettings())
 }
