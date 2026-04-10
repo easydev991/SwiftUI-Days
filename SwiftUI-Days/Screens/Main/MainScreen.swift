@@ -44,6 +44,9 @@ struct MainScreen: View {
                         .tag(order.rawValue)
                 }
             }
+            .onChange(of: sortOrder) { _, _ in
+                analytics.log(.userAction(action: .sort))
+            }
         } label: {
             Label(.sort, systemImage: "arrow.up.arrow.down")
         }
@@ -100,13 +103,12 @@ struct MainScreen: View {
     }
 }
 
+#if DEBUG
 #Preview("Пусто") {
     MainScreen()
-        .environment(\.analyticsService, AnalyticsService(providers: [NoopAnalyticsProvider()]))
         .modelContainer(for: Item.self, inMemory: true)
 }
 
-#if DEBUG
 #Preview("Список") {
     MainScreen()
         .modelContainer(PreviewModelContainer.make(with: Item.makeList()))

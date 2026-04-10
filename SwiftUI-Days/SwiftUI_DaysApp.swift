@@ -5,19 +5,19 @@ import SwiftUI
 struct SwiftUI_DaysApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State private var appSettings = AppSettings()
-    private let analyticsService = AnalyticsService(
-        providers: [FirebaseAnalyticsProvider()]
-    )
+    private let analyticsService: AnalyticsService
     private let sharedModelContainer: ModelContainer
 
     #if DEBUG
     init() {
         if ProcessInfo.processInfo.arguments.contains("UITest") {
             UIView.setAnimationsEnabled(false)
+            analyticsService = AnalyticsService(providers: [NoopAnalyticsProvider()])
             sharedModelContainer = PreviewModelContainer.make(
                 with: Item.makeDemoList(isEnglish: Locale.current.identifier == "en-US")
             )
         } else {
+            analyticsService = AnalyticsService(providers: [FirebaseAnalyticsProvider()])
             let schema = Schema([Item.self])
             let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
             do {
@@ -33,6 +33,7 @@ struct SwiftUI_DaysApp: App {
     }
     #else
     init() {
+        analyticsService = AnalyticsService(providers: [FirebaseAnalyticsProvider()])
         let schema = Schema([Item.self])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         do {

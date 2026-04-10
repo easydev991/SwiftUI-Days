@@ -10,3 +10,4 @@ fastlane/.env
 *.dSYM
 buildServer.json
 SwiftUI-Days/GoogleService-Info.plist
+.xcodebuildmcp/config.yaml

@@ -86,9 +86,11 @@ struct ThemeIconScreen: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         ThemeIconScreen(analytics: AnalyticsService(providers: [NoopAnalyticsProvider()]))
     }
     .environment(AppSettings())
 }
+#endif

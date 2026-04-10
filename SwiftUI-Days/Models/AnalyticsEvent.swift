@@ -17,11 +17,24 @@ extension AnalyticsEvent {
         case privacy
     }
 
-    enum UserAction: String {
-        case iconSelected = "icon_selected"
-        case itemSaved = "item_saved"
+    enum UserAction {
+        case iconSelected(iconName: String)
+        case delete
+        case sort
+        case itemSaved
         case create
         case edit
+
+        var name: String {
+            switch self {
+            case .iconSelected: "icon_selected"
+            case .delete: "delete"
+            case .sort: "sort"
+            case .itemSaved: "item_saved"
+            case .create: "create"
+            case .edit: "edit"
+            }
+        }
     }
 
     enum AppErrorKind: String {

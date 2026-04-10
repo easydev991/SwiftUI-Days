@@ -108,7 +108,7 @@ struct MoreScreen: View {
     private var githubButton: some View {
         if let githubLink = URL(string: "https://github.com/easydev991/SwiftUI-Days") {
             Link(.gitHubPage, destination: githubLink)
-                .accessibilityIdentifier("linkToGitHubPage")
+                .accessibilityIdentifier("githubButton")
         }
     }
 
@@ -119,8 +119,9 @@ struct MoreScreen: View {
     }
 }
 
+#if DEBUG
 #Preview {
     MoreScreen()
         .environment(AppSettings())
-        .environment(\.analyticsService, AnalyticsService(providers: [NoopAnalyticsProvider()]))
 }
+#endif
