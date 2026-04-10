@@ -23,7 +23,7 @@ extension ThemeIconScreen {
         }
 
         func setIcon(_ icon: IconVariant) async {
-            analytics.log(.userAction(action: .iconSelected))
+            analytics.log(.userAction(action: .iconSelected(iconName: icon.rawValue)))
             do {
                 guard UIApplication.shared.supportsAlternateIcons else {
                     throw IconError.alternateIconsNotSupported

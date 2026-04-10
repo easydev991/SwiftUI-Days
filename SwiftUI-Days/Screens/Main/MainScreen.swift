@@ -44,6 +44,9 @@ struct MainScreen: View {
                         .tag(order.rawValue)
                 }
             }
+            .onChange(of: sortOrder) { _, _ in
+                analytics.log(.userAction(action: .sort))
+            }
         } label: {
             Label(.sort, systemImage: "arrow.up.arrow.down")
         }

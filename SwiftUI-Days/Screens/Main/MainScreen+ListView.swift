@@ -30,6 +30,7 @@ extension MainScreen {
                     }
                     .swipeActions {
                         DaysDeleteButton {
+                            analytics.log(.userAction(action: .delete))
                             modelContext.delete(item)
                         }
                         DaysEditButton {

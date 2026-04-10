@@ -14,12 +14,11 @@ struct FirebaseAnalyticsProvider: AnalyticsProvider {
                 ]
             )
         case let .userAction(action):
-            Analytics.logEvent(
-                "user_action",
-                parameters: [
-                    "action": action.rawValue
-                ]
-            )
+            var params: [String: Any] = ["action": action.name]
+            if case let .iconSelected(iconName) = action {
+                params["icon_name"] = iconName
+            }
+            Analytics.logEvent("user_action", parameters: params)
         case let .appError(kind, error):
             let nsError = error as NSError
             Analytics.logEvent(

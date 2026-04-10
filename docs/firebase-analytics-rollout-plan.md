@@ -15,7 +15,7 @@
   - `appError(kind: AppErrorKind, error: any Error)`
 - В enum хранится только бизнес-смысл события, без Firebase API.
 - Вложенный enum `UserAction`:
-  - `iconSelected` (TODO: добавить `iconName: String`)
+  - `iconSelected(iconName: String)`
   - `delete`
   - `sort`
   - `itemSaved`
@@ -78,13 +78,13 @@
 ### Событие выбора иконки
 
 - [x] В `ThemeIconScreen`/`IconViewModel` логировать `userAction(.iconSelected)` при `Task { await iconViewModel.setIcon(icon) }`.
-- [ ] Передавать название выбранной иконки (например, `iconName` или номер `iconNumber`) в аналитику.
-  - **TODO**: Изменить `UserAction.iconSelected` на `iconSelected(iconName: String)` и обновить `IconViewModel.setIcon()`.
+- [x] Передавать название выбранной иконки (например, `iconName` или номер `iconNumber`) в аналитику.
+  - Изменено: `UserAction.iconSelected` → `iconSelected(iconName: String)`, обновлён `IconViewModel.setIcon()` и `FirebaseAnalyticsProvider`.
 
 ### События действий пользователя
 
-- [ ] Логировать `userAction(.delete)` при нажатии кнопки удаления (в `MainScreen` или связанной view model).
-- [ ] Логировать `userAction(.sort)` при изменении сортировки списка (в `MainScreen` или связанной view model).
+- [x] Логировать `userAction(.delete)` при нажатии кнопки удаления (в `MainScreen+ListView`).
+- [x] Логировать `userAction(.sort)` при изменении сортировки списка (в `MainScreen`, `onChange` у picker).
 
 ### Ошибки из `try/catch`
 
@@ -114,6 +114,6 @@
 - [x] События отправляются через `AnalyticsService` из экранов и view model.
 - [x] Firebase-провайдер работает для `screenView`, `userAction`, `appError`.
 - [x] Добавление нового провайдера не требует правок в экранах.
-- [ ] `iconSelected` передаёт название иконки в аналитику.
-- [ ] `delete` и `sort` события логируются.
+- [x] `iconSelected` передаёт название иконки в аналитику.
+- [x] `delete` и `sort` события логируются.
 - [ ] Тесты аналитики написаны.
