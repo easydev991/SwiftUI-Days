@@ -17,6 +17,7 @@ struct PrivacyScreen: View {
         .padding()
         .navigationTitle(.privacy)
         .navigationBarTitleDisplayMode(.inline)
+        .trackScreen(.privacy)
     }
 }
 

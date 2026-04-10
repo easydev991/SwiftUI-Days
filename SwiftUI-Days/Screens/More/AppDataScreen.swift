@@ -2,6 +2,7 @@ import SwiftData
 import SwiftUI
 
 struct AppDataScreen: View {
+    @Environment(\.analyticsService) private var analytics
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
     @State private var showDeleteDataConfirmation = false
@@ -35,6 +36,7 @@ struct AppDataScreen: View {
             }
         )
         .navigationTitle(.appData)
+        .trackScreen(.appData)
     }
 
     private var backupDataButton: some View {
@@ -52,6 +54,12 @@ struct AppDataScreen: View {
             case .success:
                 operationResult = .backupSuccess
             case let .failure(error):
+                analytics.log(
+                    .appError(
+                        kind: .createBackup,
+                        error: error
+                    )
+                )
                 operationResult = .error(error.localizedDescription)
             }
         }
@@ -70,6 +78,12 @@ struct AppDataScreen: View {
             switch result {
             case let .success(urls):
                 guard let url = urls.first, url.startAccessingSecurityScopedResource() else {
+                    analytics.log(
+                        .appError(
+                            kind: .restoreBackup,
+                            error: AppDataError.failedToAccessSecurityScopedResource
+                        )
+                    )
                     operationResult = .failedToRestore
                     return
                 }
@@ -84,9 +98,21 @@ struct AppDataScreen: View {
                     try modelContext.save()
                     operationResult = .restoreSuccess
                 } catch {
+                    analytics.log(
+                        .appError(
+                            kind: .restoreBackup,
+                            error: error
+                        )
+                    )
                     operationResult = .failedToRestore
                 }
             case let .failure(error):
+                analytics.log(
+                    .appError(
+                        kind: .restoreBackup,
+                        error: error
+                    )
+                )
                 operationResult = .error(error.localizedDescription)
             }
         }
@@ -109,6 +135,12 @@ struct AppDataScreen: View {
                     try modelContext.save()
                     operationResult = .deletionSuccess
                 } catch {
+                    analytics.log(
+                        .appError(
+                            kind: .deleteAllData,
+                            error: error
+                        )
+                    )
                     assertionFailure(error.localizedDescription)
                     operationResult = .error(error.localizedDescription)
                 }

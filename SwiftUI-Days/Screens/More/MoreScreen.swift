@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MoreScreen: View {
     @Environment(\.locale) private var locale
+    @Environment(\.analyticsService) private var analytics
     @Environment(AppSettings.self) private var appSettings
     private let appId = "id6744068216"
 
@@ -23,6 +24,7 @@ struct MoreScreen: View {
             .scrollBounceBehavior(.basedOnSize)
             .navigationTitle(.more)
         }
+        .trackScreen(.more)
     }
 
     private var horizontalLayout: some View {
@@ -57,7 +59,7 @@ struct MoreScreen: View {
 
     private var appThemeIconButton: some View {
         NavigationLink(.appThemeAndIcon) {
-            ThemeIconScreen()
+            ThemeIconScreen(analytics: analytics)
         }
         .accessibilityIdentifier("appThemeIconButton")
     }
@@ -120,4 +122,5 @@ struct MoreScreen: View {
 #Preview {
     MoreScreen()
         .environment(AppSettings())
+        .environment(\.analyticsService, AnalyticsService(providers: [NoopAnalyticsProvider()]))
 }
