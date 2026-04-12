@@ -280,11 +280,15 @@ update: update_fastlane update_swiftformat
 ## update_fastlane: Обновить только fastlane и его зависимости
 update_fastlane:
 	@printf "$(YELLOW)Проверка наличия обновлений fastlane и его зависимостей...$(RESET)\n"
-	@$(BUNDLE_EXEC) bundle outdated fastlane --parseable | grep . && \
+	@if $(BUNDLE_EXEC) bundle outdated fastlane --parseable 2>/dev/null | grep -q .; then \
 		printf "$(YELLOW)Есть обновления для fastlane или его зависимостей, выполняется обновление...$(RESET)\n"; \
 		$(BUNDLE_EXEC) bundle update fastlane; \
-		printf "$(GREEN)fastlane и его зависимости обновлены. Не забудьте закоммитить новый Gemfile.lock!$(RESET)\n"; \
-	true || printf "$(GREEN)fastlane и его зависимости уже самые свежие$(RESET)\n"
+		INSTALLED_VER=$$(grep 'fastlane (' Gemfile.lock | head -1 | awk -F'[()]' '{print $$2}'); \
+		printf "$(GREEN)fastlane обновлен до версии $$INSTALLED_VER. Не забудьте закоммитить новый Gemfile.lock!$(RESET)\n"; \
+	else \
+		INSTALLED_VER=$$(grep 'fastlane (' Gemfile.lock | head -1 | awk -F'[()]' '{print $$2}'); \
+		printf "$(GREEN)fastlane уже самый свежий (версия: $$INSTALLED_VER)$(RESET)\n"; \
+	fi
 
 ## update_swiftformat: Обновить только swiftformat через Homebrew
 update_swiftformat:
