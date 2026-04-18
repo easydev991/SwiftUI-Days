@@ -73,11 +73,11 @@ struct MoreScreen: View {
 
     @ViewBuilder
     private var privacyButton: some View {
-        #if !os(macOS)
-        NavigationLink(.privacy) {
-            PrivacyScreen()
+        if !ProcessInfo.processInfo.isiOSAppOnMac {
+            NavigationLink(.privacy) {
+                PrivacyScreen()
+            }
         }
-        #endif
     }
 
     private var feedbackButton: some View {
