@@ -14,14 +14,29 @@ enum FeedbackSender {
     }
 
     private enum Feedback {
-        static let subject = "\(ProcessInfo.processInfo.processName): Обратная связь"
-        static let body = """
-            Версия iOS: \(ProcessInfo.processInfo.operatingSystemVersionString)
-            Версия приложения: \((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "1")
-            ---
-            Что можно улучшить в приложении?
-            \n
-        """
+        private static var processInfo: ProcessInfo {
+            ProcessInfo.processInfo
+        }
+
+        static let subject = "\(processInfo.processName): Обратная связь"
+
+        static var body: String {
+            var platformName: String {
+                let idiom = switch UIDevice.current.userInterfaceIdiom {
+                case .pad: "iPadOS"
+                default: "iOS"
+                }
+                return processInfo.isiOSAppOnMac ? "macOS" : idiom
+            }
+            return """
+                \(platformName): \(processInfo.operatingSystemVersionString)
+                Версия приложения: \((Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String) ?? "1")
+                ---
+                Что можно улучшить в приложении?
+                \n
+            """
+        }
+
         static let recipient = "starker.words-01@icloud.com"
     }
 }

@@ -4,7 +4,10 @@ struct MoreScreen: View {
     @Environment(\.locale) private var locale
     @Environment(\.analyticsService) private var analytics
     @Environment(AppSettings.self) private var appSettings
-    private var isRunningOnMac: Bool { ProcessInfo.processInfo.isiOSAppOnMac }
+    private var isRunningOnMac: Bool {
+        ProcessInfo.processInfo.isiOSAppOnMac
+    }
+
     private let appId = "id6744068216"
 
     var body: some View {
