@@ -4,6 +4,7 @@ struct MoreScreen: View {
     @Environment(\.locale) private var locale
     @Environment(\.analyticsService) private var analytics
     @Environment(AppSettings.self) private var appSettings
+    private var isRunningOnMac: Bool { ProcessInfo.processInfo.isiOSAppOnMac }
     private let appId = "id6744068216"
 
     var body: some View {
@@ -12,11 +13,14 @@ struct MoreScreen: View {
                 ZStack {
                     Spacer().containerRelativeFrame([.vertical])
                     VStack(spacing: 16) {
-                        ViewThatFits(in: .horizontal) {
-                            horizontalLayout
+                        if isRunningOnMac {
                             verticalLayout
+                        } else {
+                            ViewThatFits(in: .horizontal) {
+                                horizontalLayout
+                                verticalLayout
+                            }
                         }
-                        .daysButtonStyle()
                         appVersionText
                     }
                 }
@@ -43,6 +47,7 @@ struct MoreScreen: View {
             }
             githubButton
         }
+        .daysButtonStyle()
     }
 
     private var verticalLayout: some View {
@@ -55,13 +60,17 @@ struct MoreScreen: View {
             shareAppButton
             githubButton
         }
+        .daysButtonStyle()
     }
 
+    @ViewBuilder
     private var appThemeIconButton: some View {
-        NavigationLink(.appThemeAndIcon) {
-            ThemeIconScreen(analytics: analytics)
+        if !isRunningOnMac {
+            NavigationLink(.appThemeAndIcon) {
+                ThemeIconScreen(analytics: analytics)
+            }
+            .accessibilityIdentifier("appThemeIconButton")
         }
-        .accessibilityIdentifier("appThemeIconButton")
     }
 
     private var appDataButton: some View {
@@ -73,7 +82,7 @@ struct MoreScreen: View {
 
     @ViewBuilder
     private var privacyButton: some View {
-        if !ProcessInfo.processInfo.isiOSAppOnMac {
+        if !isRunningOnMac {
             NavigationLink(.privacy) {
                 PrivacyScreen()
             }
