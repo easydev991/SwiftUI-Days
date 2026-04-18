@@ -15,6 +15,7 @@ struct RootScreen: View {
                     .tag(tab)
             }
         }
+        .reviewRequestHandling()
         .environment(\.isBlurred, isBlurred)
         .environment(\.currentDate, currentDate)
         .animation(.default, value: currentDate)
@@ -72,5 +73,7 @@ extension RootScreen {
 }
 
 #Preview {
-    RootScreen().environment(AppSettings())
+    RootScreen()
+        .environment(AppSettings())
+        .environment(ReviewService())
 }

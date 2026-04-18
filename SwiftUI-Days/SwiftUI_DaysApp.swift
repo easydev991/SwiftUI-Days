@@ -5,6 +5,7 @@ import SwiftUI
 struct SwiftUI_DaysApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State private var appSettings = AppSettings()
+    @State private var reviewService = ReviewService()
     private let analyticsService: AnalyticsService
     private let sharedModelContainer: ModelContainer
 
@@ -52,6 +53,7 @@ struct SwiftUI_DaysApp: App {
         WindowGroup {
             RootScreen()
                 .environment(appSettings)
+                .environment(reviewService)
                 .environment(\.analyticsService, analyticsService)
                 .preferredColorScheme(appSettings.appTheme.colorScheme)
         }

@@ -7,4 +7,8 @@ enum DefaultsKey: String {
     case listSortOrder
     /// Размытие при сворачивании приложения
     case blurWhenMinimized
+    /// Счётчик созданных записей для review
+    case reviewTotalItemsCreated
+    /// Milestone-и, по которым уже запрашивали review
+    case reviewAttemptedMilestones
 }

@@ -4,6 +4,7 @@ struct EditItemScreen: View {
     @Environment(\.analyticsService) private var analytics
     @Environment(\.modelContext) private var modelContext
     @Environment(\.isBlurred) private var isBlurred
+    @Environment(ReviewService.self) private var reviewService
     @State private var title: String
     @State private var details: String
     @State private var timestamp: Date
@@ -151,6 +152,7 @@ struct EditItemScreen: View {
             )
             modelContext.insert(newItem)
             analytics.log(.userAction(action: .itemSaved))
+            reviewService.registerItemSaved()
             return
         }
         oldItem.title = title
@@ -167,5 +169,6 @@ struct EditItemScreen: View {
     NavigationStack {
         EditItemScreen(oldItem: .singleLong, closeAction: {})
     }
+    .environment(ReviewService())
 }
 #endif
