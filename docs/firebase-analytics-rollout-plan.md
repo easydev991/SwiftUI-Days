@@ -98,7 +98,7 @@
 
 ### Тесты
 
-- [ ] Добавить тесты для `AnalyticsService` и провайдеров (`SwiftUI-DaysTests/AnalyticsTests.swift`).
+- [x] Добавить тесты для `AnalyticsEvent`, `AnalyticsProvider` и `AnalyticsService` (`SwiftUI-DaysTests/AnalyticsServiceTests.swift`).
 
 ## Правила простоты
 
@@ -116,4 +116,4 @@
 - [x] Добавление нового провайдера не требует правок в экранах.
 - [x] `iconSelected` передаёт название иконки в аналитику.
 - [x] `delete` и `sort` события логируются.
-- [ ] Тесты аналитики написаны.
+- [x] Тесты аналитики написаны.

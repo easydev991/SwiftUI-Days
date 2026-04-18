@@ -2,6 +2,7 @@ import SwiftData
 import SwiftUI
 
 struct AppDataScreen: View {
+    @Environment(ReviewService.self) private var reviewService
     @Environment(\.analyticsService) private var analytics
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
@@ -133,6 +134,7 @@ struct AppDataScreen: View {
                 do {
                     try modelContext.delete(model: Item.self)
                     try modelContext.save()
+                    reviewService.reset()
                     operationResult = .deletionSuccess
                 } catch {
                     analytics.log(
@@ -183,6 +185,7 @@ extension AppDataScreen {
         AppDataScreen()
     }
     .environment(AppSettings())
+    .environment(ReviewService())
     .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
 }
 #endif
