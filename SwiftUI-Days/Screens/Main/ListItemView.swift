@@ -1,8 +1,19 @@
 import SwiftUI
 
 struct ListItemView: View {
-    @Environment(\.currentDate) private var currentDate
-    let item: Item
+    struct Content {
+        let title: String
+        let colorTag: Color?
+        let daysCount: String
+
+        init(item: Item, currentDate: Date) {
+            title = item.title
+            colorTag = item.colorTag
+            daysCount = item.makeDaysCount(to: currentDate)
+        }
+    }
+
+    let content: Content
 
     var body: some View {
         ViewThatFits {
@@ -15,20 +26,20 @@ struct ListItemView: View {
 
     @ViewBuilder
     private var colorTagView: some View {
-        if let colorTag = item.colorTag {
+        if let colorTag = content.colorTag {
             colorTag.frame(width: 16, height: 16)
                 .clipShape(.circle)
         }
     }
 
     private var titleView: some View {
-        Text(item.title)
+        Text(content.title)
             .lineLimit(2)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var daysCountView: some View {
-        Text(item.makeDaysCount(to: currentDate))
+        Text(content.daysCount)
             .multilineTextAlignment(.trailing)
             .contentTransition(.numericText())
     }
