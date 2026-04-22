@@ -25,8 +25,9 @@ extension MainScreen {
         var body: some View {
             List {
                 ForEach(items) { item in
+                    let content = ListItemView.Content(item: item, currentDate: currentDate)
                     NavigationLink(value: item) {
-                        ListItemView(item: item)
+                        ListItemView(content: content)
                     }
                     .swipeActions {
                         DaysDeleteButton {
