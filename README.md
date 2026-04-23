@@ -1,8 +1,10 @@
 # Счётчик дней
 
-[<img alt="Xcode Version" src="https://img.shields.io/badge/Xcode_Version-26.0-blue">](https://developer.apple.com/xcode/)
-[<img alt="Swift Version" src="https://img.shields.io/badge/Swift_Version-6.3-orange">](https://swift.org/)
-[<img alt="iOS Version" src="https://img.shields.io/badge/iOS_Version-17-blue">](https://developer.apple.com/ios/)
+<!-- BEGIN_VERSIONS -->
+[<img alt="Xcode Version" src="https://img.shields.io/badge/Xcode_Version-26.4-blue">](https://developer.apple.com/xcode/)
+[<img alt="Swift Version" src="https://img.shields.io/badge/Swift_Version-6.3.0-orange">](https://swift.org/)
+[<img alt="iOS Version" src="https://img.shields.io/badge/iOS_Version-17.0-4F9153">](https://developer.apple.com/ios/)
+<!-- END_VERSIONS -->
 [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/easydev991/SwiftUI-Days)](https://gitmcp.io/easydev991/SwiftUI-Days)
 
 - Идея приложения в том, чтобы было удобно запоминать события в указанные даты, а потом легко проверить, сколько прошло дней с момента события
@@ -28,6 +30,16 @@ make setup
 ```
 
 - После этого вы сможете запускать другие команды из `Makefile` для форматирования кода, генерации скриншотов и обновления зависимостей
+
+### Git hooks и версии в README
+
+- `make setup_hook` синхронизирует локальные git-хуки (`pre-commit` и `pre-push`) из папки `.githooks`.
+- `pre-commit` автоматически обновляет бейджи версий `Xcode/Swift/iOS` в `README.md`.
+- Для ручного обновления бейджей используйте:
+
+```shell
+make update_readme_versions
+```
 
 ## Что можно делать в приложении
 
@@ -69,3 +81,9 @@ make upload_screenshots
 | Список записей | Создание новой записи | Выбор опции отображения | Перед сохранением | Сортировка на главном экране |
 | --- | --- | --- | --- | --- |
 | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-1-demoList.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-2-chooseDate.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-3-chooseDisplayOption.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-4-beforeSave.png"> | <img src="./fastlane/screenshots/ru/iPad Pro (12.9-inch) (6th generation)-5-sortByDate.png"> |
+
+## Документация
+
+- [Установка и настройка](docs/setup-guide.md) - подробная инструкция по настройке проекта
+- [Публикация приложения](docs/deployment.md) - инструкции по сборке и публикации в AppStore
+- Остальная документация есть в папке [docs](docs)
