@@ -1,3 +1,4 @@
+import Foundation
 import SwiftUI
 
 extension Color {
@@ -5,36 +6,58 @@ extension Color {
     /// - Parameter hex: `Hex`-строка (например, "#FF5722", "#ff5722")
     /// - Returns: `Color` или `nil`, если формат невалиден
     init?(hex: String) {
-        // Убираем пробелы и переносы строк
-        let trimmed = hex.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        // Проверка на пустую строку
-        guard !trimmed.isEmpty else { return nil }
-
-        // Строка должна начинаться с #
-        guard trimmed.hasPrefix("#") else { return nil }
-
-        // Убираем #
-        let hexWithoutHash = String(trimmed.dropFirst())
-
-        // Должно быть ровно 6 символов (RRGGBB)
-        guard hexWithoutHash.count == 6 else { return nil }
-
-        // Парсим hex в Int
-        let scanner = Scanner(string: hexWithoutHash)
-        var hexNumber: UInt64 = 0
-
-        guard scanner.scanHexInt64(&hexNumber) else { return nil }
-
-        // Проверяем, что вся строка была просканирована
-        guard scanner.isAtEnd else { return nil }
-
-        // Извлекаем RGB компоненты
+        guard let hexNumber = Self.hexNumber(from: hex, digitsCount: 6) else { return nil }
         let r = Double((hexNumber & 0xFF0000) >> 16) / 255.0
         let g = Double((hexNumber & 0x00FF00) >> 8) / 255.0
         let b = Double(hexNumber & 0x0000FF) / 255.0
+        self.init(red: r, green: g, blue: b, opacity: 1)
+    }
 
-        self.init(red: r, green: g, blue: b)
+    /// Создаёт Color из hex-строки формата #RRGGBBAA
+    /// - Parameter hexRGBA: `Hex`-строка с alpha (например, "#FF5722FF")
+    /// - Returns: `Color` или `nil`, если формат невалиден
+    init?(hexRGBA: String) {
+        guard let hexNumber = Self.hexNumber(from: hexRGBA, digitsCount: 8) else { return nil }
+        let r = Double((hexNumber & 0xFF00_0000) >> 24) / 255.0
+        let g = Double((hexNumber & 0x00FF_0000) >> 16) / 255.0
+        let b = Double((hexNumber & 0x0000_FF00) >> 8) / 255.0
+        let a = Double(hexNumber & 0x0000_00FF) / 255.0
+        self.init(red: r, green: g, blue: b, opacity: a)
+    }
+
+    /// Возвращает hex-строку в формате #RRGGBBAA для RGB-цветов.
+    /// Для `.clear` и не-RGB/динамических системных цветов возвращает `nil`.
+    var hexRGBA: String? {
+        var red: CGFloat = .zero
+        var green: CGFloat = .zero
+        var blue: CGFloat = .zero
+        var alpha: CGFloat = .zero
+        let uiColor = UIColor(self)
+        guard uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return nil }
+        guard alpha > .zero else { return nil }
+        let r = Int((red * 255).rounded())
+        let g = Int((green * 255).rounded())
+        let b = Int((blue * 255).rounded())
+        let a = Int((alpha * 255).rounded())
+        return String(format: "#%02X%02X%02X%02X", r, g, b, a)
+    }
+}
+
+private extension Color {
+    static func hexNumber(
+        from string: String,
+        digitsCount: Int
+    ) -> UInt64? {
+        let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+        guard trimmed.hasPrefix("#") else { return nil }
+        let hexWithoutHash = String(trimmed.dropFirst())
+        guard hexWithoutHash.count == digitsCount else { return nil }
+        let scanner = Scanner(string: hexWithoutHash)
+        var hexNumber: UInt64 = 0
+        guard scanner.scanHexInt64(&hexNumber) else { return nil }
+        guard scanner.isAtEnd else { return nil }
+        return hexNumber
     }
 }
 
