@@ -7,18 +7,16 @@ extension MainScreen {
         @Environment(\.currentDate) private var currentDate
         @Environment(\.modelContext) private var modelContext
         @Binding private var editItem: Item?
-        @Query private var items: [Item]
+        private let items: [Item]
+        private let searchText: String
 
         init(
+            items: [Item],
             searchText: String = "",
-            sortOrder: SortOrder = .forward,
             editItem: Binding<Item?>
         ) {
-            _items = Query(
-                filter: Item.predicate(searchText: searchText),
-                sort: \.timestamp,
-                order: sortOrder
-            )
+            self.items = items
+            self.searchText = searchText
             _editItem = editItem
         }
 
@@ -42,13 +40,13 @@ extension MainScreen {
                 }
             }
             .listStyle(.plain)
-            .animation(.default, value: items)
+            .animation(.default, value: items.count)
             .overlay { emptySearchViewIfNeeded }
         }
 
         private var emptySearchViewIfNeeded: some View {
             ZStack {
-                if items.isEmpty {
+                if items.isEmpty, !searchText.isEmpty {
                     ContentUnavailableView.search
                         .transition(.scale.combined(with: .opacity))
                 }
@@ -61,8 +59,11 @@ extension MainScreen {
 #if DEBUG
 #Preview {
     NavigationStack {
-        MainScreen.ListView(editItem: .constant(nil))
-            .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
+        MainScreen.ListView(
+            items: Item.makeList(),
+            editItem: .constant(nil)
+        )
+        .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
     }
 }
 #endif

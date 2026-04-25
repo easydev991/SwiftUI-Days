@@ -21,6 +21,9 @@ extension AnalyticsEvent {
         case iconSelected(iconName: String)
         case delete
         case sort
+        case openFilter
+        case applyFilter
+        case resetFilter
         case itemSaved
         case create
         case edit
@@ -30,6 +33,9 @@ extension AnalyticsEvent {
             case .iconSelected: "icon_selected"
             case .delete: "delete"
             case .sort: "sort"
+            case .openFilter: "open_filter"
+            case .applyFilter: "apply_filter"
+            case .resetFilter: "reset_filter"
             case .itemSaved: "item_saved"
             case .create: "create"
             case .edit: "edit"

@@ -16,7 +16,7 @@ private final class MockAnalyticsProvider: AnalyticsProvider {
 
 @Suite("AnalyticsService tests")
 struct AnalyticsServiceTests {
-    @Test
+    @Test("Логирование отправляется во все провайдеры")
     func logCallsAllProviders() {
         let provider1 = MockAnalyticsProvider()
         let provider2 = MockAnalyticsProvider()
@@ -29,14 +29,14 @@ struct AnalyticsServiceTests {
         #expect(provider2.events.count == 1)
     }
 
-    @Test
+    @Test("Логирование с пустым списком провайдеров не падает")
     func logWithEmptyProvidersDoesNotCrash() {
         let service = AnalyticsService(providers: [])
         let event = AnalyticsEvent.userAction(action: .delete)
         service.log(event)
     }
 
-    @Test
+    @Test("Событие просмотра экрана логируется")
     func screenViewEventIsLogged() {
         let provider = MockAnalyticsProvider()
         let service = AnalyticsService(providers: [provider])
@@ -50,7 +50,7 @@ struct AnalyticsServiceTests {
         }
     }
 
-    @Test
+    @Test("Событие пользовательского действия логируется")
     func userActionEventIsLogged() {
         let provider = MockAnalyticsProvider()
         let service = AnalyticsService(providers: [provider])
@@ -64,7 +64,7 @@ struct AnalyticsServiceTests {
         }
     }
 
-    @Test
+    @Test("Событие выбора иконки логируется с именем")
     func iconSelectedEventIsLoggedWithIconName() {
         let provider = MockAnalyticsProvider()
         let service = AnalyticsService(providers: [provider])
@@ -78,7 +78,7 @@ struct AnalyticsServiceTests {
         }
     }
 
-    @Test
+    @Test("Событие ошибки приложения логируется")
     func appErrorEventIsLogged() {
         let provider = MockAnalyticsProvider()
         let service = AnalyticsService(providers: [provider])
@@ -94,7 +94,7 @@ struct AnalyticsServiceTests {
         }
     }
 
-    @Test
+    @Test("Несколько событий логируются в исходном порядке")
     func multipleEventsAreLoggedInOrder() {
         let provider = MockAnalyticsProvider()
         let service = AnalyticsService(providers: [provider])
@@ -109,25 +109,25 @@ struct AnalyticsServiceTests {
 
 @Suite("NoopAnalyticsProvider tests")
 struct NoopAnalyticsProviderTests {
-    @Test
+    @Test("Noop провайдер не падает при screenView")
     func doesNotCrashOnScreenView() {
         let provider = NoopAnalyticsProvider()
         provider.log(event: .screenView(screen: .main))
     }
 
-    @Test
+    @Test("Noop провайдер не падает при userAction")
     func doesNotCrashOnUserAction() {
         let provider = NoopAnalyticsProvider()
         provider.log(event: .userAction(action: .delete))
     }
 
-    @Test
+    @Test("Noop провайдер не падает при iconSelected")
     func doesNotCrashOnIconSelected() {
         let provider = NoopAnalyticsProvider()
         provider.log(event: .userAction(action: .iconSelected(iconName: "AnyIcon")))
     }
 
-    @Test
+    @Test("Noop провайдер не падает при appError")
     func doesNotCrashOnAppError() {
         let provider = NoopAnalyticsProvider()
         let error = NSError(domain: "TestError", code: 0, userInfo: nil)
@@ -137,21 +137,24 @@ struct NoopAnalyticsProviderTests {
 
 @Suite("AnalyticsEvent tests")
 struct AnalyticsEventTests {
-    @Test
+    @Test("Имена user action соответствуют контракту аналитики")
     func userActionNames() {
         #expect(AnalyticsEvent.UserAction.delete.name == "delete")
         #expect(AnalyticsEvent.UserAction.sort.name == "sort")
+        #expect(AnalyticsEvent.UserAction.openFilter.name == "open_filter")
+        #expect(AnalyticsEvent.UserAction.applyFilter.name == "apply_filter")
+        #expect(AnalyticsEvent.UserAction.resetFilter.name == "reset_filter")
         #expect(AnalyticsEvent.UserAction.itemSaved.name == "item_saved")
         #expect(AnalyticsEvent.UserAction.create.name == "create")
         #expect(AnalyticsEvent.UserAction.edit.name == "edit")
     }
 
-    @Test
+    @Test("iconSelected возвращает корректное имя события")
     func iconSelectedName() {
         #expect(AnalyticsEvent.UserAction.iconSelected(iconName: "Any").name == "icon_selected")
     }
 
-    @Test
+    @Test("Raw value экранов соответствует ожидаемым значениям")
     func appScreenRawValues() {
         #expect(AnalyticsEvent.AppScreen.root.rawValue == "root")
         #expect(AnalyticsEvent.AppScreen.main.rawValue == "main")
@@ -162,7 +165,7 @@ struct AnalyticsEventTests {
         #expect(AnalyticsEvent.AppScreen.privacy.rawValue == "privacy")
     }
 
-    @Test
+    @Test("Raw value ошибок приложения соответствует ожидаемым значениям")
     func appErrorKindRawValues() {
         #expect(AnalyticsEvent.AppErrorKind.setIcon.rawValue == "set_icon")
         #expect(AnalyticsEvent.AppErrorKind.createBackup.rawValue == "create_backup")

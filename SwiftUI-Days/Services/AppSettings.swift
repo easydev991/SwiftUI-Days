@@ -1,18 +1,30 @@
+import Foundation
 import Observation
 import SwiftUI
 
 @Observable final class AppSettings {
+    private let defaults: UserDefaults
+    private let bundle: Bundle
+
+    init(
+        defaults: UserDefaults = .standard,
+        bundle: Bundle = .main
+    ) {
+        self.defaults = defaults
+        self.bundle = bundle
+    }
+
     var appTheme: AppTheme {
         get {
             access(keyPath: \.appTheme)
-            let rawValue = UserDefaults.standard.integer(
+            let rawValue = defaults.integer(
                 forKey: DefaultsKey.appTheme.rawValue
             )
             return .init(rawValue: rawValue) ?? .system
         }
         set {
             withMutation(keyPath: \.appTheme) {
-                UserDefaults.standard
+                defaults
                     .setValue(
                         newValue.rawValue,
                         forKey: DefaultsKey.appTheme.rawValue
@@ -24,13 +36,13 @@ import SwiftUI
     var blurWhenMinimized: Bool {
         get {
             access(keyPath: \.blurWhenMinimized)
-            return UserDefaults.standard.bool(
+            return defaults.bool(
                 forKey: DefaultsKey.blurWhenMinimized.rawValue
             )
         }
         set {
             withMutation(keyPath: \.blurWhenMinimized) {
-                UserDefaults.standard
+                defaults
                     .setValue(
                         newValue,
                         forKey: DefaultsKey.blurWhenMinimized.rawValue
@@ -39,9 +51,30 @@ import SwiftUI
         }
     }
 
-    let appVersion = (
-        Bundle.main.object(
+    var mainScreenColorTagFilterHex: String? {
+        get {
+            access(keyPath: \.mainScreenColorTagFilterHex)
+            return defaults.string(
+                forKey: DefaultsKey.mainScreenColorTagFilterHex.rawValue
+            )
+        }
+        set {
+            withMutation(keyPath: \.mainScreenColorTagFilterHex) {
+                guard let newValue else {
+                    defaults.removeObject(forKey: DefaultsKey.mainScreenColorTagFilterHex.rawValue)
+                    return
+                }
+                defaults.setValue(
+                    newValue,
+                    forKey: DefaultsKey.mainScreenColorTagFilterHex.rawValue
+                )
+            }
+        }
+    }
+
+    var appVersion: String {
+        (bundle.object(
             forInfoDictionaryKey: "CFBundleShortVersionString"
-        ) as? String
-    ) ?? "1"
+        ) as? String) ?? "1"
+    }
 }
