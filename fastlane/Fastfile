@@ -10,88 +10,75 @@
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-# Uncomment the line if you want fastlane to automatically update itself
-#update_fastlane
-
 default_platform(:ios)
 
 require 'shellwords'
+require 'fileutils'
 
 # Проектные константы
-APP_SCHEME_FOR_BUILD                  = "SwiftUI-Days"
-ARTIFACT_OUTPUT_NAME                  = "SwiftUI-Days"
-XCODEPROJECT_FILE_FOR_VERSION_LOOKUP  = "SwiftUI-Days.xcodeproj"
-UITESTS_SCHEME_FOR_SCREENSHOTS        = "SwiftUI-DaysUITests"
-APP_IDENTIFIER_FOR_BUILD_NUMBER       = "com.oleg991.SwiftUI-Days"
+UITESTS_SCHEME_FOR_SCREENSHOTS = "SwiftUI-DaysUITests"
 
-# Репозиторий с секретами для App Store Connect API Key
 SECRETS_REPO = "git@github.com:easydev991/ios-fastlane-secrets.git"
-SECRETS_DIR  = "appstoreconnect"
 
-def load_app_store_connect_api_key
-  Dir.mktmpdir("asc-secrets") do |tmp|
-    sh("git clone --depth 1 #{SECRETS_REPO} #{Shellwords.escape(tmp)}")
-    secrets_path = File.join(tmp, SECRETS_DIR)
-    key_id    = File.read(File.join(secrets_path, "KEY_ID")).strip
-    issuer_id = File.read(File.join(secrets_path, "ISSUER_ID")).strip
-    p8_path   = Dir[File.join(secrets_path, "AuthKey_*.p8")].first
-    UI.user_error!("Не найден файл приватного ключа AuthKey_*.p8 в #{secrets_path}") if p8_path.nil?
-    key_p8 = File.read(p8_path)
+# Кеш-директория: хранение в постоянном месте, чтобы __FILE__ и autoload
+# в fastlane_common.rb работали корректно.
+SHARED_CACHE_DIR = File.expand_path("~/.cache/ios-fastlane-secrets")
 
-    app_store_connect_api_key(
-      key_id: key_id,
-      issuer_id: issuer_id,
-      key_content: key_p8,
-      duration: 1200,
-      in_house: false
-    )
+def load_common_module
+  cache = SHARED_CACHE_DIR
+  FileUtils.mkdir_p(cache)
+
+  if File.directory?(File.join(cache, ".git"))
+    begin
+      sh("git -C #{Shellwords.escape(cache)} pull --ff-only")
+    rescue => e
+      UI.important("Не удалось обновить ios-fastlane-secrets: #{e.message}. Используется кэш.")
+    end
+  else
+    FileUtils.rm_rf(cache) if File.exist?(cache)
+    sh("git clone --depth 1 #{SECRETS_REPO} #{Shellwords.escape(cache)}")
   end
+
+  common_path = File.join(cache, "fastlane_common.rb")
+  UI.user_error!("fastlane_common.rb не найден в ios-fastlane-secrets") unless File.exist?(common_path)
+  require common_path
 end
 
-def asc_key
-  @asc_key ||= load_app_store_connect_api_key
-end
-
-def latest_crashlytics_upload_symbols_binary
-  candidates = Dir["#{Dir.home}/Library/Developer/Xcode/DerivedData/**/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/upload-symbols"]
-  return nil if candidates.empty?
-
-  candidates.max_by { |path| File.mtime(path) }
-end
+load_common_module
 
 platform :ios do
   desc "Сгенерировать новые локализованные скриншоты"
   lane :screenshots do
     # Путь к файлу SwiftUI_DaysApp.swift
     app_file_path = "../SwiftUI-Days/SwiftUI_DaysApp.swift"
-    
+
     # Проверяем, что файл существует
     UI.user_error!("Файл #{app_file_path} не найден") unless File.exist?(app_file_path)
-    
+
     # Читаем содержимое файла
     file_content = File.read(app_file_path)
-    
+
     # Проверяем, содержит ли файл строку "RootScreen()"
     unless file_content.include?("RootScreen()")
       UI.user_error!("Файл не содержит строку 'RootScreen()'")
     end
-    
+
     # Создаем резервную копию
     backup_path = "#{app_file_path}.backup"
     File.write(backup_path, file_content)
     UI.message("Создана резервная копия: #{backup_path}")
-    
+
     begin
       # Заменяем "RootScreen()" на "RootScreen().tint(.accent)"
       modified_content = file_content.gsub("RootScreen()", "RootScreen().tint(.accent)")
-      
+
       # Записываем измененный файл
       File.write(app_file_path, modified_content)
       UI.message("Обновили .tint для RootScreen на черный")
-      
+
       # Выполняем захват скриншотов
       capture_screenshots(scheme: UITESTS_SCHEME_FOR_SCREENSHOTS)
-      
+
     ensure
       # Восстанавливаем оригинальный файл из резервной копии
       File.write(app_file_path, file_content)
@@ -117,66 +104,21 @@ platform :ios do
 
   desc "Получить следующий номер сборки из TestFlight"
   lane :get_next_build_number do
-    project_version = get_version_number(
-      xcodeproj: XCODEPROJECT_FILE_FOR_VERSION_LOOKUP
+    compute_next_build_number(
+      app_identifier: "com.oleg991.SwiftUI-Days",
+      xcodeproj: "SwiftUI-Days.xcodeproj"
     )
-
-    latest_build_any = latest_testflight_build_number(
-      api_key: asc_key,
-      app_identifier: APP_IDENTIFIER_FOR_BUILD_NUMBER
-    )
-    latest_tf_version = lane_context[SharedValues::LATEST_TESTFLIGHT_VERSION]
-    if latest_tf_version.to_s == project_version.to_s
-      (latest_build_any.to_i + 1).to_s
-    else
-      # Начинаем новую ветку версий с билда 1
-      "1"
-    end
   end
 
   desc "Собрать и отправить сборку в TestFlight"
   lane :build_and_upload do
-    increment_build_number(
-      build_number: get_next_build_number,
-      xcodeproj: XCODEPROJECT_FILE_FOR_VERSION_LOOKUP,
-      skip_info_plist: true
-    )
-
-    build_app(
-      scheme: APP_SCHEME_FOR_BUILD,
-      export_method: "app-store",
-      clean: true,
-      output_directory: "fastlane/builds",
-      output_name: ARTIFACT_OUTPUT_NAME,
-      xcargs: "-allowProvisioningUpdates"
-    )
-
-    dsym_output_path = lane_context[SharedValues::DSYM_OUTPUT_PATH]
-    UI.user_error!("Не найден путь к dSYM после build_app") if dsym_output_path.to_s.empty?
-    UI.user_error!("Файл dSYM не найден: #{dsym_output_path}") unless File.exist?(dsym_output_path)
-
-    upload_symbols_binary = latest_crashlytics_upload_symbols_binary
-    UI.user_error!("Не найден Crashlytics upload-symbols binary в DerivedData") if upload_symbols_binary.nil?
-
-    upload_symbols_to_crashlytics(
-      dsym_path: dsym_output_path,
+    build_and_upload_app(
+      app_identifier: "com.oleg991.SwiftUI-Days",
+      scheme: "SwiftUI-Days",
+      xcodeproj: "SwiftUI-Days.xcodeproj",
+      xcodeproj_for_version: "SwiftUI-Days.xcodeproj",
       gsp_path: "SwiftUI-Days/GoogleService-Info.plist",
-      binary_path: upload_symbols_binary
+      output_name: "SwiftUI-Days"
     )
-
-    upload_to_testflight(
-      skip_waiting_for_build_processing: true,
-      distribute_external: false,
-      notify_external_testers: false,
-      api_key: asc_key
-    )
-
-    increment_build_number(
-      build_number: "1",
-      xcodeproj: XCODEPROJECT_FILE_FOR_VERSION_LOOKUP,
-      skip_info_plist: true
-    )
-
-    clean_build_artifacts
   end
 end
