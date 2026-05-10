@@ -31,8 +31,10 @@ def load_common_module
   if File.directory?(File.join(cache, ".git"))
     begin
       sh("git -C #{Shellwords.escape(cache)} pull --ff-only")
-    rescue => e
-      UI.important("Не удалось обновить ios-fastlane-secrets: #{e.message}. Используется кэш.")
+    rescue
+      UI.important("git pull failed, re-cloning ios-fastlane-secrets...")
+      FileUtils.rm_rf(cache)
+      sh("git clone --depth 1 #{SECRETS_REPO} #{Shellwords.escape(cache)}")
     end
   else
     FileUtils.rm_rf(cache) if File.exist?(cache)
@@ -117,7 +119,7 @@ platform :ios do
       scheme: "SwiftUI-Days",
       xcodeproj: "SwiftUI-Days.xcodeproj",
       xcodeproj_for_version: "SwiftUI-Days.xcodeproj",
-      gsp_path: "SwiftUI-Days/GoogleService-Info.plist",
+      gsp_path: File.expand_path("../SwiftUI-Days/GoogleService-Info.plist", __dir__),
       output_name: "SwiftUI-Days"
     )
   end
