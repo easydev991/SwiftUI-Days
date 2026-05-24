@@ -10,6 +10,7 @@ struct ReadSectionView: View {
                 .accessibilityIdentifier("sectionHeader")
             Text(bodyText)
                 .textSelection(.enabled)
+                .fixedSize(horizontal: false, vertical: true)
                 .accessibilityIdentifier("sectionBody")
         }
         .frame(maxWidth: .infinity, alignment: .leading)
