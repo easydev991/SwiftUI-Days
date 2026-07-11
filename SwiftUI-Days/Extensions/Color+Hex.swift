@@ -33,8 +33,7 @@ extension Color {
         var blue: CGFloat = .zero
         var alpha: CGFloat = .zero
         let uiColor = UIColor(self)
-        guard uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return nil }
-        guard alpha > .zero else { return nil }
+        guard uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha), alpha > .zero else { return nil }
         let r = Int((red * 255).rounded())
         let g = Int((green * 255).rounded())
         let b = Int((blue * 255).rounded())
@@ -49,14 +48,12 @@ private extension Color {
         digitsCount: Int
     ) -> UInt64? {
         let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return nil }
-        guard trimmed.hasPrefix("#") else { return nil }
+        guard !trimmed.isEmpty, trimmed.hasPrefix("#") else { return nil }
         let hexWithoutHash = String(trimmed.dropFirst())
         guard hexWithoutHash.count == digitsCount else { return nil }
         let scanner = Scanner(string: hexWithoutHash)
         var hexNumber: UInt64 = 0
-        guard scanner.scanHexInt64(&hexNumber) else { return nil }
-        guard scanner.isAtEnd else { return nil }
+        guard scanner.scanHexInt64(&hexNumber), scanner.isAtEnd else { return nil }
         return hexNumber
     }
 }

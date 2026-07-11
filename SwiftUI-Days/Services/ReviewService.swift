@@ -41,8 +41,7 @@ import OSLog
 
         guard !sessionReviewRequested else { return }
         let count = totalItemsCreatedCount
-        guard let milestone = milestones.last(where: { $0 <= count }) else { return }
-        guard !attemptedMilestones.contains(milestone) else { return }
+        guard let milestone = milestones.last(where: { $0 <= count }), !attemptedMilestones.contains(milestone) else { return }
 
         logger.info("Запрос review для milestone \(milestone) (записей: \(count))")
         sessionReviewRequested = true
