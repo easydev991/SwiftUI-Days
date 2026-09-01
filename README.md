@@ -1,15 +1,16 @@
 # Счётчик дней
 
 <!-- BEGIN_VERSIONS -->
-[<img alt="Xcode Version" src="https://img.shields.io/badge/Xcode_Version-26.6-blue">](https://developer.apple.com/xcode/)
+[<img alt="Xcode Version" src="https://img.shields.io/badge/Xcode_Version-27.0-blue">](https://developer.apple.com/xcode/)
 [<img alt="Swift Version" src="https://img.shields.io/badge/Swift_Version-6.3.0-orange">](https://swift.org/)
 [<img alt="iOS Version" src="https://img.shields.io/badge/iOS_Version-17.0-4F9153">](https://developer.apple.com/ios/)
 <!-- END_VERSIONS -->
-[![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/easydev991/SwiftUI-Days)](https://gitmcp.io/easydev991/SwiftUI-Days)
 
 - Идея приложения в том, чтобы было удобно запоминать события в указанные даты, а потом легко проверить, сколько прошло дней с момента события
-- Это вторая версия моего пет-проекта. Первая версия находится [тут](https://github.com/easydev991/Days), и я не публиковал ее в `AppStore`
 - Android-версия находится [тут](https://github.com/easydev991/Jetpack-Days/tree/main)
+- Это вторая версия моего пет-проекта. Первая версия (легаси) находится [тут](https://github.com/easydev991/Days)
+- Приложение работает полностью офлайн
+- Приложение адаптирует размер шрифтов к системным настройкам
 
 ## Начало работы
 

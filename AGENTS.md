@@ -63,7 +63,7 @@ import SwiftUI
 - Extensions: `Type+.swift` (e.g., `View+.swift`, `Color+Hex.swift`)
 - Services: Plain nouns (e.g., `AppSettings`, `FeedbackSender`)
 - Models: Plain nouns (e.g., `Item`, `DisplayOption`)
-- Environment keys: `*EnvironmentKey.swift`
+- Environment keys: `@Entry` in `EnvironmentValues+.swift`
 
 ### State Management
 

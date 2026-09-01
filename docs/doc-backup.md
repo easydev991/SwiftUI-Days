@@ -34,7 +34,7 @@
 | `details` | String? | Описание (пустая строка если `null`) |
 | `timestamp` | Double | Дата события |
 | `colorTag` | String? | Цвет (hex или Base64) |
-| `displayOption` | String | Опция отображения |
+| `displayOption` | String? | Опция отображения (по умолчанию `day`) |
 
 ## Различия платформ
 

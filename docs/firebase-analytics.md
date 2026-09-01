@@ -43,6 +43,11 @@ protocol AnalyticsProvider {
 ```swift
 struct AnalyticsService {
     private let providers: [any AnalyticsProvider]
+
+    init(providers: [any AnalyticsProvider]) {
+        self.providers = providers
+    }
+
     func log(_ event: AnalyticsEvent) {
         providers.forEach { $0.log(event: event) }
     }
@@ -53,8 +58,8 @@ struct AnalyticsService {
 
 ### DI
 
-- В `SwiftUI_DaysApp` собирается `AnalyticsService` (Firebase в проде, `NoopAnalyticsProvider` при запуске с аргументом `UITest`).
-- В `EnvironmentKeys/EnvironmentValues+.swift` задан `@Entry var analyticsService` с дефолтом `NoopAnalyticsProvider`.
+- В `SwiftUI_DaysApp` собирается `AnalyticsService` (Firebase во всех сборках; `NoopAnalyticsProvider` — в DEBUG-сборке при запуске с аргументом `UITest`).
+- В `EnvironmentKeys/EnvironmentValues+.swift` задан `@Entry var analyticsService` с дефолтом `AnalyticsService(providers: [NoopAnalyticsProvider()])`.
 - Во View: `@Environment(\.analyticsService)`.
 - Во view model: явный `init(analytics: AnalyticsService)` (constructor injection).
 
@@ -84,12 +89,14 @@ struct AnalyticsService {
 
 ### Действия пользователя (`user_action`)
 
-- `icon_selected` — выбор иконки в `ThemeIconScreen` (параметр `icon_name`).
-- `delete` — удаление в `MainScreen`.
+- `icon_selected` — выбор иконки в `ThemeIconScreen+IconViewModel` (параметр `icon_name`).
+- `delete` — удаление строки в `MainScreen+ListView`.
 - `sort` — изменение сортировки в `MainScreen`.
 - `open_filter` — открытие фильтра в `MainScreen`.
 - `apply_filter` / `reset_filter` — в `ColorTagFilterSheet`.
-- `create` / `edit` / `item_saved` — в `MainScreen`, `ItemScreen`, `EditItemScreen`.
+- `create` — создание в `MainScreen`.
+- `edit` — переход к редактированию в `MainScreen+ListView` и `ItemScreen`.
+- `item_saved` — сохранение в `EditItemScreen`.
 
 ### Ошибки (`app_error`)
 
