@@ -22,7 +22,7 @@
 - Единая точка регистрации quick action и единая точка обработки входящего события — без дублирования логики между cold/warm запуском.
 - Событие доходит до SwiftUI через `@Observable`-сервис, инжектируемый через `.environment`; observable-объекты не вкладываются друг в друга.
 - Маршрутизация до существующей формы добавления: вкладка списка + `SheetItem.addItem`; форма открывается не более одного раза, analytics логируется не более одного раза.
-- Логика маршрутизации и маппинга типа покрыта unit-тестами без UIKit-инфраструктуры.
+- Логика маппинга типа и обработки shortcut-события (`QuickActionType`, `QuickActionService.handle/consume`) покрыта unit-тестами без UIKit-инфраструктуры; маршрутизация в UI (`MainScreen`) unit-тестами не покрывается — проверяется вручную на симуляторе (сценарии «Second activation while form is open», «Analytics logged exactly once», «No duplicate analytics», «Quick action while another sheet is open»).
 
 **Non-Goals:**
 
@@ -79,7 +79,7 @@ func application(
 Порядок:
 
 1. `AppDelegate.application(_:didFinishLaunchingWithOptions:)` — регистрация `UIApplication.shared.shortcutItems`.
-2. `AppDelegate.application(_:configurationForConnecting:options:)` — `options.shortcutItem` → маппинг типа → `QuickActionService.shared.requestAddItem()`; заодно конфигурация сцены с `delegateClass`.
+2. `AppDelegate.application(_:configurationForConnecting:options:)` — `options.shortcutItem` → `QuickActionService.shared.handle(options.shortcutItem)`; заодно конфигурация сцены с `delegateClass`.
 3. Сцена подключается, SwiftUI строит `RootScreen`; вкладка по умолчанию — `.list`.
 4. `MainScreen.onAppear` — запрос уже в pending, `consumeAddItemRequest()` возвращает `true` → analytics + `sheetItem = .addItem`.
 
@@ -89,7 +89,7 @@ func application(
 
 Порядок:
 
-1. `windowScene(_:performActionFor:) async -> Bool` — маппинг типа → `QuickActionService.shared.requestAddItem()` → вернуть `true`; для неизвестного типа вернуть `false` и ничего не делать.
+1. `windowScene(_:performActionFor:) async -> Bool` — `QuickActionService.shared.handle(shortcutItem)`, возвращается его результат: `true` для распознанного action, `false` для неизвестного типа (без навигации и логирования).
 2. `RootScreen.onChange(of: service.requestCount)` — переключение на вкладку списка (`tab = .list`).
 3. `MainScreen.onChange(of: service.requestCount)` — `consumeAddItemRequest()` → если форма ещё не открыта: analytics + `sheetItem = .addItem`.
 
@@ -116,12 +116,26 @@ final class QuickActionService {
         isPending = false
         return true
     }
+
+    /// Единственная точка маппинга системного shortcut в доменное действие.
+    /// Возвращает true, если событие распознано и обработано.
+    @discardableResult
+    func handle(_ shortcutItem: UIApplicationShortcutItem?) -> Bool {
+        guard let shortcutItem, let type = QuickActionType(shortcutType: shortcutItem.type) else { return false }
+        switch type {
+        case .addItem:
+            requestAddItem()
+            return true
+        }
+    }
 }
 ```
 
+Почему маппинг живёт в сервисе (`handle`), а не в вызывающих делегатах: cold- и warm-пути обрабатывают событие в разных классах; общая точка гарантирует, что новый тип quick action не получится добавить в один путь и забыть в другом.
+
 Почему счётчик, а не просто флаг: `consume` сбрасывает флаг, поэтому наблюдатель того же флага (`RootScreen`) мог бы не увидеть переход в `true` — значение уже сброшено более ранним подписчиком — и не переключить вкладку. Монотонный счётчик не сбрасывается, поэтому оба наблюдателя гарантированно видят факт запроса, а «однократность» обеспечивается отдельным `isPending`.
 
-Почему `static let shared`: scene delegate создаёт UIKit (`UISceneConfiguration.delegateClass`), а не SwiftUI — доставить туда инъектированный в `.environment` экземпляр невозможно. Поэтому сервис — единственный app-wide экземпляр, а SwiftUI получает его через `.environment(QuickActionService.shared)`. Инъекция в окружение при этом сохраняется: в UI сервис по-прежнему попадает только через `@Environment(QuickActionService.self)`, а не через обращение к глобалу из view.
+Почему `static let shared`: экземпляры делегатов создаёт фреймворк по метатипу — `UISceneConfiguration.delegateClass` для scene delegate и `@UIApplicationDelegateAdaptor` для AppDelegate — без точки инъекции зависимостей (передать готовый экземпляр нельзя), а `Environment` распространяется только по иерархии view, куда делегаты не входят. Поэтому сервис — единственный app-wide экземпляр, а SwiftUI получает его через `.environment(QuickActionService.shared)`. Инъекция в окружение при этом сохраняется: в UI сервис по-прежнему попадает только через `@Environment(QuickActionService.self)`, а не через обращение к глобалу из view.
 
 ### D6. Маршрутизация до формы: где переключение вкладки, где открытие sheet
 
@@ -136,7 +150,7 @@ final class QuickActionService {
 
 ### D7. Локализация заголовка
 
-Заголовок берётся из существующего ключа каталога: `String(localized: "Add Item")` — тот же приём, что используется в проекте для `String(localized: "Title")`. Ключ `Add Item` в `Localizable.xcstrings` уже содержит `ru`: «Добавить запись» и `en`: «Add Item», поэтому новые ключи и правки каталога не нужны. Вычисление заголовка происходит при регистрации shortcut, то есть язык определяется текущей локалью устройства.
+Заголовок берётся из существующего ключа каталога через сгенерированный аксессор: `String(localized: .addItem)` — компилятор отслеживает ключ «Add Item», поэтому его переименование в каталоге сломает сборку, а не приведёт к показу английской строки русским пользователям. Ключ `Add Item` в `Localizable.xcstrings` уже содержит `ru`: «Добавить запись» и `en`: «Add Item», поэтому новые ключи и правки каталога не нужны. Вычисление заголовка происходит при регистрации shortcut, то есть язык определяется текущей локалью устройства.
 
 ### D8. Analytics
 
@@ -154,11 +168,14 @@ final class QuickActionService {
 
 Длинное нажатие на иконку нельзя воспроизвести из XCUITest. Поэтому в `AppDelegate.application(_:didFinishLaunchingWithOptions:)` под `#if DEBUG` добавляется проверка launch-аргумента `"UITestQuickAction"`: при его наличии сервис получает тот же запрос, что и при реальном quick action. Это даёт детерминированный UI-тест маршрутизации (переключение вкладки + открытие формы) без изменения продакшн-поведения. Аргумент существует только в debug-сборке и присутствует лишь в UI-тестах.
 
+**Отменено при реализации:** UI-тест признан лишним (чужероден для скриншот-таргета `SwiftUI-DaysUITests`, проверяет искусственный путь мимо UIKit), debug-хук вместе с ним не добавлялся; маршрутизация проверена вручную на симуляторе.
+
 ## Risks / Trade-offs
 
 - **[Quick action не виден до первого запуска приложения]** → Это осознанный компромисс динамической регистрации (D1); требования и сценарий «No action before first launch» его фиксируют. Устранение потребует статического `Info.plist` — отдельная итерация.
 - **[Замена `delegateClass` у сцены]** → SwiftUI-приложение продолжает создавать окно через `WindowGroup` (официальный паттерн Apple, D3). Риск проверяется первым шагом реализации: если окно перестанет создаваться, симптом — пустой экран на запуске; откат — не выставлять `delegateClass` и вернуться к `UIApplicationDelegate.application(_:performActionFor:completionHandler:)` (deprecated начиная с iOS 26, но рабочий на iOS 17+) либо к статическому `Info.plist` + обработке в app delegate.
-- **[Сервис — синглтон (`QuickActionService.shared`)]** → Осознанный компромисс: UIKit создаёт scene delegate вне SwiftUI, поэтому инъекция в `.environment` туда не доходит. В UI сервис по-прежнему приходит только через `@Environment` (D5). Альтернатива — статическая передача экземпляра в scene delegate, что даёт более хрупкое глобальное mutable-состояние.
+- **[Сервис — синглтон (`QuickActionService.shared`)]** → Осознанный компромисс: экземпляры делегатов создаёт фреймворк по метатипу, точки инъекции нет (D5). В UI сервис по-прежнему приходит только через `@Environment` (D5). Альтернативы (`UISceneSession.userInfo`, `NotificationCenter`, observable-AppDelegate) требуют больше кода или ломают cold launch; подробнее — в отчёте реализации.
 - **[Порядок предъявления sheet и переключения вкладки при warm launch с вкладки «Ещё»]** → Итоговое состояние (вкладка списка + открытая форма) не зависит от порядка, но возможен кратковременный показ формы поверх вкладки «Ещё». Проверяется ручным сценарием из критериев приёмки.
 - **[Забытая регистрация shortcut после `UIApplication.shared.shortcutItems` был затёрт]** → Регистрация выполняется на каждом запуске в `didFinishLaunchingWithOptions`, значение перезаписывается целиком, стороннего кода, меняющего `shortcutItems`, в проекте нет.
 - **[Локализация заголовка вычисляется один раз при запуске]** → Смена языка устройства без перезапуска приложения обновит заголовок только после следующего запуска. Для quick action это приемлемо и совпадает с поведением системных действий.
+- **[iPad: два окна — форма может открыться в фоновом]** → Сгенерированный манифест содержит `UIApplicationSupportsMultipleScenes = true`, сервис — один на процесс: при двух окнах вкладку переключат оба `RootScreen`, а форму откроет то окно, чей `MainScreen` первым потребит запрос — возможно, не то, что перед глазами. Non-Goals исключает multi-window UI; если он понадобится, состояние сервиса нужно делать per-scene.

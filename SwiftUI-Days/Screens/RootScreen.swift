@@ -3,6 +3,7 @@ import SwiftUI
 struct RootScreen: View {
     @Environment(AppSettings.self) private var appSettings
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(QuickActionService.self) private var quickActionService
     @State private var tab = Tab.list
     @State private var currentDate = Date.now
     @State private var isBlurred = false
@@ -28,6 +29,9 @@ struct RootScreen: View {
             withAnimation {
                 isBlurred = newPhase != .active
             }
+        }
+        .onChange(of: quickActionService.requestCount) { _, _ in
+            tab = .list
         }
     }
 }
@@ -76,4 +80,5 @@ extension RootScreen {
     RootScreen()
         .environment(AppSettings())
         .environment(ReviewService())
+        .environment(QuickActionService.shared)
 }

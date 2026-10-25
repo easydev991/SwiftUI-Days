@@ -5,6 +5,7 @@ struct MainScreen: View {
     @Environment(\.analyticsService) private var analytics
     @Environment(\.isBlurred) private var isBlurred
     @Environment(AppSettings.self) private var appSettings
+    @Environment(QuickActionService.self) private var quickActionService
     @Query private var items: [Item]
     @State private var sheetItem: SheetItem?
     @AppStorage(DefaultsKey.listSortOrder.rawValue) private var sortOrder = SortOrder.forward.rawValue
@@ -44,7 +45,13 @@ struct MainScreen: View {
                 }
             }
         }
-        .onAppear { normalizeColorFilterIfNeeded() }
+        .onAppear {
+            normalizeColorFilterIfNeeded()
+            handleQuickActionRequest()
+        }
+        .onChange(of: quickActionService.requestCount) { _, _ in
+            handleQuickActionRequest()
+        }
         .onChange(of: filterState.availableColorTags) { _, _ in
             normalizeColorFilterIfNeeded()
         }
@@ -53,7 +60,7 @@ struct MainScreen: View {
 }
 
 private extension MainScreen {
-    enum SheetItem: Identifiable {
+    enum SheetItem: Identifiable, Equatable {
         case addItem
         case colorFilter(availableColors: [String], selectedColorHex: String?)
 
@@ -167,16 +174,25 @@ private extension MainScreen {
         guard selectedColorHex != normalizedColorHex else { return }
         appSettings.mainScreenColorTagFilterHex = normalizedColorHex
     }
+
+    /// Точка потребления запроса quick action: cold launch (.onAppear) и warm launch (.onChange).
+    func handleQuickActionRequest() {
+        guard quickActionService.consumeAddItemRequest(), sheetItem != .addItem else { return }
+        analytics.log(.userAction(action: .create))
+        sheetItem = .addItem
+    }
 }
 
 #if DEBUG
 #Preview("Пусто") {
     MainScreen()
         .modelContainer(for: Item.self, inMemory: true)
+        .environment(QuickActionService.shared)
 }
 
 #Preview("Список") {
     MainScreen()
         .modelContainer(PreviewModelContainer.make(with: Item.makeList()))
+        .environment(QuickActionService.shared)
 }
 #endif

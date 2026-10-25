@@ -54,6 +54,7 @@ struct SwiftUI_DaysApp: App {
             RootScreen()
                 .environment(appSettings)
                 .environment(reviewService)
+                .environment(QuickActionService.shared)
                 .environment(\.analyticsService, analyticsService)
                 .preferredColorScheme(appSettings.appTheme.colorScheme)
         }
