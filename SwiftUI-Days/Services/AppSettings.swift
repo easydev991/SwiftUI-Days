@@ -1,6 +1,5 @@
 import Foundation
 import Observation
-import SwiftUI
 
 @Observable final class AppSettings {
     private let defaults: UserDefaults
