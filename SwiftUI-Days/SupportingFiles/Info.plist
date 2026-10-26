@@ -6,6 +6,17 @@
 	<array>
 		<string>mailto</string>
 	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>plus</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Add Item</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.oleg991.SwiftUI-Days.addItem</string>
+		</dict>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

@@ -7,7 +7,7 @@ Quick action «Добавить запись» регистрируется ди
 ## What Changes
 
 - Quick action «Добавить запись» переносится из динамической регистрации в статическую: объявляется в массиве `UIApplicationShortcutItems` в `Info.plist`, поэтому система регистрирует его в момент установки — action виден сразу после установки и обновления, до первого запуска.
-- Из `AppDelegate` удаляется динамическая регистрация (метод `registerShortcutItem()` и его вызов).
+- Из `AppDelegate` удаляется динамическая регистрация (метод `registerShortcutItem()` и его вызов); вместо неё при каждом запуске выполняется очистка `UIApplication.shared.shortcutItems = []`, чтобы закешированные системой динамические items предыдущих версий не дублировали статический action.
 - Обработка событий не меняется: статический shortcut приходит через те же delegate-пути (`configurationForConnecting` → `AppDelegateSceneDelegate`) с тем же типом `com.oleg991.SwiftUI-Days.addItem`, поэтому `QuickActionService`, `QuickActionType` и их тесты остаются без изменений.
 - Изменение не ломающее: тип shortcut и все сценарии обработки сохраняются, меняется только момент появления action в системном меню (раньше и надёжнее).
 
@@ -24,6 +24,8 @@ Quick action «Добавить запись» регистрируется ди
 ## Impact
 
 - `SwiftUI-Days/SupportingFiles/Info.plist` — добавляется ключ `UIApplicationShortcutItems` со статическим shortcut (тип `com.oleg991.SwiftUI-Days.addItem`, локализуемый заголовок «Add Item», SF Symbol `plus`).
-- `SwiftUI-Days/AppDelegate.swift` — удаляется метод `registerShortcutItem()` и его вызов в `didFinishLaunchingWithOptions`.
-- Без изменений: `AppDelegateSceneDelegate`, `QuickActionService`, `QuickActionType`, `MainScreen`, `RootScreen`, unit-тесты модели и сервиса (остаются валидными), ключи локализации (существующий ключ `Add Item` используется как есть).
+- `SwiftUI-Days/AppDelegate.swift` — удаляется метод `registerShortcutItem()` и его вызов в `didFinishLaunchingWithOptions`, добавляется очистка закешированных динамических items при запуске (`UIApplication.shared.shortcutItems = []`).
+- `SwiftUI-Days/SupportingFiles/InfoPlist.xcstrings` — заполняются переводы ключа `Add Item` (en — «Add Item», ru — «Добавить запись»): Xcode при сборке синхронизирует статический заголовок shortcut в таблицу InfoPlist, и без переводов на русских устройствах отображался бы текст без локализации.
+- `SwiftUI-DaysTests/QuickActionTypeTests.swift` — добавлен guard-тест `staticShortcutTypeMatchesPlist`: статический shortcut в Info.plist обязан использовать закреплённый `QuickActionType.addItemIdentifier` (существующие unit-тесты модели и сервиса остаются валидными без изменений).
+- Без изменений: `AppDelegateSceneDelegate`, `QuickActionService`, `QuickActionType`, `MainScreen`, `RootScreen`, ключи локализации (существующий ключ `Add Item` используется как есть).
 - Пользовательская видимость: кнопка появляется в меню иконки сразу после установки/обновления приложения на всех каналах (App Store, TestFlight, симулятор) без первого запуска.

@@ -15,6 +15,16 @@ struct QuickActionTypeTests {
         #expect(QuickActionType.addItemIdentifier == "com.oleg991.SwiftUI-Days.addItem")
     }
 
+    @Test("Статический shortcut в Info.plist использует закреплённый идентификатор типа")
+    func staticShortcutTypeMatchesPlist() throws {
+        let shortcutItems = try #require(
+            Bundle.main.object(forInfoDictionaryKey: "UIApplicationShortcutItems") as? [[String: Any]]
+        )
+        let shortcut = try #require(shortcutItems.first)
+        let type = try #require(shortcut["UIApplicationShortcutItemType"] as? String)
+        #expect(type == QuickActionType.addItemIdentifier)
+    }
+
     @Test("Неизвестный тип shortcut-а отбрасывается", arguments: [
         "",
         "addItem",

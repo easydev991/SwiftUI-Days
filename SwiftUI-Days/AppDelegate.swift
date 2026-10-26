@@ -8,7 +8,9 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         FirebaseApp.configure()
-        registerShortcutItem()
+        // Система хранит динамические quick actions предыдущих версий после
+        // обновления приложения — очищаем, чтобы они не дублировали статический.
+        UIApplication.shared.shortcutItems = []
         return true
     }
 
@@ -28,18 +30,5 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             configuration.delegateClass = AppDelegateSceneDelegate.self
         }
         return configuration
-    }
-
-    /// Регистрирует динамический quick action на домашнем экране.
-    private func registerShortcutItem() {
-        UIApplication.shared.shortcutItems = [
-            UIApplicationShortcutItem(
-                type: QuickActionType.addItemIdentifier,
-                localizedTitle: String(localized: .addItem),
-                localizedSubtitle: nil,
-                icon: UIApplicationShortcutIcon(type: .add),
-                userInfo: nil
-            )
-        ]
     }
 }
